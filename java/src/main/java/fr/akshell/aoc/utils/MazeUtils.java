@@ -1,12 +1,7 @@
 package fr.akshell.aoc.utils;
 
-import fr.akshell.aoc.pojo.Graph;
 import fr.akshell.aoc.pojo.Maze;
-import fr.akshell.aoc.pojo.Vector2D;
 import lombok.experimental.UtilityClass;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @UtilityClass
 public class MazeUtils {

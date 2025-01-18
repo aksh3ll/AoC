@@ -1,7 +1,5 @@
 package fr.akshell.aoc.y2015;
 
-import static fr.akshell.aoc.utils.GraphUtils.heldKarp;
-
 import fr.akshell.aoc.base.BaseDay;
 import fr.akshell.aoc.graph.Graph;
 import fr.akshell.aoc.pojo.IContent;
@@ -9,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static fr.akshell.aoc.utils.GraphUtils.heldKarp;
 
 public class Day9 extends BaseDay {
 

@@ -4,16 +4,16 @@ import lombok.NonNull;
 
 import java.util.*;
 
-public record Graph<T extends IContent>(Map<String, INode<T>> nodes) {
+public record GenericGraph<T extends IContent>(Map<String, INode<T>> nodes) {
 
-    public static <T extends IContent> Graph<T> of() {
-        return new Graph<>(new HashMap<>());
+    public static <T extends IContent> GenericGraph<T> of() {
+        return new GenericGraph<>(new HashMap<>());
     }
 
-    public static <T extends IContent> Graph<T> of(Collection<T> contents) {
-        Graph<T> graph = of();
-        contents.forEach(graph::addNode);
-        return graph;
+    public static <T extends IContent> GenericGraph<T> of(Collection<T> contents) {
+        GenericGraph<T> genericGraph = of();
+        contents.forEach(genericGraph::addNode);
+        return genericGraph;
     }
 
     public void addNode(INode<T> node) {
