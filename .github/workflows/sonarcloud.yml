@@ -40,6 +40,9 @@ permissions:
 
 jobs:
   Analysis:
+    defaults:
+      run:
+        working-directory: java
     runs-on: ubuntu-latest
 
     steps:
