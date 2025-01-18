@@ -1,6 +1,7 @@
 package fr.akshell.aoc.utils;
 
-import fr.akshell.aoc.pojo.Graph;
+import fr.akshell.aoc.graph.Graph;
+import fr.akshell.aoc.pojo.GenericGraph;
 import fr.akshell.aoc.pojo.IContent;
 import fr.akshell.aoc.pojo.INode;
 import fr.akshell.aoc.pojo.Vector2D;
@@ -11,7 +12,7 @@ import java.util.*;
 @UtilityClass
 public class GraphUtils {
 
-    public Graph<Vector2D> convertMazeToGraph(char[][] maze) {
+    public GenericGraph<Vector2D> convertMazeToGraph(char[][] maze) {
 
         int rows = maze.length;
         int cols = maze[0].length;
@@ -26,7 +27,7 @@ public class GraphUtils {
                 }
             }
         }
-        Graph<Vector2D> graph = Graph.of(nodes.values());
+        GenericGraph<Vector2D> genericGraph = GenericGraph.of(nodes.values());
 
         // Add edges between adjacent walkable cells
         for (int i = 0; i < rows; i++) {
@@ -34,25 +35,25 @@ public class GraphUtils {
                 if (maze[i][j] != '#') {
                     var v1 = nodes.get(Vector2D.id(i, j));
                     if (i > 0 && maze[i - 1][j] != '#') {
-                        graph.addEdge(v1, nodes.get(Vector2D.id(i - 1, j)));
+                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i - 1, j)));
                     }
                     if (i < rows - 1 && maze[i + 1][j] != '#') {
-                        graph.addEdge(v1, nodes.get(Vector2D.id(i + 1, j)));
+                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i + 1, j)));
                     }
                     if (j > 0 && maze[i][j - 1] != '#') {
-                        graph.addEdge(v1, nodes.get(Vector2D.id(i, j - 1)));
+                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i, j - 1)));
                     }
                     if (j < cols - 1 && maze[i][j + 1] != '#') {
-                        graph.addEdge(v1, nodes.get(Vector2D.id(i, j + 1)));
+                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i, j + 1)));
                     }
                 }
             }
         }
 
-        return graph;
+        return genericGraph;
     }
 
-    public int heldKarp(fr.akshell.aoc.graph.Graph graph) {
+    public static int heldKarp(Graph graph) {
         Set<String> vertices = graph.getVertices();
         int n = vertices.size();
         List<String> vertexList = new ArrayList<>(vertices);
@@ -101,8 +102,8 @@ public class GraphUtils {
         return result;
     }
 
-    public <T extends IContent> Set<String> dfs(Graph<T> graph, String startNodeId) {
-        INode<T> startNode = graph.getNode(startNodeId);
+    public <T extends IContent> Set<String> dfs(GenericGraph<T> genericGraph, String startNodeId) {
+        INode<T> startNode = genericGraph.getNode(startNodeId);
         assert (startNode != null): "Node not found in graph";
         Set<String> visited = new HashSet<>();
         Queue<INode<T>> queue = new LinkedList<>();

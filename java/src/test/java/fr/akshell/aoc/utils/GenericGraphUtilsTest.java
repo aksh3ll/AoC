@@ -1,6 +1,6 @@
 package fr.akshell.aoc.utils;
 
-import fr.akshell.aoc.pojo.Graph;
+import fr.akshell.aoc.pojo.GenericGraph;
 import fr.akshell.aoc.pojo.INode;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
@@ -12,7 +12,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
-class GraphUtilsTest {
+class GenericGraphUtilsTest {
     private static final String INPUT_DEMO_1 = """
 ###############
 #.......#....E#
@@ -34,16 +34,16 @@ class GraphUtilsTest {
     @Test
     public void givenInput_whenConvert_thenGraphReturned() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
-        Graph<Vector2D> graph = GraphUtils.convertMazeToGraph(maze.grid());
+        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze.grid());
         Vector2D startNode = maze.find('S');
-        Set<String> result = GraphUtils.dfs(graph, startNode.id());
+        Set<String> result = GraphUtils.dfs(genericGraph, startNode.id());
         System.out.println(result);
     }
 
     @Test void givenInvalidNode_whenDfs_thenExceptionThrown() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
-        Graph<Vector2D> graph = GraphUtils.convertMazeToGraph(maze.grid());
-        assertThatThrownBy(() -> GraphUtils.dfs(graph, "unknown"))
+        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze.grid());
+        assertThatThrownBy(() -> GraphUtils.dfs(genericGraph, "unknown"))
                 .isInstanceOf(AssertionError.class)
                 .hasMessage("Node not found in graph");
     }
@@ -58,10 +58,10 @@ class GraphUtilsTest {
                 {'.', '.', '.', '.', '.'}
         };
 
-        Graph<Vector2D> graph = GraphUtils.convertMazeToGraph(maze);
+        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze);
 
         // Print the graph
-        for (INode<Vector2D> node : graph.nodes().values()) {
+        for (INode<Vector2D> node : genericGraph.nodes().values()) {
             System.out.print("Node (" + node.id() + ") -> ");
             for (INode<Vector2D> neighbor : node.neighbors()) {
                 System.out.print("(" + neighbor.id() + ") ");
