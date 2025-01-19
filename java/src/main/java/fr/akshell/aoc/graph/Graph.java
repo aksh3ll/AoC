@@ -21,6 +21,10 @@ public class Graph {
         adjacencyList.get(vertex2).add(new Edge(vertex1, weight)); // For undirected graph
     }
 
+    public Edge getEdge(String vertex1, String vertex2) {
+        return adjacencyList.get(vertex1).stream().filter(e -> e.vertex().equals(vertex2)).findFirst().orElseThrow();
+    }
+
     public List<Edge> getNeighbors(String vertex) {
         return adjacencyList.get(vertex);
     }

@@ -1,6 +1,7 @@
 package fr.akshell.aoc.utils;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MiscUtils {
@@ -30,5 +31,39 @@ public class MiscUtils {
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException("Failed to deep copy the list", e);
         }
+    }
+
+
+    public static <T> List<List<T>> permute(List<T> nums) {
+        List<List<T>> result = new ArrayList<>();
+        backtrack(result, new ArrayList<>(), nums);
+        return result;
+    }
+
+    private static <T> void backtrack(List<List<T>> result, List<T> tempList, List<T> nums) {
+        if (tempList.size() == nums.size()) {
+            result.add(new ArrayList<>(tempList));
+        } else {
+            for (int i = 0; i < nums.size(); i++) {
+                if (tempList.contains(nums.get(i))) continue; // element already exists, skip
+                tempList.add(nums.get(i));
+                backtrack(result, tempList, nums);
+                tempList.removeLast();
+            }
+        }
+    }
+
+    public static String decodeHex(String input) {
+        StringBuilder output = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == '\\' && i + 3 < input.length() && input.charAt(i + 1) == 'x') {
+                String hex = input.substring(i + 2, i + 4);
+                output.append((char) Integer.parseInt(hex, 16));
+                i += 3;
+            } else {
+                output.append(input.charAt(i));
+            }
+        }
+        return output.toString();
     }
 }

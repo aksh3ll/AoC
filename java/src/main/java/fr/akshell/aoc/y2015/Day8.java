@@ -7,8 +7,10 @@ import java.util.Arrays;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
+import static fr.akshell.aoc.utils.MiscUtils.decodeHex;
 
-public class Day8 extends BaseDay {
+
+public class Day8 extends BaseDay<Integer> {
 
     private record StringSize(int sizeDecoded, int sizeEncoded) {}
 
@@ -27,21 +29,21 @@ public class Day8 extends BaseDay {
     }
 
     private StringSize stringSizeDecoded(String line) {
-        return new StringSize(line.length(), (convertToAscii(line.substring(1, line.length() - 1))).length());
+        return new StringSize(line.length(), decodeHex(line.substring(1, line.length() - 1)).length());
     }
 
     private StringSize stringSizeEncoded(String line) {
         return new StringSize(line.length(), ('"' + ANTISLASH_ESCAPE.apply(line) + '"').length());
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         return Arrays.stream(input.split("\n"))
                 .map(this::stringSizeDecoded)
                 .mapToInt(size -> size.sizeDecoded() - size.sizeEncoded())
                 .sum();
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         return Arrays.stream(input.split("\n"))
                 .map(this::stringSizeEncoded)
                 .mapToInt(size -> size.sizeEncoded() - size.sizeDecoded())

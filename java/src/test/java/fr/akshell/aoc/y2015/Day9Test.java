@@ -16,8 +16,8 @@ Dublin to Belfast = 141
 """;
     private final static long INPUT_DEMO_1_PART1_RESULT = 605;
     private final static long INPUT_DEMO_1_PART2_RESULT = 982;
-    private final static long FINAL_PART1_RESULT = Long.MAX_VALUE;
-    private final static long FINAL_PART2_RESULT = Long.MAX_VALUE;
+    private final static long FINAL_PART1_RESULT = 117;
+    private final static long FINAL_PART2_RESULT = 909L;
 
     Day9 day9 = new Day9();
 

@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 
 @Getter
 @Setter
-public class Day14 extends BaseDay {
+public class Day14 extends BaseDay<Integer> {
     public static int MAX_TIME = 10000;
     public static Pattern RE_ROBOT = Pattern.compile("^p=(\\d+),(\\d+)\\s+v=([-\\d]+),([-\\d]+)$");
 
@@ -45,7 +45,7 @@ public class Day14 extends BaseDay {
         return result < 0? result + modulo : result;
     }
 
-    public long prod(long [] list) {
+    public int prod(int [] list) {
         return Arrays.stream(list).reduce(1, (a, b) -> a * b);
     }
 
@@ -68,8 +68,8 @@ public class Day14 extends BaseDay {
         System.out.println();
     }
 
-    public long[] read_quadrants(List<Robot> robots, int width, int height) {
-        long[] quadrants = {0, 0, 0, 0};
+    public int[] read_quadrants(List<Robot> robots, int width, int height) {
+        int[] quadrants = {0, 0, 0, 0};
         int half_width = width / 2;
         int half_height = height / 2;
         for (Robot robot : robots) {
@@ -111,16 +111,16 @@ public class Day14 extends BaseDay {
                 .toList();
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         List<Robot> robots = read_input(input);
         List<Robot> new_robots = move_robots(robots, width, height, time);
         var quadrants = read_quadrants(new_robots, width, height);
-        long score = prod(quadrants);
+        int score = prod(quadrants);
         System.out.println("score: " + score);
         return score;
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         List<Robot> robots = read_input(input);
         var i_robots = robots.stream().map(Robot::copy).toList();
         int min_segments = Integer.MAX_VALUE;

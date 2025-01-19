@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Function;
 
-public class Day2 extends BaseDay {
+public class Day2 extends BaseDay<Long> {
 
     public record Box(long l, long w, long h) {
         public static Box of(long... dimensions) {
@@ -34,11 +34,11 @@ public class Day2 extends BaseDay {
                 .toList();
     }
 
-    public long part1(String input) {
+    public Long part1(String input) {
         return convertInput(input).stream().mapToLong(WRAPPING_PAPER::apply).sum();
     }
 
-    public long part2(String input) {
+    public Long part2(String input) {
         return convertInput(input).stream().mapToLong(RIBBON::apply).sum();
     }
 }

@@ -9,7 +9,7 @@ import java.util.*;
 
 import static fr.akshell.aoc.pojo.Maze.WALL;
 
-public class Day16 extends BaseDay {
+public class Day16 extends BaseDay<Integer> {
     public static final char START = 'S';
     public static final char END = 'E';
 
@@ -126,7 +126,7 @@ public class Day16 extends BaseDay {
         return allPaths;
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         Maze maze = convertInput(input);
         Vector2D start = maze.find(START);
         Vector2D end = maze.find(END);
@@ -137,7 +137,7 @@ public class Day16 extends BaseDay {
         return distance;
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         Maze maze = convertInput(input);
         Vector2D start = maze.find(START);
         Vector2D end = maze.find(END);

@@ -1,8 +1,8 @@
 package fr.akshell.aoc.base;
 
-public abstract class BaseDay {
+public abstract class BaseDay<T> {
 
-    public abstract long part1(String input);
+    public abstract T part1(String input);
 
-    public abstract long part2(String input);
+    public abstract T part2(String input);
 }

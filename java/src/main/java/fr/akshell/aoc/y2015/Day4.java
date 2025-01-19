@@ -3,7 +3,7 @@ package fr.akshell.aoc.y2015;
 import fr.akshell.aoc.base.BaseDay;
 import org.springframework.util.DigestUtils;
 
-public class Day4 extends BaseDay {
+public class Day4 extends BaseDay<Integer> {
 
     private int puzzle(String key, String suffix) {
         int i = 0;
@@ -16,11 +16,11 @@ public class Day4 extends BaseDay {
         }
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         return puzzle(input, "00000");
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         return puzzle(input, "000000");
     }
 }

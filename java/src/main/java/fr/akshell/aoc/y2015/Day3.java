@@ -6,7 +6,7 @@ import fr.akshell.aoc.pojo.Vector2D;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Day3 extends BaseDay {
+public class Day3 extends BaseDay<Integer> {
 
     public Vector2D move(Vector2D position, char c) {
         return switch (c) {
@@ -18,7 +18,7 @@ public class Day3 extends BaseDay {
         };
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         Set<Vector2D> visited = new HashSet<>();
         var position = new Vector2D(0, 0);
         visited.add(position);
@@ -29,7 +29,7 @@ public class Day3 extends BaseDay {
         return visited.size();
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         Set<Vector2D> visited = new HashSet<>();
         var santa = new Vector2D(0, 0);
         var robot = new Vector2D(0, 0);

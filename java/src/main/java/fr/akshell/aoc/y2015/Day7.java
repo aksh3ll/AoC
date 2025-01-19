@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static fr.akshell.aoc.utils.MiscUtils.deepCopy;
 
-public class Day7 extends BaseDay {
+public class Day7 extends BaseDay<Integer> {
 
     private enum Operation {
         SET, AND, OR, LSHIFT, RSHIFT, NOT
@@ -139,7 +139,7 @@ public class Day7 extends BaseDay {
         return executed;
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         // Parse input
         List<IOperation> operations = getOperations(input);
         // Empty registers
@@ -150,7 +150,7 @@ public class Day7 extends BaseDay {
         return registers.getOrDefault("a", 0);
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         // Parse input
         List<IOperation> operations = getOperations(input);
         // Empty registers
