@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.util.*;
 
-public class Day11 extends BaseDay {
+public class Day11 extends BaseDay<Long> {
     @Getter
     @Setter
     private int iteration = 0;
@@ -33,7 +33,7 @@ public class Day11 extends BaseDay {
         return List.of(stone * 2024L);
     }
 
-    public long part1(String input) {
+    public Long part1(String input) {
         List<Long> stones = Arrays.stream(input.split("\\s+")).map(String::strip).map(Long::parseLong).toList();
         for (int i = 0; i < iteration; i++) {
             var new_stones = new ArrayList<Long>();
@@ -42,7 +42,7 @@ public class Day11 extends BaseDay {
             }
             stones = new_stones;
         }
-        return stones.size();
+        return (long) stones.size();
     }
 
     public long apply_rules2(long stone, int iteration) {
@@ -73,7 +73,7 @@ public class Day11 extends BaseDay {
         return value;
     }
 
-    public long part2(String input) {
+    public Long part2(String input) {
         List<Long> stones = Arrays.stream(input.split("\\s+")).map(String::strip).map(Long::parseLong).toList();
         cache = new HashMap<>();
         long stones_count = 0;

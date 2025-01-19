@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-public class Day5 extends BaseDay {
+public class Day5 extends BaseDay<Long> {
     
     // rule 1 V1: at least 3 vowels
     private static final Pattern RE_RULE1_V1 = Pattern.compile("[aeiou].*[aeiou].*[aeiou]");
@@ -36,11 +36,11 @@ public class Day5 extends BaseDay {
                     .sum();
     }
 
-    public long part1(String input) {
+    public Long part1(String input) {
         return countNiceStrings(NICE_STRING_V1, input);
     }
 
-    public long part2(String input) {
+    public Long part2(String input) {
         return countNiceStrings(NICE_STRING_V2, input);
     }
 }

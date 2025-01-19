@@ -11,7 +11,7 @@ import fr.akshell.aoc.utils.MazeUtils;
 
 import java.util.*;
 
-public class Day6 extends BaseDay {
+public class Day6 extends BaseDay<Integer> {
     public static final int MAX_MOVES = 10000;
     private final static char GUARD = '^';
     private final static char BOX = 'O';
@@ -69,7 +69,7 @@ public class Day6 extends BaseDay {
         }
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         Maze maze = MazeUtils.convertInputToMaze(input);
         List<Vector2D> visited = new ArrayList<>();
         List<Vector2D> blockers = new ArrayList<>();
@@ -79,7 +79,7 @@ public class Day6 extends BaseDay {
         return visited.size();
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         Maze maze = MazeUtils.convertInputToMaze(input);
         List<Vector2D> visited = new ArrayList<>();
         List<Vector2D> blockers = new ArrayList<>();

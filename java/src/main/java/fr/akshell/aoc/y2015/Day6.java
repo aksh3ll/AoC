@@ -10,7 +10,7 @@ import java.util.function.BiFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day6 extends BaseDay {
+public class Day6 extends BaseDay<Integer> {
 
     @Getter
     private enum Order {
@@ -71,14 +71,14 @@ public class Day6 extends BaseDay {
         return grid;
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         return Arrays
                 .stream(applyInstructions(parseInstructions(input), SWITCH1, 1000, 1000))
                 .flatMapToInt(Arrays::stream)
                 .sum();
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         return Arrays
                 .stream(applyInstructions(parseInstructions(input), SWITCH2, 1000, 1000))
                 .flatMapToInt(Arrays::stream)

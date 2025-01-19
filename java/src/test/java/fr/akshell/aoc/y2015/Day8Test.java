@@ -29,6 +29,13 @@ class Day8Test extends BaseTest {
     }
 
     @Test
+    public void givenDemoInput1_whenRunningConvertToAscii_thenExpectedResultIsFound() {
+        assertThat(Day8.convertToAscii("abc")).isEqualTo("abc");
+        assertThat(Day8.convertToAscii("aaa\\\"aaa")).isEqualTo("aaa\\\"aaa");
+        assertThat(Day8.convertToAscii("\\x27")).isEqualTo("'");
+    }
+
+    @Test
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(day8.part1(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART1_RESULT);
     }

@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 import static fr.akshell.aoc.pojo.Maze.EMPTY;
 import static fr.akshell.aoc.pojo.Maze.WALL;
 
-public class Day15 extends BaseDay {
+public class Day15 extends BaseDay<Integer> {
     public static final char BOX = 'O';
     public static final char L_BOX_LEFT = '[';
     public static final char L_BOX_RIGHT = ']';
@@ -109,7 +109,7 @@ public class Day15 extends BaseDay {
         return false;
     }
 
-    public long part1(String input) {
+    public Integer part1(String input) {
         Day15Input day15Input = convertInput(input);
         Maze warehouse = day15Input.warehouse;
         List<Character> moves = day15Input.moves;
@@ -172,7 +172,7 @@ public class Day15 extends BaseDay {
         });
     }
 
-    public long part2(String input) {
+    public Integer part2(String input) {
         Day15Input day15Input = convertInput(input);
         Maze warehouse = day15Input.warehouse;
         List<Character> moves = day15Input.moves;
