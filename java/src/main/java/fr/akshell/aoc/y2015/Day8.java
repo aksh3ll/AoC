@@ -37,14 +37,14 @@ public class Day8 extends BaseDay<Integer> {
     }
 
     public Integer part1(String input) {
-        return Arrays.stream(input.split("\n"))
+        return Arrays.stream(input.strip().split("\n"))
                 .map(this::stringSizeDecoded)
                 .mapToInt(size -> size.sizeDecoded() - size.sizeEncoded())
                 .sum();
     }
 
     public Integer part2(String input) {
-        return Arrays.stream(input.split("\n"))
+        return Arrays.stream(input.strip().split("\n"))
                 .map(this::stringSizeEncoded)
                 .mapToInt(size -> size.sizeEncoded() - size.sizeDecoded())
                 .sum();

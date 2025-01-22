@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Set;
+
 @SpringBootTest
 class Vector4DTest {
 
@@ -105,5 +107,12 @@ class Vector4DTest {
     void givenVector_whenRequestId_thenExpectedIdIsFound() {
         Vector4D vector = new Vector4D(6, 3, -1, 1);
         assertThat(vector.id()).isEqualTo("(6, 3, -1, 1)");
+    }
+
+    @Test
+    void givenGuard_whenSearchInSet_thenExpectedResultIsFound() {
+        Vector4D guard = new Vector4D(4, 6, 0, -1);
+        Set<Vector4D> moves = Set.of(guard);
+        assertThat(moves.contains(new Vector4D(4, 6, 0, -1))).isTrue();
     }
 }

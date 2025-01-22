@@ -13,10 +13,6 @@ import static fr.akshell.aoc.utils.MiscUtils.deepCopy;
 
 public class Day7 extends BaseDay<Integer> {
 
-    private enum Operation {
-        SET, AND, OR, LSHIFT, RSHIFT, NOT
-    }
-
     private static String[] getGroups(Matcher matcher) {
         String[] groups = new String[matcher.groupCount()];
         for (int i = 1; i <= matcher.groupCount(); i++) {

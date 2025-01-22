@@ -17,10 +17,10 @@ public class Day4 extends BaseDay<Integer> {
     }
 
     public Integer part1(String input) {
-        return puzzle(input, "00000");
+        return puzzle(input.strip(), "00000");
     }
 
     public Integer part2(String input) {
-        return puzzle(input, "000000");
+        return puzzle(input.strip(), "000000");
     }
 }

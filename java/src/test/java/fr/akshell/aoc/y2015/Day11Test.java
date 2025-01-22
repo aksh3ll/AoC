@@ -1,14 +1,13 @@
 package fr.akshell.aoc.y2015;
 
-import fr.akshell.aoc.base.BaseTest;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
+import fr.akshell.aoc.base.BaseTest;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-class Day11Test extends BaseTest {
+@SpringBootTest
+class Day11Test extends BaseTest<String> {
 
     private final static String INPUT_DEMO_1 = """
 abcdefgh
@@ -23,15 +22,15 @@ ghijklmn
     private final static String FINAL_PART1_RESULT = "hepxxyzz";
     private final static String FINAL_PART2_RESULT = "heqaabcc";
 
-
-    Day11 day11 = new Day11();
-
     public Day11Test() {
-        super(2015, 11);
+        super(2015, 11, new Day11(),
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
     @Test
     public void givenDemoInputs_whenRunningBaseFunctions_thenExpectedResultIsFound() {
+        Day11 day11 = (Day11) getDay();
         assertThat(day11.rule1("abbcegjk")).isFalse();
         assertThat(day11.rule1("abcdffaa")).isTrue();
         assertThat(day11.rule2("hijklmmn")).isFalse();
@@ -46,34 +45,13 @@ ghijklmn
         assertThat(day11.findNextValidPassword("ghijklmn")).isEqualTo("ghjaabcc");
     }
 
-
-    @Test
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(day11.part1(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART1_RESULT);
-    }
-
-    @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(day11.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
-    }
-
     @Test
     public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(day11.part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
+        assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
     @Test
     public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(day11.part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
-    }
-
-    @Test
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day11.part1(getFinalInput())).isEqualTo(FINAL_PART1_RESULT);
-    }
-
-    @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day11.part2(getFinalInput())).isEqualTo(FINAL_PART2_RESULT);
+        assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
     }
 }

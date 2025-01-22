@@ -102,6 +102,55 @@ public class GraphUtils {
         return result;
     }
 
+    public static int heldKarpMax(Graph graph) {
+        Set<String> vertices = graph.getVertices();
+        int n = vertices.size();
+        List<String> vertexList = new ArrayList<>(vertices);
+        Map<String, Integer> vertexIndex = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            vertexIndex.put(vertexList.get(i), i);
+        }
+
+        int[][] dist = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dist[i], Integer.MIN_VALUE / 2);
+            dist[i][i] = 0;
+        }
+
+        for (String u : vertices) {
+            int uIdx = vertexIndex.get(u);
+            for (fr.akshell.aoc.graph.Graph.Edge edge : graph.getNeighbors(u)) {
+                int vIdx = vertexIndex.get(edge.vertex());
+                dist[uIdx][vIdx] = edge.weight();
+            }
+        }
+
+        int[][] dp = new int[1 << n][n];
+        for (int[] row : dp) {
+            Arrays.fill(row, Integer.MIN_VALUE / 2);
+        }
+        dp[1][0] = 0;
+
+        for (int mask = 1; mask < (1 << n); mask += 2) {
+            for (int u = 0; u < n; u++) {
+                if ((mask & (1 << u)) != 0) {
+                    for (int v = 0; v < n; v++) {
+                        if ((mask & (1 << v)) == 0) {
+                            dp[mask | (1 << v)][v] = Math.max(dp[mask | (1 << v)][v], dp[mask][u] + dist[u][v]);
+                        }
+                    }
+                }
+            }
+        }
+
+        int result = Integer.MIN_VALUE;
+        for (int u = 1; u < n; u++) {
+            result = Math.max(result, dp[(1 << n) - 1][u] + dist[u][0]);
+        }
+
+        return result;
+    }
+
     public <T extends IContent> Set<String> dfs(GenericGraph<T> genericGraph, String startNodeId) {
         INode<T> startNode = genericGraph.getNode(startNodeId);
         assert (startNode != null): "Node not found in graph";

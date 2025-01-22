@@ -40,6 +40,21 @@ public class MiscUtils {
         return result;
     }
 
+    public static <T> List<List<T>> getAllCombinations(List<T> nums) {
+        List<List<T>> result = new ArrayList<>();
+        generateCombinations(nums, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private static <T> void generateCombinations(List<T> nums, int start, List<T> current, List<List<T>> result) {
+        result.add(new ArrayList<>(current));
+        for (int i = start; i < nums.size(); i++) {
+            current.add(nums.get(i));
+            generateCombinations(nums, i + 1, current, result);
+            current.removeLast();
+        }
+    }
+
     private static <T> void backtrack(List<List<T>> result, List<T> tempList, List<T> nums) {
         if (tempList.size() == nums.size()) {
             result.add(new ArrayList<>(tempList));

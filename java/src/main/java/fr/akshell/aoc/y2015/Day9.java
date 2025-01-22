@@ -2,21 +2,12 @@ package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
 import fr.akshell.aoc.graph.Graph;
-import fr.akshell.aoc.pojo.IContent;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static fr.akshell.aoc.utils.MiscUtils.permute;
 
 public class Day9 extends BaseDay<Integer> {
-
-    private record City(String name) implements IContent {
-        public String id() {
-            return name;
-        }
-    }
 
     private record Route(String from, String to, int distance) {
         public static Route of(String line) {
@@ -25,9 +16,19 @@ public class Day9 extends BaseDay<Integer> {
         }
     }
 
-    private int shortestPath(Graph graph, List<String> cities) {
+    private Graph convertInputToGraph(String input) {
+        List<Route> routes = Arrays.stream(input.split("\n")).map(Route::of).toList();
+        Graph graph = new Graph();
+        routes.forEach(route -> {
+            graph.addEdge(route.from(), route.to(), route.distance());
+            graph.addEdge(route.to(), route.from(), route.distance());
+        });
+        return graph;
+    }
+
+    private int shortestPath(Graph graph) {
         int minDistance = Integer.MAX_VALUE;
-        for (List<String> permutation : permute(cities)) {
+        for (List<String> permutation : permute(graph.getVertices().stream().toList())) {
             int distance = 0;
             for (int i = 0; i < permutation.size() - 1; i++) {
                 distance += graph.getEdge(permutation.get(i), permutation.get(i + 1)).weight();
@@ -37,9 +38,9 @@ public class Day9 extends BaseDay<Integer> {
         return minDistance;
     }
 
-    private int longestPath(Graph graph, List<String> cities) {
+    private int longestPath(Graph graph) {
         int maxDistance = Integer.MIN_VALUE;
-        for (List<String> permutation : permute(cities)) {
+        for (List<String> permutation : permute(graph.getVertices().stream().toList())) {
             int distance = 0;
             for (int i = 0; i < permutation.size() - 1; i++) {
                 distance += graph.getEdge(permutation.get(i), permutation.get(i + 1)).weight();
@@ -50,20 +51,10 @@ public class Day9 extends BaseDay<Integer> {
     }
 
     public Integer part1(String input) {
-        List<Route> routes = Arrays.stream(input.split("\n")).map(Route::of).toList();
-        Set<City> cities = routes.stream().map(Route::from).map(City::new).collect(Collectors.toSet());
-        routes.stream().map(Route::to).map(City::new).forEach(cities::add);
-        Graph graph = new Graph();
-        routes.forEach(route -> graph.addEdge(route.from(), route.to(), route.distance()));
-        return shortestPath(graph, cities.stream().map(City::name).toList());
+        return shortestPath(convertInputToGraph(input));
     }
 
     public Integer part2(String input) {
-        List<Route> routes = Arrays.stream(input.split("\n")).map(Route::of).toList();
-        Set<City> cities = routes.stream().map(Route::from).map(City::new).collect(Collectors.toSet());
-        routes.stream().map(Route::to).map(City::new).forEach(cities::add);
-        Graph graph = new Graph();
-        routes.forEach(route -> graph.addEdge(route.from(), route.to(), route.distance()));
-        return longestPath(graph, cities.stream().map(City::name).toList());
+        return longestPath(convertInputToGraph(input));
     }
 }

@@ -1,37 +1,20 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseTest;
-import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
+@SpringBootTest
+class Day2Test extends BaseTest<Long> {
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class Day2Test extends BaseTest {
-
-    Day2 day2 = new Day2();
+    private final static String INPUT_DEMO_1 = "2x3x4";
+    private final static long INPUT_DEMO_1_PART1_RESULT = 58;
+    private final static long INPUT_DEMO_1_PART2_RESULT = 34;
+    private final static long FINAL_PART1_RESULT = 1598415;
+    private final static long FINAL_PART2_RESULT = 3812909;
 
     public Day2Test() {
-        super(2015, 2);
-    }
-
-    @Test
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(day2.part1("2x3x4")).isEqualTo(58);
-    }
-
-    @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(day2.part2("2x3x4")).isEqualTo(34);
-    }
-
-    @Test
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day2.part1(getFinalInput())).isEqualTo(1598415);
-    }
-
-    @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day2.part2(getFinalInput())).isEqualTo(3812909);
+        super(2015, 2, new Day2(),
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 }

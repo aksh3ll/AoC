@@ -1,48 +1,45 @@
 package fr.akshell.aoc.y2015;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import fr.akshell.aoc.base.BaseTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 @SpringBootTest
-class Day1Test extends BaseTest {
+class Day1Test extends BaseTest<Integer> {
 
-    Day1 day1 = new Day1();
+    private final static String INPUT_DEMO_1 = """
+)())())
+""";
+    private final static int INPUT_DEMO_1_PART1_RESULT = -3;
+    private final static int INPUT_DEMO_1_PART2_RESULT = 0;
+    private final static int FINAL_PART1_RESULT = 232;
+    private final static int FINAL_PART2_RESULT = 1783;
+
 
     Day1Test() {
-        super(2015, 1);
+        super(2015, 1, new Day1(),
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
     @Test
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(day1.part1("(())")).isEqualTo(0);
-        assertThat(day1.part1("()()")).isEqualTo(0);
-        assertThat(day1.part1("(((")).isEqualTo(3);
-        assertThat(day1.part1("(()(()(")).isEqualTo(3);
-        assertThat(day1.part1("))(((((")).isEqualTo(3);
-        assertThat(day1.part1("())")).isEqualTo(-1);
-        assertThat(day1.part1("))(")).isEqualTo(-1);
-        assertThat(day1.part1(")))")).isEqualTo(-3);
-        assertThat(day1.part1(")())())")).isEqualTo(-3);
+        assertThat(getDay().part1("(())")).isEqualTo(0);
+        assertThat(getDay().part1("()()")).isEqualTo(0);
+        assertThat(getDay().part1("(((")).isEqualTo(3);
+        assertThat(getDay().part1("(()(()(")).isEqualTo(3);
+        assertThat(getDay().part1("))(((((")).isEqualTo(3);
+        assertThat(getDay().part1("())")).isEqualTo(-1);
+        assertThat(getDay().part1("))(")).isEqualTo(-1);
+        assertThat(getDay().part1(")))")).isEqualTo(-3);
+        assertThat(getDay().part1(")())())")).isEqualTo(-3);
     }
 
     @Test
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(day1.part2(")")).isEqualTo(1);
-        assertThat(day1.part2("()())")).isEqualTo(5);
-    }
-
-    @Test
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day1.part1(getFinalInput())).isEqualTo(232);
-    }
-
-    @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day1.part2(getFinalInput())).isEqualTo(1783);
+        assertThat(getDay().part2(")")).isEqualTo(1);
+        assertThat(getDay().part2("()())")).isEqualTo(5);
     }
 }

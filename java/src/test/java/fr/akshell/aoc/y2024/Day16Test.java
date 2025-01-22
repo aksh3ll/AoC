@@ -5,12 +5,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class Day16Test extends BaseTest {
+class Day16Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """
 ###############
@@ -29,8 +27,8 @@ class Day16Test extends BaseTest {
 #S..#.....#...#
 ###############
 """;
-    private final static int INPUT_DEMO_1_PUZZLE1_RESULT = 7036;
-    private final static int INPUT_DEMO_1_PUZZLE2_RESULT = 45;
+    private final static int INPUT_DEMO_1_PART1_RESULT = 7036;
+    private final static int INPUT_DEMO_1_PART2_RESULT = 45;
 
     private static final String INPUT_DEMO_2 = """
 #################
@@ -51,45 +49,30 @@ class Day16Test extends BaseTest {
 #S#.............#
 #################
 """;
-    private final static int INPUT_DEMO_2_PUZZLE1_RESULT = 11048;
-    private final static int INPUT_DEMO_2_PUZZLE2_RESULT = 64;
-
-    private final Day16 day16 = new Day16();
+    private final static int INPUT_DEMO_2_PART1_RESULT = 11048;
+    private final static int INPUT_DEMO_2_PART2_RESULT = 64;
+    private final static int FINAL_PART1_RESULT = 122492;
+    private final static int FINAL_PART2_RESULT = 0;
 
     public Day16Test() {
-        super(2024, 16);
-    }
-
-    @Test
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(day16.part1(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PUZZLE1_RESULT);
+        super(2024, 16, new Day16(),
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
     @Test
     public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(day16.part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PUZZLE1_RESULT);
-    }
-
-    @Disabled
-    @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(day16.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PUZZLE2_RESULT);
+        assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
     @Disabled
     @Test
     public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(day16.part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PUZZLE2_RESULT);
-    }
-
-    @Test
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day16.part1(getFinalInput())).isEqualTo(122492);
+        assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
     }
 
     @Disabled
     @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() throws IOException, InterruptedException {
-        assertThat(day16.part2(getFinalInput())).isEqualTo(0);
+    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
     }
 }
