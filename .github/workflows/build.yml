@@ -9,7 +9,7 @@ jobs:
   build:
     defaults:
       run:
-        working-directory: /home/runner/work/AoC/AoC/java
+        working-directory: /github/workspace/java
     name: Build and analyze
     runs-on: ubuntu-latest
     steps:
