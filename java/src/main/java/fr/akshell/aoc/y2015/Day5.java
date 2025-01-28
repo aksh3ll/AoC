@@ -30,8 +30,8 @@ public class Day5 extends BaseDay<Integer> {
                     && RE_RULE2_V2.matcher(string).find();
 
     public int countNiceStrings(Function<String, Boolean> niceStringTest, String input) {
-            return Arrays
-                    .stream(input.split("\n"))
+            return input
+                    .lines()
                     .mapToInt(line -> niceStringTest.apply(line) ? 1 : 0)
                     .sum();
     }

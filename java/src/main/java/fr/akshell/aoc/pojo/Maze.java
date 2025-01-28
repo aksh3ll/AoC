@@ -4,6 +4,10 @@ public record Maze(char[][] grid, int width, int height) {
     public static final char WALL = '#';
     public static final char EMPTY = '.';
 
+    public static Maze of(int width, int height) {
+        return new Maze(new char[height][width], width, height);
+    }
+
     public char get(int x, int y) {
         return grid[y][x];
     }

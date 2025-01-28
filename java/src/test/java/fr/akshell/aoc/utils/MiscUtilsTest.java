@@ -4,6 +4,8 @@ import static fr.akshell.aoc.utils.MiscUtils.permute;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+
+import fr.akshell.aoc.y2015.Day8;
 import org.junit.jupiter.api.Test;
 
 class MiscUtilsTest {
@@ -40,5 +42,9 @@ class MiscUtilsTest {
         assertThat(MiscUtils.decodeHex("a\\x20b")).isEqualTo("a b");
         assertThat(MiscUtils.decodeHex("a\\x20b\\x20c")).isEqualTo("a b c");
         assertThat(MiscUtils.decodeHex("a\\x20b\\x20c\\x20d")).isEqualTo("a b c d");
+        assertThat(MiscUtils.decodeHex("abc")).isEqualTo("abc");
+        assertThat(MiscUtils.decodeHex("aaa\\\"aaa")).isEqualTo("aaa\"aaa");
+        assertThat(MiscUtils.decodeHex("\\x27")).isEqualTo("'");
+        assertThat(MiscUtils.decodeHex("x\\\"\\xcaj\\\\xwwvpdldz")).isEqualTo("x\"Êj\\xwwvpdldz");
     }
 }

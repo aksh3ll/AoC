@@ -115,8 +115,7 @@ public class Day7 extends BaseDay<Integer> {
     }
 
     private List<IOperation> getOperations(String input) {
-        return Arrays
-                .stream(input.split("\n"))
+        return input.lines()
                 .map(this::getOperation)
                 .collect(Collectors.toCollection(ArrayList::new));
     }

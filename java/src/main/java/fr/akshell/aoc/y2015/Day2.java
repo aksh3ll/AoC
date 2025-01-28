@@ -24,8 +24,8 @@ public class Day2 extends BaseDay<Long> {
     private static final Function<Box, Long> RIBBON = box -> 2 * Math.min(box.l() + box.w(), Math.min(box.w() + box.h(), box.h() + box.l())) + box.l() * box.w() * box.h();
 
     public Collection<Box> convertInput(String input) {
-        return Arrays
-                .stream(input.split("\n"))
+        return input
+                .lines()
                 .map(line -> Box.of(
                         Arrays
                                 .stream(line.split("x"))

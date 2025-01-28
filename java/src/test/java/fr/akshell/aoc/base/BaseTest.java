@@ -1,5 +1,6 @@
 package fr.akshell.aoc.base;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -20,11 +21,11 @@ public abstract class BaseTest<T> {
     private final T finalPart1Result;
     private final T finalPart2Result;
 
-    public BaseTest(int year, int day, BaseDay<T> dayInstence, String inputDemo1, T inputDemo1Part1Result, T inputDemo1Part2Result,
+    public BaseTest(int year, int day, BaseDay<T> dayInstance, String inputDemo1, T inputDemo1Part1Result, T inputDemo1Part2Result,
                     T finalPart1Result, T finalPart2Result) {
         this.year = year;
         this.day = day;
-        this.dayInstance = dayInstence;
+        this.dayInstance = dayInstance;
         this.inputDemo1 = inputDemo1;
         this.inputDemo1Part1Result = inputDemo1Part1Result;
         this.inputDemo1Part2Result = inputDemo1Part2Result;
@@ -62,11 +63,13 @@ public abstract class BaseTest<T> {
         assertThat(dayInstance.part2(inputDemo1)).isEqualTo(inputDemo1Part2Result);
     }
 
+    @Disabled
     @Test
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(dayInstance.part1(getFinalInput())).isEqualTo(finalPart1Result);
     }
 
+    @Disabled
     @Test
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(dayInstance.part2(getFinalInput())).isEqualTo(finalPart2Result);

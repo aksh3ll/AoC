@@ -19,17 +19,8 @@ public class Day8 extends BaseDay<Integer> {
                     .replace("\\", "\\\\")
                     .replace("\"", "\\\"");
 
-    public static String convertToAscii(String input) {
-        String normalized = Normalizer.normalize(input, Normalizer.Form.NFD);
-        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        return pattern.matcher(normalized)
-                .replaceAll("")
-                .replaceAll("[^\\p{ASCII}]", "")
-                .translateEscapes();
-    }
-
     private StringSize stringSizeDecoded(String line) {
-        return new StringSize(line.length(), decodeHex(line.substring(1, line.length() - 1)).length());
+        return new StringSize(decodeHex(line.substring(1, line.length() - 1)).length(), line.length());
     }
 
     private StringSize stringSizeEncoded(String line) {
@@ -37,14 +28,14 @@ public class Day8 extends BaseDay<Integer> {
     }
 
     public Integer part1(String input) {
-        return Arrays.stream(input.strip().split("\n"))
+        return input.lines()
                 .map(this::stringSizeDecoded)
-                .mapToInt(size -> size.sizeDecoded() - size.sizeEncoded())
+                .mapToInt(size -> size.sizeEncoded() - size.sizeDecoded())
                 .sum();
     }
 
     public Integer part2(String input) {
-        return Arrays.stream(input.strip().split("\n"))
+        return input.lines()
                 .map(this::stringSizeEncoded)
                 .mapToInt(size -> size.sizeEncoded() - size.sizeDecoded())
                 .sum();

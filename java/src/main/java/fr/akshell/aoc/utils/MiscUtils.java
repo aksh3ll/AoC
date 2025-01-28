@@ -71,10 +71,22 @@ public class MiscUtils {
     public static String decodeHex(String input) {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == '\\' && i + 3 < input.length() && input.charAt(i + 1) == 'x') {
-                String hex = input.substring(i + 2, i + 4);
-                output.append((char) Integer.parseInt(hex, 16));
-                i += 3;
+            if (input.charAt(i) == '\\' && i + 1 < input.length()) {
+                switch (input.charAt(i + 1)) {
+                    case 'x':
+                        output.append((char) Integer.parseInt(input.substring(i + 2, i + 4), 16));
+                        i += 3;
+                        break;
+                    case '\\': output.append('\\'); i++; break;
+                    case 'n': output.append('\n'); i++; break;
+                    case 'r': output.append('\r'); i++; break;
+                    case 't': output.append('\t'); i++; break;
+                    case 'b': output.append('\b'); i++; break;
+                    case 'f': output.append('\f'); i++; break;
+                    case '"': output.append('"'); i++; break;
+                    default:
+                        output.append(input.charAt(i));
+                }
             } else {
                 output.append(input.charAt(i));
             }
