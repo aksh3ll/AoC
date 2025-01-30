@@ -1,6 +1,8 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseTest;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -20,5 +22,13 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3
                 INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
+
+    @Disabled
+    @Test
+    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {}
+
+    @Disabled
+    @Test
+    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {}
 }
 

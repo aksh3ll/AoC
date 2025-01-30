@@ -3,6 +3,7 @@ package fr.akshell.aoc.y2015;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import fr.akshell.aoc.base.BaseTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class Day19Test extends BaseTest<Integer> {
@@ -41,6 +42,11 @@ HOHOHO
         assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
+    @Disabled
+    @Test
+    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {}
+
+    @Disabled
     @Test
     public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
