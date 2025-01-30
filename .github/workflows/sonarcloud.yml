@@ -5,6 +5,9 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+defaults:
+  run:
+    working-directory: java
 jobs:
   build:
     name: Build and analyze
@@ -34,5 +37,3 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew build sonar --info
-        with:
-          projectBaseDir: java/
