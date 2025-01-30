@@ -56,6 +56,28 @@ public class Day21 extends BaseDay<Integer> {
             {80, 0, 3}
     };
 
+    private record Equipment(int cost, int damage, int armor) {}
+
+    private Equipment[] generateEquipments() {
+        Equipment[] equipments = new Equipment[WEAPONS.length * ARMORS.length * RINGS.length * 2];
+        int index = 0;
+        for (int[] weapon : WEAPONS) {
+            for (int[] armor : ARMORS) {
+                for (int i = 0; i < RINGS.length; i++) {
+                    for (int j = i + 1; j < RINGS.length; j++) {
+                        int cost = weapon[0] + armor[0] + RINGS[i][0] + RINGS[j][0];
+                        int damage = weapon[1] + armor[1] + RINGS[i][1] + RINGS[j][1];
+                        int arm = weapon[2] + armor[2] + RINGS[i][2] + RINGS[j][2];
+                        equipments[index++] = new Equipment(cost, damage, arm);
+                    }
+                }
+            }
+        }
+        return equipments;
+    }
+
+
+
     @Override
     public Integer part1(String input) {
         return 0;
