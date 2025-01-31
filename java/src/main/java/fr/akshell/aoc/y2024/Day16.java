@@ -145,7 +145,7 @@ public class Day16 extends BaseDay<Integer> {
         assert start != null;
         Vector4D startPos =  Vector4D.of(start, 1, 0);
         int distance = bfs(maze, startPos, end);
-        System.out.println("score: " + distance);
+        LOGGER.info("distance: {}", distance);
         return distance;
     }
 
@@ -161,10 +161,9 @@ public class Day16 extends BaseDay<Integer> {
 
         for (Step2 step : allPaths) {
             Set<Vector2D> path = getPath(step);
-            System.out.println("path (" + path.size() + "): " + path);
+            LOGGER.info("path ({}): {}", path.size(), path);
         }
-
-        System.out.println("score: " + score);
+        LOGGER.info("score: {}", score);
         return score;
     }
 }

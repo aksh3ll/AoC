@@ -2,6 +2,7 @@ package fr.akshell.aoc.pojo;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public record Maze(char[][] grid, int width, int height) {
     public static final char WALL = '#';
@@ -47,12 +48,6 @@ public record Maze(char[][] grid, int width, int height) {
         return isValid(pos.x(), pos.y());
     }
 
-    public void print() {
-        for (char[] line : grid) {
-            System.out.println(new String(line));
-        }
-    }
-
     public Vector2D find(char search) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -74,5 +69,9 @@ public record Maze(char[][] grid, int width, int height) {
     @Override
     public int hashCode() {
         return Objects.hash(Arrays.deepHashCode(grid), width, height);
+    }
+
+    public String toString() {
+        return Arrays.stream(grid).map(String::new).collect(Collectors.joining("\n"));
     }
 }

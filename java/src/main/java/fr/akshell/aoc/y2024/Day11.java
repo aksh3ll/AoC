@@ -80,7 +80,6 @@ public class Day11 extends BaseDay<Long> {
         for (Long stone : stones) {
             stones_count += apply_rules2(stone, iteration);
         }
-        System.out.println(cache.size());
         return stones_count;
     }
 }

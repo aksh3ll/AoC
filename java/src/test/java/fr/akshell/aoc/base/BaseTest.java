@@ -3,6 +3,9 @@ package fr.akshell.aoc.base;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,6 +15,7 @@ import java.net.http.HttpResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class BaseTest<T> {
+    protected static Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
     private final int year;
     private final int day;
     BaseDay<T> dayInstance;

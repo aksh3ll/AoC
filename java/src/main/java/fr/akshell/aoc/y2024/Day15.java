@@ -109,6 +109,11 @@ public class Day15 extends BaseDay<Integer> {
         return false;
     }
 
+    private void logResult(Maze maze, int score) {
+        LOGGER.info("Last state:\n{}", maze);
+        LOGGER.info("score: {}", score);
+    }
+
     public Integer part1(String input) {
         Day15Input day15Input = convertInput(input);
         Maze warehouse = day15Input.warehouse;
@@ -121,10 +126,8 @@ public class Day15 extends BaseDay<Integer> {
             }
         });
 
-        System.out.println("Last state:");
-        warehouse.print();
         int score = calcGpsScore(warehouse, BOX);
-        System.out.println("score: " + score);
+        logResult(warehouse, score);
         return score;
     }
 
@@ -194,10 +197,8 @@ public class Day15 extends BaseDay<Integer> {
             index.getAndSet(index.get() + 1);
         });
 
-        System.out.println("Last state: ");
-        warehouse.print();
         int score = calcGpsScore(warehouse, L_BOX_LEFT);
-        System.out.println("score: " + score);
+        logResult(warehouse, score);
         return score;
     }
 }

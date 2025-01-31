@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -57,15 +58,14 @@ public class Day14 extends BaseDay<Integer> {
         return matrix;
     }
 
-    public void print_robots(int[][] matrix) {
-        // Print the matrix
-        for (int[] row : matrix) {
-            for (int c : row) {
-                System.out.print(c == 0 ? '.' : '*');
-            }
-            System.out.println();
-        }
-        System.out.println();
+    public String gridToString(int[][] matrix) {
+        return Arrays.stream(matrix)
+                .map(row -> Arrays
+                        .stream(row)
+                        .mapToObj(c -> c == 0 ? "." : "*")
+                        .collect(Collectors.joining())
+                )
+                .collect(Collectors.joining("\n"));
     }
 
     public int[] read_quadrants(List<Robot> robots, int width, int height) {
@@ -116,7 +116,7 @@ public class Day14 extends BaseDay<Integer> {
         List<Robot> new_robots = move_robots(robots, width, height, time);
         var quadrants = read_quadrants(new_robots, width, height);
         int score = prod(quadrants);
-        System.out.println("score: " + score);
+        LOGGER.info("score: {}", score);
         return score;
     }
 
@@ -135,9 +135,10 @@ public class Day14 extends BaseDay<Integer> {
             i_robots = move_robots(i_robots, width, height, 1);
             time++;
         }
-        System.out.println("min segments: " + min_segments);
-        System.out.println("min time segments: " + min_time_segments);
-        print_robots( robots_to_grid(move_robots(robots, width, height, min_time_segments), width, height));
+
+        LOGGER.info("min segments: {}\nmin time segments: {}\nrobots:\n{}",
+                min_segments, min_time_segments,
+                gridToString(robots_to_grid(move_robots(robots, width, height, min_time_segments), width, height)));
 
         return min_time_segments;
     }

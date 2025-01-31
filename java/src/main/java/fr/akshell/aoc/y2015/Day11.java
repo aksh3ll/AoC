@@ -79,7 +79,6 @@ public class Day11 extends BaseDay<String> {
         int i = 0;
         while (i++ < MAX_ITER) {
             newPass = incrementPassword(newPass);
-            //System.out.println(input + " --(" + i + ")--> " + newPass);
             if (validatePassword(newPass)) {
                 return newPass;
             }
