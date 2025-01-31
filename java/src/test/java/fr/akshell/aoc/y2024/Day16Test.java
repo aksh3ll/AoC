@@ -60,6 +60,10 @@ class Day16Test extends BaseTest<Integer> {
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
+    @Disabled
+    @Test
+    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {}
+
     @Test
     public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
@@ -73,6 +77,5 @@ class Day16Test extends BaseTest<Integer> {
 
     @Disabled
     @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
-    }
+    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {}
 }
