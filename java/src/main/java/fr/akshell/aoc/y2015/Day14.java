@@ -50,8 +50,8 @@ public class Day14 extends BaseDay<Integer> {
 
     private Map<String, Integer> racePart2(List<Reindeer> reindeers, int timeLimit) {
         Map<String, Integer> scores = reindeers.stream().collect(Collectors.toMap(Reindeer::name, r -> 0));
-        for (int time = 1; time <= timeLimit; time++) {
-            var positions = racePart1(reindeers, time);
+        for (int iTime = 1; iTime <= timeLimit; iTime++) {
+            var positions = racePart1(reindeers, iTime);
             int maxDistance = positions.values().stream().mapToInt(Integer::intValue).max().orElse(0);
             for (var entry : positions.entrySet()) {
                 if (entry.getValue() == maxDistance) {

@@ -11,7 +11,7 @@ import java.util.Set;
 class Vector4DTest {
 
     @Test
-    public void givenPosition_whenTurnLeft_thenExpectedPositionIsFound() {
+    void givenPosition_whenTurnLeft_thenExpectedPositionIsFound() {
         // Facing East
         Vector4D position = new Vector4D(0, 0, 1, 0);
         // From East to North
@@ -41,7 +41,7 @@ class Vector4DTest {
     }
 
     @Test
-    public void givenPosition_whenTurnRight_thenExpectedPositionIsFound() {
+    void givenPosition_whenTurnRight_thenExpectedPositionIsFound() {
         // Facing East
         Vector4D position = new Vector4D(0, 0, 1, 0);
         // From East to South
@@ -71,7 +71,7 @@ class Vector4DTest {
     }
 
     @Test
-    public void givenPosition_whenTurnAround_thenExpectedPositionIsFound() {
+    void givenPosition_whenTurnAround_thenExpectedPositionIsFound() {
         // Facing East
         Vector4D position = new Vector4D(0, 0, 1, 0);
         // From East to West
@@ -113,6 +113,6 @@ class Vector4DTest {
     void givenGuard_whenSearchInSet_thenExpectedResultIsFound() {
         Vector4D guard = new Vector4D(4, 6, 0, -1);
         Set<Vector4D> moves = Set.of(guard);
-        assertThat(moves.contains(new Vector4D(4, 6, 0, -1))).isTrue();
+        assertThat(moves).contains(new Vector4D(4, 6, 0, -1));
     }
 }

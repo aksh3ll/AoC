@@ -28,6 +28,7 @@ public class Day17Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(25);
@@ -35,6 +36,7 @@ public class Day17Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(25);
@@ -42,6 +44,7 @@ public class Day17Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(150);
@@ -49,6 +52,7 @@ public class Day17Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(150);

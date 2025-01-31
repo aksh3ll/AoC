@@ -29,32 +29,32 @@ class Day12Test extends BaseTest<Integer> {
     }
 
     @Test
-    void part1() {
+    void givenExamples_whenInvokePart1_thenReturnExpectedSize() {
         assertThat(getDay().part1("[1,2,3]")).isEqualTo(6);
         assertThat(getDay().part1("{\"a\":2,\"b\":4}")).isEqualTo(6);
         assertThat(getDay().part1("[[[3]]]")).isEqualTo(3);
         assertThat(getDay().part1("{\"a\":{\"b\":4},\"c\":-1}")).isEqualTo(3);
-        assertThat(getDay().part1("{\"a\":[-1,1]}")).isEqualTo(0);
-        assertThat(getDay().part1("[-1,{\"a\":1}]")).isEqualTo(0);
-        assertThat(getDay().part1("[]")).isEqualTo(0);
-        assertThat(getDay().part1("{}")).isEqualTo(0);
+        assertThat(getDay().part1("{\"a\":[-1,1]}")).isZero();
+        assertThat(getDay().part1("[-1,{\"a\":1}]")).isZero();
+        assertThat(getDay().part1("[]")).isZero();
+        assertThat(getDay().part1("{}")).isZero();
     }
 
     @Test
-    void part2() {
+    void givenExamples_whenInvokePart2_thenReturnExpectedSize() {
         assertThat(getDay().part2("[1,2,3]")).isEqualTo(6);
         assertThat(getDay().part2("[1,{\"c\":\"red\",\"b\":2},3]")).isEqualTo(4);
-        assertThat(getDay().part2("{\"d\":\"red\",\"e\":[1,2,3,4],\"f\":5}")).isEqualTo(0);
+        assertThat(getDay().part2("{\"d\":\"red\",\"e\":[1,2,3,4],\"f\":5}")).isZero();
         assertThat(getDay().part2("[1,\"red\",5]")).isEqualTo(6);
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
     }
 }

@@ -25,6 +25,7 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(1000);
@@ -32,6 +33,7 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(1000);
@@ -39,6 +41,7 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(2503);
@@ -46,6 +49,7 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(2503);

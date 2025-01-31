@@ -24,13 +24,13 @@ public class Day20Test extends BaseTest<Integer> {
     @Override
     @Test
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();
+        assertThat(DUMMY).isTrue();
     }
 
     @Disabled("This test is disabled because part 2 is not yet solved")
     @Override
     @Test
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();
+        assertThat(DUMMY).isTrue();
     }
 }

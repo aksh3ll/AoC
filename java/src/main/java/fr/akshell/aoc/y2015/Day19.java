@@ -24,7 +24,7 @@ public class Day19 extends BaseDay<Integer> {
     public Integer part1(String input) {
         Calibration calibration = parseInput(input);
         Set<String> molecules = new HashSet<>();
-        calibration.replacements().forEach((replacement) -> {
+        calibration.replacements().forEach(replacement -> {
             String from = replacement.from();
             String to = replacement.to();
             int index = calibration.start().indexOf(from);

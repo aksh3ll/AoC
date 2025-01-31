@@ -28,6 +28,7 @@ public class Day18Test extends BaseTest<Integer> {
         }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day18 day18 = (Day18) getDay();
         day18.setSteps(4);
@@ -35,6 +36,7 @@ public class Day18Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
         Day18 day18 = (Day18) getDay();
         day18.setSteps(5);
@@ -42,6 +44,7 @@ public class Day18Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day18 day18 = (Day18) getDay();
         day18.setSteps(100);
@@ -49,6 +52,7 @@ public class Day18Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day18 day18 = (Day18) getDay();
         day18.setSteps(100);

@@ -12,6 +12,12 @@ public class Day11 extends BaseDay<String> {
     private static final Pattern RE_RULE3 = Pattern.compile("(\\w)\\1");
     private static final UnaryOperator<String> REVERSE = input -> new StringBuilder(input).reverse().toString();
 
+    public static class InvalidPasswordException extends RuntimeException {
+        public InvalidPasswordException(String message) {
+            super(message);
+        }
+    }
+
     private char nextLetter(char c) {
         return (char) (c + 1);
     }
@@ -51,7 +57,7 @@ public class Day11 extends BaseDay<String> {
 
     public boolean validatePassword(String input) {
         if (!RE_PASSWORD.matcher(input).matches()) {
-            throw new RuntimeException(String.format("password `{%s}` should be 8 characters lowercase.", input));
+            throw new InvalidPasswordException(String.format("password `{%s}` should be 8 characters lowercase.", input));
         }
         return rule1(input) && rule2(input) && rule3(input);
     }
@@ -82,7 +88,7 @@ public class Day11 extends BaseDay<String> {
                 return newPass;
             }
         }
-        throw new RuntimeException("No valid password found");
+        throw new InvalidPasswordException("No valid password found");
     }
 
     public String part1(String input) {

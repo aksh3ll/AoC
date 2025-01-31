@@ -21,6 +21,7 @@ class Day3Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(">")).isEqualTo(2);
         assertThat(getDay().part1("^>v<")).isEqualTo(4);
@@ -28,6 +29,7 @@ class Day3Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2("^v")).isEqualTo(3);
         assertThat(getDay().part2("^>v<")).isEqualTo(3);

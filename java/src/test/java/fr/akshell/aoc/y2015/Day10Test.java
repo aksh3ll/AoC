@@ -22,7 +22,7 @@ class Day10Test extends BaseTest<Integer> {
     }
 
     @Test
-    public void givenDemoInput1_whenRunningConvertToAscii_thenExpectedResultIsFound() {
+    void givenDemoInput1_whenRunningConvertToAscii_thenExpectedResultIsFound() {
         assertThat(((Day10) getDay()).lookAndSay("1")).isEqualTo("11");
         assertThat(((Day10) getDay()).lookAndSay("11")).isEqualTo("21");
         assertThat(((Day10) getDay()).lookAndSay("21")).isEqualTo("1211");

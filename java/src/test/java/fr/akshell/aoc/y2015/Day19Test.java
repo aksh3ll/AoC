@@ -46,7 +46,7 @@ HOHOHO
     @Test
     @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();}
+        assertThat(DUMMY).isTrue();}
 
     @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
@@ -58,6 +58,6 @@ HOHOHO
     @Test
     @Override
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();
+        assertThat(DUMMY).isTrue();
     }
 }

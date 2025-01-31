@@ -25,9 +25,10 @@ class Day1Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(getDay().part1("(())")).isEqualTo(0);
-        assertThat(getDay().part1("()()")).isEqualTo(0);
+        assertThat(getDay().part1("(())")).isZero();
+        assertThat(getDay().part1("()()")).isZero();
         assertThat(getDay().part1("(((")).isEqualTo(3);
         assertThat(getDay().part1("(()(()(")).isEqualTo(3);
         assertThat(getDay().part1("))(((((")).isEqualTo(3);
@@ -38,6 +39,7 @@ class Day1Test extends BaseTest<Integer> {
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(")")).isEqualTo(1);
         assertThat(getDay().part2("()())")).isEqualTo(5);

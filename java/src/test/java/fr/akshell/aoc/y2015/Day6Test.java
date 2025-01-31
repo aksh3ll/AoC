@@ -34,12 +34,12 @@ private static final int FINAL_PART2_RESULT = 15343601;
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
     }
 }

@@ -29,7 +29,7 @@ ghijklmn
     }
 
     @Test
-    public void givenDemoInputs_whenRunningBaseFunctions_thenExpectedResultIsFound() {
+    void givenDemoInputs_whenRunningBaseFunctions_thenExpectedResultIsFound() {
         Day11 day11 = (Day11) getDay();
         assertThat(day11.rule1("abbcegjk")).isFalse();
         assertThat(day11.rule1("abcdffaa")).isTrue();
@@ -46,12 +46,12 @@ ghijklmn
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
     }
 }
