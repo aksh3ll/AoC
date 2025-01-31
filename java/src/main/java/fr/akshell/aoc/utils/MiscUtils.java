@@ -9,6 +9,12 @@ import java.util.List;
 @UtilityClass
 public class MiscUtils {
 
+    public static class DeepCopyException extends RuntimeException {
+        public DeepCopyException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
     public static boolean isNumber(String str) {
         if (str == null || str.isEmpty()) {
             return false;
@@ -32,7 +38,7 @@ public class MiscUtils {
             ObjectInputStream in = new ObjectInputStream(byteIn);
             return (T) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException("Failed to deep copy the list", e);
+            throw new DeepCopyException("Failed to deep copy the list", e);
         }
     }
 
@@ -73,7 +79,8 @@ public class MiscUtils {
 
     public static String decodeHex(String input) {
         StringBuilder output = new StringBuilder();
-        for (int i = 0; i < input.length(); i++) {
+        int i = 0;
+        while (i < input.length()) {
             if (input.charAt(i) == '\\' && i + 1 < input.length()) {
                 switch (input.charAt(i + 1)) {
                     case 'x':
@@ -93,6 +100,7 @@ public class MiscUtils {
             } else {
                 output.append(input.charAt(i));
             }
+            i++;
         }
         return output.toString();
     }

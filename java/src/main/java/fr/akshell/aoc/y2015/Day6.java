@@ -16,17 +16,17 @@ public class Day6 extends BaseDay<Integer> {
     private enum Order {
         TURN_ON("turn on"), TURN_OFF("turn off"), TOGGLE("toggle");
 
-        private final String order;
+        private final String instruction;
 
-        Order(String order) {
-            this.order = order;
+        Order(String instruction) {
+            this.instruction = instruction;
         }
 
-        public static Order of(String order) {
+        public static Order of(String instruction) {
             return Arrays.stream(Order.values())
-                    .filter(o -> o.getOrder().equals(order))
+                    .filter(o -> o.getInstruction().equals(instruction))
                     .findFirst()
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid order: " + order));
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid instruction: " + instruction));
         }
     }
 

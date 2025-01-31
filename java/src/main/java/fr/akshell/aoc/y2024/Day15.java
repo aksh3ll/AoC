@@ -21,6 +21,12 @@ public class Day15 extends BaseDay<Integer> {
 
     public record Day15Input(Maze warehouse, List<Character> moves) {}
 
+    public static class ConundrumException extends RuntimeException {
+        public ConundrumException(String message) {
+            super(message);
+        }
+    }
+
     public static final Map<Character, Vector2D> DIRECTIONS = Map.of(
         '<', new Vector2D(-1, 0),
         '>', new Vector2D(1, 0),
@@ -87,21 +93,21 @@ public class Day15 extends BaseDay<Integer> {
     }
 
     public boolean canMove(Maze warehouse, Vector2D robot, Vector2D dir) {
-        int new_x = robot.x() + dir.x();
-        int new_y = robot.y() + dir.y();
+        int newX = robot.x() + dir.x();
+        int newY = robot.y() + dir.y();
 
-        if (warehouse.get(new_x, new_y) == WALL) {
+        if (warehouse.get(newX, newY) == WALL) {
             return false;
         }
 
-        Vector2D newRobot = new Vector2D(new_x, new_y);
-        if (warehouse.get(new_x, new_y) == BOX && !canMove(warehouse, newRobot, dir)) {
+        Vector2D newRobot = new Vector2D(newX, newY);
+        if (warehouse.get(newX, newY) == BOX && !canMove(warehouse, newRobot, dir)) {
             return false;
         }
 
-        if (warehouse.get(new_x, new_y) == EMPTY) {
-            char tmp = warehouse.get(new_x, new_y);
-            warehouse.set(new_x, new_y, warehouse.get(robot.x(), robot.y()));
+        if (warehouse.get(newX, newY) == EMPTY) {
+            char tmp = warehouse.get(newX, newY);
+            warehouse.set(newX, newY, warehouse.get(robot.x(), robot.y()));
             warehouse.set(robot.x(), robot.y(), tmp);
             return true;
         }
@@ -132,34 +138,34 @@ public class Day15 extends BaseDay<Integer> {
     }
 
     public List<Vector2D> getShifts(Maze warehouse, Vector2D origin, Vector2D dir) {
-        int new_x = origin.x() + dir.x();
-        int new_y = origin.y() + dir.y();
+        int newX = origin.x() + dir.x();
+        int newY = origin.y() + dir.y();
 
-        if (warehouse.get(new_x, new_y) == WALL) {
+        if (warehouse.get(newX, newY) == WALL) {
             throw new BlockedException("We're blocked by a wall!");
         }
 
-        if (MOVABLES.contains(warehouse.get(new_x, new_y))) {
+        if (MOVABLES.contains(warehouse.get(newX, newY))) {
             if (dir.x() == 0) { // vertical
-                int second_dir_x = warehouse.get(new_x, new_y) == L_BOX_LEFT ? 1 : -1;
+                int secondDirX = warehouse.get(newX, newY) == L_BOX_LEFT ? 1 : -1;
                 return Stream.of(
                         List.of(origin),
-                        getShifts(warehouse, new Vector2D(new_x, new_y), dir),
-                        getShifts(warehouse, new Vector2D(new_x + second_dir_x, new_y), dir)
+                        getShifts(warehouse, new Vector2D(newX, newY), dir),
+                        getShifts(warehouse, new Vector2D(newX + secondDirX, newY), dir)
                 ).flatMap(Collection::stream).toList();
             } else { // horizontal
                 return Stream.of(
-                    List.of(origin, new Vector2D(new_x, new_y)),
-                    getShifts(warehouse, new Vector2D(new_x + dir.x(), new_y), dir)
+                    List.of(origin, new Vector2D(newX, newY)),
+                    getShifts(warehouse, new Vector2D(newX + dir.x(), newY), dir)
                 ).flatMap(Collection::stream).toList();
             }
         }
 
-        if (warehouse.get(new_x, new_y) == EMPTY) {
+        if (warehouse.get(newX, newY) == EMPTY) {
             return List.of(origin);
         }
 
-        throw new RuntimeException("We're stuck in a conundrum!");
+        throw new ConundrumException("We're stuck in a conundrum!");
     }
 
     public void shift(Maze warehouse, List<Vector2D> shifts, Vector2D dir) {
@@ -167,10 +173,10 @@ public class Day15 extends BaseDay<Integer> {
         mutableShifts.sort((a, b) -> (b.y() - a.y()) * dir.y() + (b.x() - a.x()) * dir.x());
 
         mutableShifts.forEach(shift -> {
-            int new_x = shift.x() + dir.x();
-            int new_y = shift.y() + dir.y();
-            char tmp = warehouse.get(new_x, new_y);
-            warehouse.set(new_x, new_y, warehouse.get(shift));
+            int newX = shift.x() + dir.x();
+            int newY = shift.y() + dir.y();
+            char tmp = warehouse.get(newX, newY);
+            warehouse.set(newX, newY, warehouse.get(shift));
             warehouse.set(shift, tmp);
         });
     }
@@ -192,7 +198,7 @@ public class Day15 extends BaseDay<Integer> {
             } catch (BlockedException e) {
                 // expected sometimes, should be ignored
             } catch (RuntimeException e) {
-                throw new RuntimeException("We're stuck in a conundrum on move " + index + "!");
+                throw new ConundrumException("We're stuck in a conundrum on move " + index + "!");
             }
             index.getAndSet(index.get() + 1);
         });
