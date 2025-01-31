@@ -1,5 +1,8 @@
 package fr.akshell.aoc.pojo;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public record Maze(char[][] grid, int width, int height) {
     public static final char WALL = '#';
     public static final char EMPTY = '.';
@@ -59,5 +62,17 @@ public record Maze(char[][] grid, int width, int height) {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Maze maze = (Maze) o;
+        return width == maze.width() && height == maze.height && Objects.deepEquals(grid, maze.grid());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Arrays.deepHashCode(grid), width, height);
     }
 }

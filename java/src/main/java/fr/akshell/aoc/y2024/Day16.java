@@ -14,7 +14,19 @@ public class Day16 extends BaseDay<Integer> {
     public static final char END = 'E';
 
     public record Step(Vector4D position, Step previous, int distance) {}
-    public record Step2(Vector4D position, boolean[][] visited, Step2 previous, int distance) {}
+    public record Step2(Vector4D position, boolean[][] visited, Step2 previous, int distance) {
+        @Override
+        public boolean equals(Object o) {
+            if (o == null || getClass() != o.getClass()) return false;
+            Step2 step2 = (Step2) o;
+            return distance == step2.distance && Objects.equals(previous, step2.previous) && Objects.equals(position, step2.position) && Objects.deepEquals(visited, step2.visited);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(position, Arrays.deepHashCode(visited), previous, distance);
+        }
+    }
 
     public Maze convertInput(String input) {
         String[] lines = input.trim().split("\n");

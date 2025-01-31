@@ -8,6 +8,7 @@ public class MazeUtils {
 
     public static Maze convertInputToMaze(String input) {
         String[] map_lines = input.split("\n");
+        assert map_lines.length > 0;
         char[][] map = new char[map_lines.length][];
         for (int i = 0; i < map_lines.length; i++) {
             map[i] = map_lines[i].trim().toCharArray();
