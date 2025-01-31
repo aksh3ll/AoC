@@ -1,5 +1,6 @@
-package fr.akshell.aoc.pojo;
+package fr.akshell.aoc.graph;
 
+import fr.akshell.aoc.pojo.Vector2D;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -10,10 +11,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 
 @SpringBootTest
-public class GenericGraphTest {
+class GenericGraphTest {
 
     @Test
-    public void givenNodes_whenCreateGraph_thenGraphReturned() {
+    void givenNodes_whenCreateGraph_thenGraphReturned() {
         var pt1 = new Vector2D(0, 0);
         var pt2 = new Vector2D(0, 1);
         var pt3 = new Vector2D(1, 0);
@@ -23,11 +24,11 @@ public class GenericGraphTest {
         genericGraph.addEdge(pt1, pt3);
         genericGraph.addEdge(pt2, pt4);
         genericGraph.addEdge(pt3, pt4);
-        genericGraph.addEdge(pt1, pt4, true);
+        genericGraph.addEdge(pt1, pt4);
         assertThat(genericGraph)
                 .isNotNull()
                 .extracting(GenericGraph::nodeCount, GenericGraph::edgeCount)
-                .containsExactly(4, 6);
+                .containsExactly(4, 5);
         assertThat(genericGraph.getNode(pt1.id()))
                 .isNotNull()
                 .extracting("content")
@@ -58,10 +59,10 @@ public class GenericGraphTest {
         assertThatThrownBy(() -> genericGraph.addEdge(pt2, pt1))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("c2 is marked non-null but is null");
-        assertThatThrownBy(() -> genericGraph.addEdge(pt1, pt2, true))
+        assertThatThrownBy(() -> genericGraph.addEdge(pt1, pt2))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("c1 is marked non-null but is null");
-        assertThatThrownBy(() -> genericGraph.addEdge(pt2, pt1, true))
+        assertThatThrownBy(() -> genericGraph.addEdge(pt2, pt1))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("c2 is marked non-null but is null");
     }

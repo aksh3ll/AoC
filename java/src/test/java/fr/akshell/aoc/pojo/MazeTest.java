@@ -18,7 +18,7 @@ class MazeTest {
     Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
 
     @Test
-    public void givenMaze_whenCheckingValid_thenExpectedResultIsFound() {
+    void givenMaze_whenCheckingValid_thenExpectedResultIsFound() {
         assertThat(maze.isValid(new Vector2D(0, 0))).isTrue();
         assertThat(maze.isValid(new Vector2D(1, 1))).isTrue();
         assertThat(maze.isValid(new Vector2D(2, 2))).isTrue();
@@ -31,7 +31,7 @@ class MazeTest {
     }
 
     @Test
-    public void givenMaze_whenCheckingWall_thenExpectedResultIsFound() {
+    void givenMaze_whenCheckingWall_thenExpectedResultIsFound() {
         assertThat(maze.find('@'))
                 .isNotNull()
                 .extracting(Vector2D::x, Vector2D::y).containsExactly(3, 3);

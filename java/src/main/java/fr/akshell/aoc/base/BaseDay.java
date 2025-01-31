@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class BaseDay<T> {
-    protected static Logger LOGGER = LoggerFactory.getLogger(BaseDay.class);
+    protected static Logger logger = LoggerFactory.getLogger(BaseDay.class);
 
     public abstract T part1(String input);
 

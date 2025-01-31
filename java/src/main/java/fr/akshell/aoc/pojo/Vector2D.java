@@ -1,5 +1,7 @@
 package fr.akshell.aoc.pojo;
 
+import fr.akshell.aoc.graph.IContent;
+
 public record Vector2D(int x, int y) implements IContent {
 
     public String id() {

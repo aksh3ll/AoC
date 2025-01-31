@@ -43,7 +43,7 @@ public class Day6 extends BaseDay<Integer> {
         Vector2D guardPos = maze.find(GUARD);
         assert guardPos != null;
         Vector4D guard = new Vector4D(guardPos.x(), guardPos.y(), 0, -1);
-        LOGGER.info("grid ({}x{}) guard: ({}, {})", maze.width(), maze.height(), guard.x(), guard.y());
+        logger.info("grid ({}x{}) guard: ({}, {})", maze.width(), maze.height(), guard.x(), guard.y());
         visited.add(new Vector2D(guard.x(), guard.y()));
 
         for (int moves = 0; moves < MAX_MOVES; moves++) {
@@ -75,7 +75,7 @@ public class Day6 extends BaseDay<Integer> {
         List<Vector2D> blockers = new ArrayList<>();
         run(maze, visited, blockers);
         visited.forEach(v -> maze.set(v, VISITED));
-        LOGGER.info("Maze:\n{}", maze);
+        logger.info("Maze:\n{}", maze);
         return visited.size();
     }
 
@@ -84,7 +84,7 @@ public class Day6 extends BaseDay<Integer> {
         List<Vector2D> visited = new ArrayList<>();
         List<Vector2D> blockers = new ArrayList<>();
         run(maze, visited, blockers);
-        LOGGER.info("blockers: {}", blockers.size());
+        logger.info("blockers: {}", blockers.size());
         return blockers.size();
     }
 }

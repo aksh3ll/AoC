@@ -3,7 +3,7 @@ package fr.akshell.aoc.y2015;
 import static fr.akshell.aoc.utils.MiscUtils.permute;
 
 import fr.akshell.aoc.base.BaseDay;
-import fr.akshell.aoc.graph.Graph;
+import fr.akshell.aoc.pojo.Graph;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;

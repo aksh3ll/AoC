@@ -4,7 +4,7 @@ import fr.akshell.aoc.base.BaseDay;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.function.Function;
+import java.util.function.ToLongFunction;
 
 public class Day2 extends BaseDay<Long> {
 
@@ -14,14 +14,14 @@ public class Day2 extends BaseDay<Long> {
         }
     }
 
-    private static final Function<Box, Long> WRAPPING_PAPER = box -> {
+    private static final ToLongFunction<Box> WRAPPING_PAPER = box -> {
         long lw = box.l() * box.w();
         long wh = box.w() * box.h();
         long hl = box.h() * box.l();
         return 2 * lw + 2 * wh + 2 * hl + Math.min(Math.min(lw, wh), hl);
     };
 
-    private static final Function<Box, Long> RIBBON = box -> 2 * Math.min(box.l() + box.w(), Math.min(box.w() + box.h(), box.h() + box.l())) + box.l() * box.w() * box.h();
+    private static final ToLongFunction<Box> RIBBON = box -> 2 * Math.min(box.l() + box.w(), Math.min(box.w() + box.h(), box.h() + box.l())) + box.l() * box.w() * box.h();
 
     public Collection<Box> convertInput(String input) {
         return input
@@ -35,10 +35,10 @@ public class Day2 extends BaseDay<Long> {
     }
 
     public Long part1(String input) {
-        return convertInput(input).stream().mapToLong(WRAPPING_PAPER::apply).sum();
+        return convertInput(input).stream().mapToLong(WRAPPING_PAPER).sum();
     }
 
     public Long part2(String input) {
-        return convertInput(input).stream().mapToLong(RIBBON::apply).sum();
+        return convertInput(input).stream().mapToLong(RIBBON).sum();
     }
 }

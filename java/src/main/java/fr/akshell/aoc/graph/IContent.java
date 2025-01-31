@@ -1,4 +1,4 @@
-package fr.akshell.aoc.pojo;
+package fr.akshell.aoc.graph;
 
 public interface IContent {
     String id();

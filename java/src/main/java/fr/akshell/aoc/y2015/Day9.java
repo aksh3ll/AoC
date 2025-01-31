@@ -1,7 +1,7 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
-import fr.akshell.aoc.graph.Graph;
+import fr.akshell.aoc.pojo.Graph;
 import java.util.Arrays;
 import java.util.List;
 

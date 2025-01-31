@@ -116,7 +116,7 @@ public class Day14 extends BaseDay<Integer> {
         List<Robot> new_robots = move_robots(robots, width, height, time);
         var quadrants = read_quadrants(new_robots, width, height);
         int score = prod(quadrants);
-        LOGGER.info("score: {}", score);
+        logger.info("score: {}", score);
         return score;
     }
 
@@ -136,7 +136,7 @@ public class Day14 extends BaseDay<Integer> {
             time++;
         }
 
-        LOGGER.info("min segments: {}\nmin time segments: {}\nrobots:\n{}",
+        logger.info("min segments: {}\nmin time segments: {}\nrobots:\n{}",
                 min_segments, min_time_segments,
                 gridToString(robots_to_grid(move_robots(robots, width, height, min_time_segments), width, height)));
 

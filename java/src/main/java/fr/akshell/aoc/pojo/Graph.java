@@ -1,6 +1,10 @@
-package fr.akshell.aoc.graph;
+package fr.akshell.aoc.pojo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Graph {
     public record Edge(String vertex, int weight) {}

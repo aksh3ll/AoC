@@ -1,9 +1,9 @@
 package fr.akshell.aoc.utils;
 
-import fr.akshell.aoc.graph.Graph;
-import fr.akshell.aoc.pojo.GenericGraph;
-import fr.akshell.aoc.pojo.IContent;
-import fr.akshell.aoc.pojo.INode;
+import fr.akshell.aoc.pojo.Graph;
+import fr.akshell.aoc.graph.GenericGraph;
+import fr.akshell.aoc.graph.IContent;
+import fr.akshell.aoc.graph.INode;
 import fr.akshell.aoc.pojo.Vector2D;
 import lombok.experimental.UtilityClass;
 
@@ -70,7 +70,7 @@ public class GraphUtils {
 
         for (String u : vertices) {
             int uIdx = vertexIndex.get(u);
-            for (fr.akshell.aoc.graph.Graph.Edge edge : graph.getNeighbors(u)) {
+            for (Graph.Edge edge : graph.getNeighbors(u)) {
                 int vIdx = vertexIndex.get(edge.vertex());
                 dist[uIdx][vIdx] = edge.weight();
             }
@@ -119,7 +119,7 @@ public class GraphUtils {
 
         for (String u : vertices) {
             int uIdx = vertexIndex.get(u);
-            for (fr.akshell.aoc.graph.Graph.Edge edge : graph.getNeighbors(u)) {
+            for (Graph.Edge edge : graph.getNeighbors(u)) {
                 int vIdx = vertexIndex.get(edge.vertex());
                 dist[uIdx][vIdx] = edge.weight();
             }

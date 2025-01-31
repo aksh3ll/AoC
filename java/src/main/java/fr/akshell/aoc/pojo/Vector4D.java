@@ -1,9 +1,11 @@
 package fr.akshell.aoc.pojo;
 
-public record Vector4D(int x, int y, int d_x, int d_y) implements IContent {
+import fr.akshell.aoc.graph.IContent;
 
-    public static Vector4D of(Vector2D pos, int d_x, int d_y) {
-        return new Vector4D(pos.x(), pos.y(), d_x, d_y);
+public record Vector4D(int x, int y, int dX, int dY) implements IContent {
+
+    public static Vector4D of(Vector2D pos, int dX, int dY) {
+        return new Vector4D(pos.x(), pos.y(), dX, dY);
     }
 
     public Vector2D position() {
@@ -11,26 +13,26 @@ public record Vector4D(int x, int y, int d_x, int d_y) implements IContent {
     }
 
     public Vector4D turnLeft() {
-        return new Vector4D(x, y, d_y, -d_x);
+        return new Vector4D(x, y, dY, -dX);
     }
 
     public Vector4D turnRight() {
-        return new Vector4D(x, y, -d_y, d_x);
+        return new Vector4D(x, y, -dY, dX);
     }
 
     public Vector4D turnAround() {
-        return new Vector4D(x, y, -d_x, -d_y);
+        return new Vector4D(x, y, -dX, -dY);
     }
 
     public Vector4D moveForward() {
-        return new Vector4D(x + d_x, y + d_y, d_x, d_y);
+        return new Vector4D(x + dX, y + dY, dX, dY);
     }
 
-    public static String id(int x, int y, int d_x, int d_y) {
-        return String.format("(%d, %d, %d, %d)", x, y, d_x, d_y);
+    public static String id(int x, int y, int dX, int dY) {
+        return String.format("(%d, %d, %d, %d)", x, y, dX, dY);
     }
 
     public String id() {
-        return id(x, y, d_x, d_y);
+        return id(x, y, dX, dY);
     }
 }

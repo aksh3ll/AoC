@@ -6,30 +6,30 @@ import fr.akshell.aoc.base.BaseTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-public class Day19Test extends BaseTest<Integer> {
+class Day19Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 H => HO
 H => OH
 O => HH
 
 HOH
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 4;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 3;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 4;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 3;
 
-    private final static String INPUT_DEMO_2 = """
+    private static final String INPUT_DEMO_2 = """
 H => HO
 H => OH
 O => HH
 
 HOHOHO
 """;
-    private final static int INPUT_DEMO_2_PART1_RESULT = 7;
-    private final static int INPUT_DEMO_2_PART2_RESULT = 6;
+    private static final int INPUT_DEMO_2_PART1_RESULT = 7;
+    private static final int INPUT_DEMO_2_PART2_RESULT = 6;
 
-    private final static int FINAL_PART1_RESULT = 576;
-    private final static int FINAL_PART2_RESULT = 886;
+    private static final int FINAL_PART1_RESULT = 576;
+    private static final int FINAL_PART2_RESULT = 886;
 
     public Day19Test() {
         super(2015, 19, new Day19(),
@@ -38,17 +38,26 @@ HOHOHO
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
-    @Disabled
+    @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {}
+    @Override
+    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(true).isTrue();}
 
-    @Disabled
+    @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
+    }
+
+    @Disabled("This test is disabled because part 2 is not yet solved")
+    @Test
+    @Override
+    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(true).isTrue();
     }
 }

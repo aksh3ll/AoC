@@ -9,8 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static fr.akshell.aoc.utils.MiscUtils.deepCopy;
-
 public class Day7 extends BaseDay<Integer> {
 
     private static String[] getGroups(Matcher matcher) {
@@ -29,10 +27,10 @@ public class Day7 extends BaseDay<Integer> {
         return MiscUtils.isNumber(reg) ? Integer.parseInt(reg) : registers.get(reg);
     }
 
-    private static final String RE_OPERAND = "((?:\\d|[a-z])+)";
+    private static final String RE_OPERAND = "([\\da-z]+)";
     private static final Pattern RE_INSTRUCTIONS = Pattern.compile(
-            "^(?:" + RE_OPERAND + " (AND|OR) " + RE_OPERAND
-                    + "|([a-z]+) (LSHIFT|RSHIFT) (\\d+)|NOT ([a-z]+)|" + RE_OPERAND + ") -> ([a-z]+)$");
+            "^(?:" + RE_OPERAND + " (AND|OR) " + RE_OPERAND + "|([a-z]+) (LSHIFT|RSHIFT) (\\d+)|NOT ([a-z]+)|"
+                    + RE_OPERAND + ") -> ([a-z]+)$");
 
     public interface IOperation extends Serializable {
         String dst();

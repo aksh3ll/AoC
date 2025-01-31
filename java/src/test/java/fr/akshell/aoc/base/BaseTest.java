@@ -15,7 +15,7 @@ import java.net.http.HttpResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class BaseTest<T> {
-    protected static Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
+    protected static Logger logger = LoggerFactory.getLogger(BaseTest.class);
     private final int year;
     private final int day;
     BaseDay<T> dayInstance;
@@ -67,13 +67,11 @@ public abstract class BaseTest<T> {
         assertThat(dayInstance.part2(inputDemo1)).isEqualTo(inputDemo1Part2Result);
     }
 
-    @Disabled
     @Test
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(dayInstance.part1(getFinalInput())).isEqualTo(finalPart1Result);
     }
 
-    @Disabled
     @Test
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(dayInstance.part2(getFinalInput())).isEqualTo(finalPart2Result);

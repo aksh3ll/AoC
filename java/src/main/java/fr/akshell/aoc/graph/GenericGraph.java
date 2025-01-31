@@ -1,4 +1,4 @@
-package fr.akshell.aoc.pojo;
+package fr.akshell.aoc.graph;
 
 import lombok.NonNull;
 
@@ -36,27 +36,15 @@ public record GenericGraph<T extends IContent>(Map<String, INode<T>> nodes) {
         return nodes.values().stream().mapToInt(n -> n.neighbors().size()).sum();
     }
 
-    public void addEdge(@NonNull T c1, @NonNull T c2, long weight, boolean bidirectional) {
+    public void addEdge(@NonNull T c1, @NonNull T c2, long weight) {
         var node1 = nodes.get(c1.id());
         var node2 = nodes.get(c2.id());
         if (node1 == null || node2 == null) {
             throw new IllegalArgumentException("Node not found in graph");
         }
-        node1.neighbors().add(node2);
-        if (bidirectional) {
-            node2.neighbors().add(node1);
-        }
+        node1.edges().add(new Edge<>(node2, weight));
     }
-
-    public void addEdge(@NonNull T c1, @NonNull T c2, long weight) {
-        addEdge(c1, c2, weight, false);
-    }
-
-    public void addEdge(@NonNull T c1, @NonNull T c2, boolean bidirectional) {
-        addEdge(c1, c2, 1, bidirectional);
-    }
-
     public void addEdge(@NonNull T c1, @NonNull T c2) {
-        addEdge(c1, c2, 1, false);
+        addEdge(c1, c2, 1);
     }
 }

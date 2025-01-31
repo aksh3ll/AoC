@@ -110,8 +110,8 @@ public class Day15 extends BaseDay<Integer> {
     }
 
     private void logResult(Maze maze, int score) {
-        LOGGER.info("Last state:\n{}", maze);
-        LOGGER.info("score: {}", score);
+        logger.info("Last state:\n{}", maze);
+        logger.info("score: {}", score);
     }
 
     public Integer part1(String input) {

@@ -18,25 +18,25 @@ class Vector4DTest {
         position = position.turnLeft();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 0, -1);
         // From North to West
         position = position.turnLeft();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, -1, 0);
         // From West to South
         position = position.turnLeft();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 0, 1);
         // From South to East
         position = position.turnLeft();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 1, 0);
     }
 
@@ -48,25 +48,25 @@ class Vector4DTest {
         position = position.turnRight();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 0, 1);
         // From South to West
         position = position.turnRight();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, -1, 0);
         // From West to North
         position = position.turnRight();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 0, -1);
         // From North to East
         position = position.turnRight();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 1, 0);
     }
 
@@ -78,13 +78,13 @@ class Vector4DTest {
         position = position.turnAround();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, -1, 0);
         // From West to East
         position = position.turnAround();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 1, 0);
 
         // Facing North
@@ -93,13 +93,13 @@ class Vector4DTest {
         position = position.turnAround();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 0, 1);
         // From South to North
         position = position.turnAround();
         assertThat(position)
                 .isNotNull()
-                .extracting(Vector4D::x, Vector4D::y, Vector4D::d_x, Vector4D::d_y)
+                .extracting(Vector4D::x, Vector4D::y, Vector4D::dX, Vector4D::dY)
                 .containsExactly(0, 0, 0, -1);
     }
 

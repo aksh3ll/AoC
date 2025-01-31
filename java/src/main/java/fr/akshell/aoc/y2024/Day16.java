@@ -8,6 +8,7 @@ import fr.akshell.aoc.pojo.Vector4D;
 import java.util.*;
 
 import static fr.akshell.aoc.pojo.Maze.WALL;
+import static fr.akshell.aoc.utils.MazeUtils.convertInputToMaze;
 
 public class Day16 extends BaseDay<Integer> {
     public static final char START = 'S';
@@ -26,15 +27,12 @@ public class Day16 extends BaseDay<Integer> {
         public int hashCode() {
             return Objects.hash(position, Arrays.deepHashCode(visited), previous, distance);
         }
-    }
 
-    public Maze convertInput(String input) {
-        String[] lines = input.trim().split("\n");
-        char[][] maze = new char[lines.length][];
-        for (int i = 0; i < lines.length; i++) {
-            maze[i] = lines[i].trim().toCharArray();
+        @Override
+        public String toString() {
+            return "Step2{position=" + position + ", visited=" + Arrays.deepToString(visited)
+                    + ", previous=" + previous + ", distance=" + distance + "}";
         }
-        return new Maze(maze, maze[0].length, maze.length);
     }
 
     public Set<Vector2D> getPath(Step2 step) {
@@ -139,18 +137,18 @@ public class Day16 extends BaseDay<Integer> {
     }
 
     public Integer part1(String input) {
-        Maze maze = convertInput(input);
+        Maze maze = convertInputToMaze(input);
         Vector2D start = maze.find(START);
         Vector2D end = maze.find(END);
         assert start != null;
         Vector4D startPos =  Vector4D.of(start, 1, 0);
         int distance = bfs(maze, startPos, end);
-        LOGGER.info("distance: {}", distance);
+        logger.info("distance: {}", distance);
         return distance;
     }
 
     public Integer part2(String input) {
-        Maze maze = convertInput(input);
+        Maze maze = convertInputToMaze(input);
         Vector2D start = maze.find(START);
         Vector2D end = maze.find(END);
         assert start != null;
@@ -161,9 +159,9 @@ public class Day16 extends BaseDay<Integer> {
 
         for (Step2 step : allPaths) {
             Set<Vector2D> path = getPath(step);
-            LOGGER.info("path ({}): {}", path.size(), path);
+            logger.info("path ({}): {}", path.size(), path);
         }
-        LOGGER.info("score: {}", score);
+        logger.info("score: {}", score);
         return score;
     }
 }
