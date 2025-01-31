@@ -71,7 +71,7 @@ class GenericGraphUtilsTest {
         // Print the graph
         for (INode<Vector2D> node : genericGraph.nodes().values()) {
             logger.info("Node ({}) -> ", node.id());
-            for (Edge<Vector2D> edge : node.edges()) {
+            for (IEdge<Vector2D> edge : node.edges()) {
                 logger.info("({}: {}) ", edge.node().id(), edge.weight());
             }
             logger.info("\n");
