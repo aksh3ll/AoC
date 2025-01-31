@@ -1,9 +1,12 @@
 package fr.akshell.aoc.utils;
 
+import lombok.experimental.UtilityClass;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@UtilityClass
 public class MiscUtils {
 
     public static boolean isNumber(String str) {
@@ -19,7 +22,7 @@ public class MiscUtils {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Serializable> List<T> deepCopy(List<T> original) {
+    public static <T extends Serializable> T deepCopy(T original) {
         try {
             ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(byteOut);
@@ -27,7 +30,7 @@ public class MiscUtils {
             out.flush();
             ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
             ObjectInputStream in = new ObjectInputStream(byteIn);
-            return (List<T>) in.readObject();
+            return (T) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException("Failed to deep copy the list", e);
         }

@@ -1,10 +1,11 @@
 package fr.akshell.aoc.pojo;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public record Maze(char[][] grid, int width, int height) {
+public record Maze(char[][] grid, int width, int height) implements Serializable {
     public static final char WALL = '#';
     public static final char EMPTY = '.';
 

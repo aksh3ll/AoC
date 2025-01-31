@@ -1,20 +1,16 @@
 package fr.akshell.aoc.y2015;
 
-import fr.akshell.aoc.base.BaseDay;
-
-import java.text.Normalizer;
-import java.util.Arrays;
-import java.util.function.Function;
-import java.util.regex.Pattern;
-
 import static fr.akshell.aoc.utils.MiscUtils.decodeHex;
+
+import fr.akshell.aoc.base.BaseDay;
+import java.util.function.UnaryOperator;
 
 
 public class Day8 extends BaseDay<Integer> {
 
     private record StringSize(int sizeDecoded, int sizeEncoded) {}
 
-    private static final Function<String, String> ANTISLASH_ESCAPE =
+    private static final UnaryOperator<String> ANTISLASH_ESCAPE =
             string -> string
                     .replace("\\", "\\\\")
                     .replace("\"", "\\\"");

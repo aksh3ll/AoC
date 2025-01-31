@@ -1,11 +1,12 @@
 package fr.akshell.aoc.utils;
 
+import static fr.akshell.aoc.utils.MazeUtils.convertInputToMaze;
 import static fr.akshell.aoc.utils.MiscUtils.permute;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import fr.akshell.aoc.y2015.Day8;
+import fr.akshell.aoc.pojo.Maze;
 import org.junit.jupiter.api.Test;
 
 class MiscUtilsTest {
@@ -21,20 +22,23 @@ class MiscUtilsTest {
 
     @Test
     void givenComplexObject_whenDeepCopy_thenTotallyNewObjectReturned() {
+        Maze literal = convertInputToMaze("abcd\nbcde\ncdef\ndefg");
+        Maze copy = MiscUtils.deepCopy(literal);
+        assertThat(copy).isNotSameAs(literal).isEqualTo(literal);
     }
 
     @Test
     void givenListInteger_whenPermute_thenAllPermutationsReturned() {
         List<Integer> nums = List.of(1, 2, 3);
         List<List<Integer>> permutations = permute(nums);
-        assertThat(permutations.size()).isEqualTo(6);
+        assertThat(permutations).hasSize(6);
     }
 
     @Test
     void givenListString_whenPermute_thenAllPermutationsReturned() {
         List<String> nums = List.of("Paris", "London", "Berlin");
         List<List<String>> permutations = permute(nums);
-        assertThat(permutations.size()).isEqualTo(6);
+        assertThat(permutations).hasSize(6);
     }
 
     @Test
