@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class Day7Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 123 -> x
 456 -> y
 x AND y -> d
@@ -21,10 +21,10 @@ y RSHIFT 2 -> g
 NOT x -> h
 NOT y -> i
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 0;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 0;
-    private final static int FINAL_PART1_RESULT = 3176;
-    private final static int FINAL_PART2_RESULT = 14710;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 0;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 0;
+    private static final int FINAL_PART1_RESULT = 3176;
+    private static final int FINAL_PART2_RESULT = 14710;
 
     public Day7Test() {
         super(2015, 7, new Day7(),

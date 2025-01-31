@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class Day15  extends BaseDay<Integer>  {
-    private final static Pattern RE_INGREDIENT = Pattern.compile(
+    private static final Pattern RE_INGREDIENT = Pattern.compile(
             "^(\\w+): capacity (-?\\d+), durability (-?\\d+), flavor (-?\\d+), texture (-?\\d+), calories (-?\\d+)$");
 
     private record Ingredient(String name, int capacity, int durability, int flavor, int texture, int calories) {}

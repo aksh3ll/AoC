@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Day13 extends BaseDay<Integer> {
 
-    private final static Pattern RE_POTENTIAL = Pattern.compile(
+    private static final Pattern RE_POTENTIAL = Pattern.compile(
             "^(\\w+) would (\\w+) (\\d+) happiness units by sitting next to (\\w+)\\.$");
 
     private Graph convertInput(String input) {

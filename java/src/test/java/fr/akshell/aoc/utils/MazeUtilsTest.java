@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class MazeUtilsTest {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 ....#.....
 .........#
 ..........

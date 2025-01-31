@@ -9,18 +9,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Day12Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 {"a":{"b":4},"c":-1}
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 3;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 3;
-    private final static String INPUT_DEMO_2 = """
+    private static final int INPUT_DEMO_1_PART1_RESULT = 3;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 3;
+    private static final String INPUT_DEMO_2 = """
 {"d":"red","e":[1,2,3,4],"f":5}
 """;
-    private final static int INPUT_DEMO_2_PART1_RESULT = 15;
-    private final static int INPUT_DEMO_2_PART2_RESULT = 0;
-    private final static int FINAL_PART1_RESULT = 156366;
-    private final static int FINAL_PART2_RESULT = 96852;
+    private static final int INPUT_DEMO_2_PART1_RESULT = 15;
+    private static final int INPUT_DEMO_2_PART2_RESULT = 0;
+    private static final int FINAL_PART1_RESULT = 156366;
+    private static final int FINAL_PART2_RESULT = 96852;
 
     Day12Test() {
         super(2015, 12, new Day12(),

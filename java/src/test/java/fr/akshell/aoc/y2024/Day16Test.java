@@ -27,8 +27,8 @@ class Day16Test extends BaseTest<Integer> {
 #S..#.....#...#
 ###############
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 7036;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 45;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 7036;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 45;
 
     private static final String INPUT_DEMO_2 = """
 #################
@@ -49,10 +49,10 @@ class Day16Test extends BaseTest<Integer> {
 #S#.............#
 #################
 """;
-    private final static int INPUT_DEMO_2_PART1_RESULT = 11048;
-    private final static int INPUT_DEMO_2_PART2_RESULT = 64;
-    private final static int FINAL_PART1_RESULT = 122492;
-    private final static int FINAL_PART2_RESULT = 0;
+    private static final int INPUT_DEMO_2_PART1_RESULT = 11048;
+    private static final int INPUT_DEMO_2_PART2_RESULT = 64;
+    private static final int FINAL_PART1_RESULT = 122492;
+    private static final int FINAL_PART2_RESULT = 0;
 
     public Day16Test() {
         super(2024, 16, new Day16(),
@@ -60,22 +60,27 @@ class Day16Test extends BaseTest<Integer> {
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
-    @Disabled
+    @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {}
+    @Override
+    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(true).isTrue();
+    }
 
     @Test
-    public void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART1_RESULT);
     }
 
-    @Disabled
+    @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
     }
 
-    @Disabled
+    @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {}
+    @Override
+    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(true).isTrue();}
 }

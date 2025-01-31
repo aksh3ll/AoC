@@ -9,18 +9,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Day11Test extends BaseTest<String> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 abcdefgh
 """;
-    private final static String INPUT_DEMO_1_PART1_RESULT = "abcdffaa";
-    private final static String INPUT_DEMO_1_PART2_RESULT = "abcdffbb";
-    private final static String INPUT_DEMO_2 = """
+    private static final String INPUT_DEMO_1_PART1_RESULT = "abcdffaa";
+    private static final String INPUT_DEMO_1_PART2_RESULT = "abcdffbb";
+    private static final String INPUT_DEMO_2 = """
 ghijklmn
 """;
-    private final static String INPUT_DEMO_2_PART1_RESULT = "ghjaabcc";
-    private final static String INPUT_DEMO_2_PART2_RESULT = "ghjbbcdd";
-    private final static String FINAL_PART1_RESULT = "hepxxyzz";
-    private final static String FINAL_PART2_RESULT = "heqaabcc";
+    private static final String INPUT_DEMO_2_PART1_RESULT = "ghjaabcc";
+    private static final String INPUT_DEMO_2_PART2_RESULT = "ghjbbcdd";
+    private static final String FINAL_PART1_RESULT = "hepxxyzz";
+    private static final String FINAL_PART2_RESULT = "heqaabcc";
 
     public Day11Test() {
         super(2015, 11, new Day11(),

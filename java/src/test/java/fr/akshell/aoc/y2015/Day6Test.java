@@ -9,23 +9,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Day6Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 turn on 0,0 through 999,999
 toggle 0,0 through 999,0
 turn off 499,499 through 500,500
 """;
-private final static int INPUT_DEMO_1_PART1_RESULT = 998996;
-private final static int INPUT_DEMO_1_PART2_RESULT = 1001996;
+private static final int INPUT_DEMO_1_PART1_RESULT = 998996;
+private static final int INPUT_DEMO_1_PART2_RESULT = 1001996;
 
-private final static String INPUT_DEMO_2 = """
+private static final String INPUT_DEMO_2 = """
 turn on 0,0 through 0,0
 toggle 0,0 through 999,999
 """;
-private final static int INPUT_DEMO_2_PART1_RESULT = 999999;
-private final static int INPUT_DEMO_2_PART2_RESULT = 2000001;
+private static final int INPUT_DEMO_2_PART1_RESULT = 999999;
+private static final int INPUT_DEMO_2_PART2_RESULT = 2000001;
 
-private final static int FINAL_PART1_RESULT = 400410;
-private final static int FINAL_PART2_RESULT = 15343601;
+private static final int FINAL_PART1_RESULT = 400410;
+private static final int FINAL_PART2_RESULT = 15343601;
 
     public Day6Test() {
         super(2015, 6, new Day6(),

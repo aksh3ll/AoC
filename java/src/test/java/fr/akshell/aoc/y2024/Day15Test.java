@@ -21,8 +21,8 @@ class Day15Test extends BaseTest<Integer> {
 
 <^^>>>vv<v>>v<<
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 2028;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 1751;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 2028;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 1751;
 
     private static final String INPUT_DEMO_2 = """
 ##########
@@ -47,10 +47,10 @@ vvv<<^>^v^^><<>>><>^<<><^vv^^<>vvv<>><^^v>^>vv<>v<<<<v<^v>^<^^>>>^<v<v
 ^^>vv<^v^v<vv>^<><v<^v>^^^>>>^^vvv^>vvv<>>>^<^>>>>>^<<^v>^vvv<>^<><<v>
 v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^
 """;
-    private final static int INPUT_DEMO_2_PART1_RESULT = 10092;
-    private final static int INPUT_DEMO_2_PART2_RESULT = 9021;
+    private static final int INPUT_DEMO_2_PART1_RESULT = 10092;
+    private static final int INPUT_DEMO_2_PART2_RESULT = 9021;
 
-    private final static String INPUT_DEMO_3 = """
+    private static final String INPUT_DEMO_3 = """
 #######
 #...#.#
 #.....#
@@ -61,10 +61,10 @@ v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^<vv<>v^<<^
 
 <vv<<^^<<^^
 """;
-    private final static int INPUT_DEMO_3_PART2_RESULT = 618;
+    private static final int INPUT_DEMO_3_PART2_RESULT = 618;
 
-    private final static int FINAL_PART1_RESULT = 1406628;
-    private final static int FINAL_PART2_RESULT = 1432781;
+    private static final int FINAL_PART1_RESULT = 1406628;
+    private static final int FINAL_PART2_RESULT = 1432781;
 
     public Day15Test() {
         super(2024, 15, new Day15(),

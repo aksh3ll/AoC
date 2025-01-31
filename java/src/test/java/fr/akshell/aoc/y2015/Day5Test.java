@@ -9,27 +9,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Day5Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 ugknbfddgicrmopn
 aaa
 jchzalrnumimnmhp
 haegwjzuvuyypxyu
 dvszwmarrgswjxmb
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 2;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 0;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 2;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 0;
 
-   private final static String INPUT_DEMO_2 = """
+   private static final String INPUT_DEMO_2 = """
 qjhvhtzxzqqjkmpb
 xxyxx
 uurcxstgmygtbstg
 ieodomkazucvgmuy
 """;
-    private final static int INPUT_DEMO_2_PART1_RESULT = 0;
-    private final static int INPUT_DEMO_2_PART2_RESULT = 2;
+    private static final int INPUT_DEMO_2_PART1_RESULT = 0;
+    private static final int INPUT_DEMO_2_PART2_RESULT = 2;
 
-    private final static int FINAL_PART1_RESULT = 236;
-    private final static int FINAL_PART2_RESULT = 51;
+    private static final int FINAL_PART1_RESULT = 236;
+    private static final int FINAL_PART2_RESULT = 51;
 
     public Day5Test() {
         super(2015, 5, new Day5(),

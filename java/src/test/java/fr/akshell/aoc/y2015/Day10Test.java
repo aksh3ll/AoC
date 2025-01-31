@@ -9,11 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Day10Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = "1";
-    private final static int INPUT_DEMO_1_PART1_RESULT = 82350;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 1166642;
-    private final static int FINAL_PART1_RESULT = 492982;
-    private final static int FINAL_PART2_RESULT = 6989950;
+    private static final String INPUT_DEMO_1 = "1";
+    private static final int INPUT_DEMO_1_PART1_RESULT = 82350;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 1166642;
+    private static final int FINAL_PART1_RESULT = 492982;
+    private static final int FINAL_PART2_RESULT = 6989950;
 
     public Day10Test() {
         super(2015, 10, new Day10(),

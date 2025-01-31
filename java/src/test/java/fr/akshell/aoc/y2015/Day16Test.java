@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class Day16Test extends BaseTest<Integer> {
 
-    private final static String SAMPLE = """
+    private static final String SAMPLE = """
 children: 3
 cats: 7
 samoyeds: 2
@@ -23,8 +23,8 @@ cars: 2
 perfumes: 1
 """;
 
-    private final static int FINAL_PART1_RESULT = 103;
-    private final static int FINAL_PART2_RESULT = 405;
+    private static final int FINAL_PART1_RESULT = 103;
+    private static final int FINAL_PART2_RESULT = 405;
 
     public Day16Test() {
         super(2015, 16, new Day16(),

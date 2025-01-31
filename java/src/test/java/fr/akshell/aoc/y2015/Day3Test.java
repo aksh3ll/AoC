@@ -8,11 +8,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class Day3Test extends BaseTest<Integer> {
-    private final static String INPUT_DEMO_1 = "^>v<";
-    private final static int INPUT_DEMO_1_PART1_RESULT = 4;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 3;
-    private final static int FINAL_PART1_RESULT = 2592;
-    private final static int FINAL_PART2_RESULT = 2360;
+    private static final String INPUT_DEMO_1 = "^>v<";
+    private static final int INPUT_DEMO_1_PART1_RESULT = 4;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 3;
+    private static final int FINAL_PART1_RESULT = 2592;
+    private static final int FINAL_PART2_RESULT = 2360;
 
     public Day3Test() {
         super(2015, 3, new Day3(),

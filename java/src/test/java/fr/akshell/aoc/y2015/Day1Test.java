@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Day1Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 )())())
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = -3;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 0;
-    private final static int FINAL_PART1_RESULT = 232;
-    private final static int FINAL_PART2_RESULT = 1783;
+    private static final int INPUT_DEMO_1_PART1_RESULT = -3;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 0;
+    private static final int FINAL_PART1_RESULT = 232;
+    private static final int FINAL_PART2_RESULT = 1783;
 
 
     Day1Test() {

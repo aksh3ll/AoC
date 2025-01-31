@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day18Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 .#.#.#
 ...##.
 #....#
@@ -16,10 +16,10 @@ public class Day18Test extends BaseTest<Integer> {
 ####..
 """;
 
-        private final static int INPUT_DEMO_1_PART1_RESULT = 4;
-        private final static int INPUT_DEMO_1_PART2_RESULT = 17;
-        private final static int FINAL_PART1_RESULT = 821;
-        private final static int FINAL_PART2_RESULT = 886;
+        private static final int INPUT_DEMO_1_PART1_RESULT = 4;
+        private static final int INPUT_DEMO_1_PART2_RESULT = 17;
+        private static final int FINAL_PART1_RESULT = 821;
+        private static final int FINAL_PART2_RESULT = 886;
 
         public Day18Test() {
             super(2015, 18, new Day18(),

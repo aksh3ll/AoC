@@ -1,6 +1,5 @@
 package fr.akshell.aoc.base;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.slf4j.Logger;

@@ -12,10 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class Day11Test extends BaseTest<Long> {
     private static final String INPUT_DEMO_1 = "125 17";
-    private final static long INPUT_DEMO_1_PART1_RESULT = 55312;
-    private final static long INPUT_DEMO_1_PART2_RESULT = 55312;
-    private final static long FINAL_PART1_RESULT = 193899;
-    private final static long FINAL_PART2_RESULT = 229682160383225L;
+    private static final long INPUT_DEMO_1_PART1_RESULT = 55312;
+    private static final long INPUT_DEMO_1_PART2_RESULT = 55312;
+    private static final long FINAL_PART1_RESULT = 193899;
+    private static final long FINAL_PART2_RESULT = 229682160383225L;
 
     Day11Test() {
         super(2024, 11, new Day11(),

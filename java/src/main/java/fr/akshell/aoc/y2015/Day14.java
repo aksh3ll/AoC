@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Setter
 public class Day14 extends BaseDay<Integer> {
-    private final static Pattern RE_REINDEER = Pattern.compile(
+    private static final Pattern RE_REINDEER = Pattern.compile(
             "^(\\w+) can fly (\\d+) km/s for (\\d+) seconds, but then must rest for (\\d+) seconds\\.$");
 
     private record Reindeer(String name, int speed, int flyTime, int restTime) {}

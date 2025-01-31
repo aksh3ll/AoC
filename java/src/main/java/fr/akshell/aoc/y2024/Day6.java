@@ -13,9 +13,9 @@ import java.util.*;
 
 public class Day6 extends BaseDay<Integer> {
     public static final int MAX_MOVES = 10000;
-    private final static char GUARD = '^';
-    private final static char BOX = 'O';
-    private final static char VISITED = 'X';
+    private static final char GUARD = '^';
+    private static final char BOX = 'O';
+    private static final char VISITED = 'X';
 
     public boolean searchLoop(Maze maze, Vector4D guard) {
         List<Vector4D> moves = new ArrayList<>();

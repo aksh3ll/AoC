@@ -9,14 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class Day14Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
 Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 1120;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 689;
-    private final static int FINAL_PART1_RESULT = 2640;
-    private final static int FINAL_PART2_RESULT = 1102;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 1120;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 689;
+    private static final int FINAL_PART1_RESULT = 2640;
+    private static final int FINAL_PART2_RESULT = 1102;
 
     public Day14Test() {
         super(2015, 14, new Day14(),

@@ -9,17 +9,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class Day17Test extends BaseTest<Integer> {
 
-    private final static String INPUT_DEMO_1 = """
+    private static final String INPUT_DEMO_1 = """
 20
 15
 10
 5
 5
 """;
-    private final static int INPUT_DEMO_1_PART1_RESULT = 4;
-    private final static int INPUT_DEMO_1_PART2_RESULT = 3;
-    private final static int FINAL_PART1_RESULT = 4372;
-    private final static int FINAL_PART2_RESULT = 4;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 4;
+    private static final int INPUT_DEMO_1_PART2_RESULT = 3;
+    private static final int FINAL_PART1_RESULT = 4372;
+    private static final int FINAL_PART2_RESULT = 4;
 
     public Day17Test() {
         super(2015, 17, new Day17(),
