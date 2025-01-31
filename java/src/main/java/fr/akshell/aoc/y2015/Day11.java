@@ -1,8 +1,7 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
-
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,7 +10,7 @@ public class Day11 extends BaseDay<String> {
     private static final Pattern RE_PASSWORD = Pattern.compile("^([a-z]{8})$");
     private static final Pattern RE_RULE2 = Pattern.compile("[iol]");
     private static final Pattern RE_RULE3 = Pattern.compile("(\\w)\\1");
-    private static final Function<String, String> REVERSE = input -> new StringBuilder(input).reverse().toString();
+    private static final UnaryOperator<String> REVERSE = input -> new StringBuilder(input).reverse().toString();
 
     private char nextLetter(char c) {
         return (char) (c + 1);

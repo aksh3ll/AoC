@@ -13,13 +13,13 @@ public class Day12 extends BaseDay<Integer> {
         try {
             return objectMapper.readValue(String.format("[%s]", input), Iterable.class);
         } catch (IOException e) {
-            throw new RuntimeException("Failling to decode input", e);
+            throw new RuntimeException("Failing to decode input", e);
         }
     }
 
     private Integer sum(Object iterable, boolean redFlag) {
-        if (iterable instanceof Integer) {
-            return (Integer) iterable;
+        if (iterable instanceof Integer integer) {
+            return integer;
         }
         if (iterable instanceof Map<?,?>) {
             return sum(((Map<?,?>) iterable).values(), redFlag);
@@ -27,8 +27,8 @@ public class Day12 extends BaseDay<Integer> {
         int sum = 0;
 
         for (Object next : (Iterable<?>) iterable) {
-            if (next instanceof Integer) {
-                sum += (Integer) next;
+            if (next instanceof Integer integer) {
+                sum += integer;
             }
             if (next instanceof Iterable) {
                 sum += sum(next, redFlag);
