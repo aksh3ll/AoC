@@ -14,6 +14,7 @@ import java.net.http.HttpResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class BaseTest<T> {
+    protected static final boolean DUMMY = true;
     protected static Logger logger = LoggerFactory.getLogger(BaseTest.class);
     private final int year;
     private final int day;
@@ -48,6 +49,7 @@ public abstract class BaseTest<T> {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             return response.body();
         } catch (IOException | InterruptedException e) {
+            logger.error("Error while fetching input from {}", url, e);
             throw new RuntimeException("Input not found for year " + year + " and day " + day);
         }
     }

@@ -32,6 +32,7 @@ p=9,5 v=-3,-3
     }
 
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setWidth(11);
@@ -45,12 +46,15 @@ p=9,5 v=-3,-3
      * The puzzle 2 is about finding the Christmas tree when all the points are aligned.
      * And only works for the final input.
      */
-    @Disabled
+    @Disabled("This test is disabled because the puzzle 2 works only with the final input")
     @Test
+    @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(DUMMY).isTrue();
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setWidth(101);
@@ -60,6 +64,7 @@ p=9,5 v=-3,-3
     }
 
     @Test
+    @Override
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setWidth(101);

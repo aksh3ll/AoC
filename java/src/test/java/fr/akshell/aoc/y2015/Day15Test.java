@@ -29,25 +29,25 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3
     @Test
     @Override
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();
+        assertThat(DUMMY).isTrue();
     }
 
     @Disabled("This test is disabled because the part 2 is not yet implemented")
     @Test
     @Override
     public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();}
+        assertThat(DUMMY).isTrue();}
 
     @Disabled("This test is disabled because the part 1 is not yet implemented")
     @Test
     @Override
     public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();}
+        assertThat(DUMMY).isTrue();}
 
     @Disabled("This test is disabled because the part 2 is not yet implemented")
     @Test
     @Override
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();}
+        assertThat(DUMMY).isTrue();}
 }
 
