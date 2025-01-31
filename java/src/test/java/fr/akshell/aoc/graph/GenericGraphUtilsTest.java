@@ -35,10 +35,18 @@ class GenericGraphUtilsTest {
 ###############
 """;
 
+    private static final String INPUT_DEMO_2 = """
+S..#E
+.#.#.
+.#...
+..##.
+.....
+""";
+
     @Test
     void givenInput_whenConvert_thenGraphReturned() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
-        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze.grid());
+        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze);
         Vector2D startNode = maze.find('S');
         assertThat(startNode).isNotNull();
         Set<String> result = GraphUtils.dfs(genericGraph, startNode.id());
@@ -49,7 +57,7 @@ class GenericGraphUtilsTest {
     @Test
     void givenInvalidNode_whenDfs_thenExceptionThrown() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
-        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze.grid());
+        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze);
         assertThatThrownBy(() -> GraphUtils.dfs(genericGraph, "unknown"))
                 .isInstanceOf(AssertionError.class)
                 .hasMessage("Node not found in graph");
@@ -58,14 +66,7 @@ class GenericGraphUtilsTest {
     @Disabled("This test is disabled because it is the cause of an infinite loop")
     @Test
     void givenMaze_whenConvert_thenGraphIsReturned() {
-        char[][] maze = {
-                {'S', '.', '.', '#', 'E'},
-                {'.', '#', '.', '#', '.'},
-                {'.', '#', '.', '.', '.'},
-                {'.', '.', '#', '#', '.'},
-                {'.', '.', '.', '.', '.'}
-        };
-
+        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
         GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze);
 
         // Print the graph

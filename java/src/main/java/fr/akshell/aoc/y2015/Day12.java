@@ -8,12 +8,18 @@ import java.util.Map;
 public class Day12 extends BaseDay<Integer> {
     ObjectMapper objectMapper = new ObjectMapper();
 
+    private static class DecodingException extends RuntimeException {
+        public DecodingException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
     private Iterable<?> deserializeJsonInput(String input) {
         input = input.trim().replaceAll("\n$", "").trim();
         try {
             return objectMapper.readValue(String.format("[%s]", input), Iterable.class);
         } catch (IOException e) {
-            throw new RuntimeException("Failing to decode input", e);
+            throw new DecodingException("Failing to decode input", e);
         }
     }
 
@@ -33,10 +39,8 @@ public class Day12 extends BaseDay<Integer> {
             if (next instanceof Iterable) {
                 sum += sum(next, redFlag);
             }
-            if (next instanceof Map<?, ?> map) {
-                if (!(redFlag && map.containsValue("red"))) {
-                    sum += sum(map.values(), redFlag);
-                }
+            if (next instanceof Map<?, ?> map && !(redFlag && map.containsValue("red"))) {
+                sum += sum(map.values(), redFlag);
             }
         }
         return sum;

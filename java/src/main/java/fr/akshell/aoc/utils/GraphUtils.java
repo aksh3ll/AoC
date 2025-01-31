@@ -4,6 +4,7 @@ import fr.akshell.aoc.pojo.Graph;
 import fr.akshell.aoc.graph.GenericGraph;
 import fr.akshell.aoc.graph.IContent;
 import fr.akshell.aoc.graph.INode;
+import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
 import lombok.experimental.UtilityClass;
 
@@ -12,16 +13,15 @@ import java.util.*;
 @UtilityClass
 public class GraphUtils {
 
-    public GenericGraph<Vector2D> convertMazeToGraph(char[][] maze) {
+    private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-        int rows = maze.length;
-        int cols = maze[0].length;
+    public GenericGraph<Vector2D> convertMazeToGraph(Maze maze) {
         Map<String, Vector2D> nodes = new HashMap<>();
 
         // Add nodes for walkable cells
-        for (int j = 0; j < rows; j++) {
-            for (int i = 0; i < cols; i++) {
-                if (maze[i][j] != '#') { // Assuming '#' represents walls
+        for (int j = 0; j < maze.height(); j++) {
+            for (int i = 0; i < maze.width(); i++) {
+                if (maze.get(i, j) != '#') { // Assuming '#' represents walls
                     var v = new Vector2D(i, j);
                     nodes.put(v.id(), v);
                 }
@@ -30,22 +30,19 @@ public class GraphUtils {
         GenericGraph<Vector2D> genericGraph = GenericGraph.of(nodes.values());
 
         // Add edges between adjacent walkable cells
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (maze[i][j] != '#') {
+        for (int j = 0; j < maze.height(); j++) {
+            for (int i = 0; i < maze.width(); i++) {
+                if (maze.get(i, j) != '#') {
                     var v1 = nodes.get(Vector2D.id(i, j));
-                    if (i > 0 && maze[i - 1][j] != '#') {
-                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i - 1, j)));
-                    }
-                    if (i < rows - 1 && maze[i + 1][j] != '#') {
-                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i + 1, j)));
-                    }
-                    if (j > 0 && maze[i][j - 1] != '#') {
-                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i, j - 1)));
-                    }
-                    if (j < cols - 1 && maze[i][j + 1] != '#') {
-                        genericGraph.addEdge(v1, nodes.get(Vector2D.id(i, j + 1)));
-                    }
+                    int finalI = i;
+                    int finalJ = j;
+                    Arrays.stream(DIRECTIONS).forEach(dir -> {
+                        int x = finalI + dir[0];
+                        int y = finalJ + dir[1];
+                        if (x >= 0 && x < maze.width() && y >= 0 && y < maze.height() && maze.get(x, y) != '#') {
+                            genericGraph.addEdge(v1, nodes.get(Vector2D.id(x, y)));
+                        }
+                    });
                 }
             }
         }
