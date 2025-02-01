@@ -4,12 +4,12 @@ import fr.akshell.aoc.base.BaseTest;
 import fr.akshell.aoc.pojo.Graph;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -62,7 +62,6 @@ S..#E
                 .hasMessage("Node not found in graph");
     }
 
-    @Disabled("This test is disabled because it is the cause of an infinite loop")
     @Test
     void givenMaze_whenConvert_thenGraphIsReturned() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
@@ -70,13 +69,29 @@ S..#E
 
         // Print the graph
         for (String vertice : graph.getVertices()) {
-            logger.info("Node ({}) -> ", vertice);
-            for (Graph.Edge edge : graph.getNeighbors(vertice)) {
-                logger.info("({}: {}) ", edge.vertex(), edge.weight());
-            }
-            logger.info("\n");
+            var edges = graph
+                    .getNeighbors(vertice)
+                    .stream()
+                    .map(edge -> edge.vertex() + " = " + edge.weight())
+                    .collect(Collectors.joining(", "));
+            logger.info("Node {} -> {}", vertice, edges);
         }
-        assertThat(graph.getVertices()).isNotEmpty().hasSize(10);
+        assertThat(graph.getVertices()).isNotEmpty().hasSize(19);
     }
 
+    @Test
+    void givenGraph_whenSearchingPathWithHeldKarp_thenShortestPathReturned() {
+        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
+        Graph graph = GraphUtils.convertMazeToGraph(maze);
+        int distance = GraphUtils.heldKarp(graph);
+        assertThat(distance).isEqualTo(1073741824);
+    }
+
+    @Test
+    void givenGraph_whenSearchingPathWithHeldKarpMax_thenLongestPathReturned() {
+        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
+        Graph graph = GraphUtils.convertMazeToGraph(maze);
+        int distance = GraphUtils.heldKarpMax(graph);
+        assertThat(distance).isEqualTo(-1073741808);
+    }
 }

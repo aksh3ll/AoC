@@ -6,6 +6,7 @@ import fr.akshell.aoc.pojo.Vector2D;
 import lombok.experimental.UtilityClass;
 
 import java.util.*;
+import java.util.function.IntBinaryOperator;
 
 @UtilityClass
 public class GraphUtils {
@@ -61,13 +62,11 @@ public class GraphUtils {
         return adjacencyMatrix;
     }
 
-    public static int heldKarp(Graph graph) {
-        int n = graph.getVertices().size();
-        int[][] dist = getAdjacencyMatrix(graph, Integer.MAX_VALUE / 2);
-
+    private int[][] createDPMatrix(int[][] dist, IntBinaryOperator comp, int defaultValue) {
+        int n = dist.length;
         int[][] dp = new int[1 << n][n];
         for (int[] row : dp) {
-            Arrays.fill(row, Integer.MAX_VALUE / 2);
+            Arrays.fill(row, defaultValue);
         }
         dp[1][0] = 0;
 
@@ -76,50 +75,34 @@ public class GraphUtils {
                 if ((mask & (1 << u)) != 0) {
                     for (int v = 0; v < n; v++) {
                         if ((mask & (1 << v)) == 0) {
-                            dp[mask | (1 << v)][v] = Math.min(dp[mask | (1 << v)][v], dp[mask][u] + dist[u][v]);
+                            dp[mask | (1 << v)][v] = comp.applyAsInt(dp[mask | (1 << v)][v], dp[mask][u] + dist[u][v]);
                         }
                     }
                 }
             }
         }
+        return dp;
+    }
 
-        int result = Integer.MAX_VALUE;
+    // Generic implementation of the Held-Karp algorithm
+    // TODO: Apparently broken, but I'm not sure how to fix it
+    public static int heldKarpGeneric(Graph graph, IntBinaryOperator comp, int defaultValue) {
+        int n = graph.getVertices().size();
+        int[][] dist = getAdjacencyMatrix(graph, defaultValue / 2);
+        int[][] dp = createDPMatrix(dist, comp, defaultValue / 2);
+        int result = defaultValue;
         for (int u = 1; u < n; u++) {
-            result = Math.min(result, dp[(1 << n) - 1][u] + dist[u][0]);
+            result = comp.applyAsInt(result, dp[(1 << n) - 1][u] + dist[u][0]);
         }
-
         return result;
     }
 
+    public static int heldKarp(Graph graph) {
+        return heldKarpGeneric(graph, Math::min, Integer.MAX_VALUE);
+    }
+
     public static int heldKarpMax(Graph graph) {
-        Set<String> vertices = graph.getVertices();
-        int n = vertices.size();
-        int[][] dist = getAdjacencyMatrix(graph, Integer.MIN_VALUE / 2);
-
-        int[][] dp = new int[1 << n][n];
-        for (int[] row : dp) {
-            Arrays.fill(row, Integer.MIN_VALUE / 2);
-        }
-        dp[1][0] = 0;
-
-        for (int mask = 1; mask < (1 << n); mask += 2) {
-            for (int u = 0; u < n; u++) {
-                if ((mask & (1 << u)) != 0) {
-                    for (int v = 0; v < n; v++) {
-                        if ((mask & (1 << v)) == 0) {
-                            dp[mask | (1 << v)][v] = Math.max(dp[mask | (1 << v)][v], dp[mask][u] + dist[u][v]);
-                        }
-                    }
-                }
-            }
-        }
-
-        int result = Integer.MIN_VALUE;
-        for (int u = 1; u < n; u++) {
-            result = Math.max(result, dp[(1 << n) - 1][u] + dist[u][0]);
-        }
-
-        return result;
+        return heldKarpGeneric(graph, Math::max, Integer.MIN_VALUE);
     }
 
     public Set<String> dfs(Graph graph, String startVertex) {

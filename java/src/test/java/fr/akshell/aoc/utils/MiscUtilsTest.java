@@ -6,11 +6,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
+import fr.akshell.aoc.pojo.Maze;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.List;
-
-import fr.akshell.aoc.pojo.Maze;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedConstruction;
 
@@ -35,10 +34,8 @@ class MiscUtilsTest {
 
     @Test
     void givenBrokenObject_whenDeepCopy_thenExceptionIsReturned() {
-        try (MockedConstruction<ObjectInputStream> constr = mockConstruction(ObjectInputStream.class,
-                (mock, context) -> {
-            when(mock.readObject()).thenThrow(new IOException());
-        })) {
+        try (MockedConstruction<ObjectInputStream> _ = mockConstruction(ObjectInputStream.class,
+                (mock, _) -> when(mock.readObject()).thenThrow(new IOException()))) {
             Maze literal = convertInputToMaze("abcd\nbcde\ncdef\ndefg");
             assertThatThrownBy(() -> MiscUtils.deepCopy(literal)).isInstanceOf(MiscUtils.DeepCopyException.class);
         }
