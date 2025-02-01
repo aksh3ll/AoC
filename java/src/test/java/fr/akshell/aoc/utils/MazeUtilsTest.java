@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 class MazeUtilsTest {
@@ -33,4 +34,19 @@ class MazeUtilsTest {
                 .containsExactly(4, 6);
     }
 
+    @Test
+    void givenNullInput_whenConvertToMaze_thenExpectedIllegalArgumentException() {
+        String dummyInput = null;
+        assertThatThrownBy(() -> MazeUtils.convertInputToMaze(dummyInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Invalid input");
+    }
+
+    @Test
+    void givenEmptyInput_whenConvertToMaze_thenExpectedIllegalArgumentException() {
+        String dummyInput = "";
+        assertThatThrownBy(() -> MazeUtils.convertInputToMaze(dummyInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Invalid input");
+    }
 }

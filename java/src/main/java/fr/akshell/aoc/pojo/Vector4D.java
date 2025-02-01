@@ -1,8 +1,6 @@
 package fr.akshell.aoc.pojo;
 
-import fr.akshell.aoc.graph.IContent;
-
-public record Vector4D(int x, int y, int dX, int dY) implements IContent {
+public record Vector4D(int x, int y, int dX, int dY) {
 
     public static Vector4D of(Vector2D pos, int dX, int dY) {
         return new Vector4D(pos.x(), pos.y(), dX, dY);

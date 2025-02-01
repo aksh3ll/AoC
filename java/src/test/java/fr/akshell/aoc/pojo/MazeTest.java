@@ -38,4 +38,39 @@ class MazeTest {
         assertThat(maze.find('^'))
                 .isNull();
     }
+
+    @Test
+    void givenTwoMazes_whenTestEquals_thenExpectedResultIsFound() {
+        Maze m1 = Maze.of(1, 1);
+        m1.set(0, 0, '#');
+        // Totally the same
+        Maze m2 = Maze.of(1, 1);
+        m2.set(0, 0, '#');
+        assertThat(m1).isEqualTo(m2);
+        // Null
+        Object m3 = null;
+        assertThat(m1).isNotEqualTo(m3);
+        // Different type
+        Object m4 = "string";
+        assertThat(m1).isNotEqualTo(m4);
+        // Different height
+        Maze m5 = Maze.of(1, 2);
+        m2.set(0, 0, '#');
+        assertThat(m1).isNotEqualTo(m5);
+        // Different width
+        Maze m6 = Maze.of(2, 1);
+        m2.set(0, 0, '#');
+        assertThat(m1).isNotEqualTo(m6);
+        // Different content
+        Maze m7 = Maze.of(1, 1);
+        m2.set(0, 0, '.');
+        assertThat(m1).isNotEqualTo(m7);
+    }
+
+    @Test
+    void givenMaze_whenComputeHashCode_thenExpectedResultIsFound() {
+        Maze m1 = Maze.of(1, 1);
+        m1.set(0, 0, '#');
+        assertThat(m1.hashCode()).isEqualTo(123040);
+    }
 }

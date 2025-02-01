@@ -3,11 +3,16 @@ package fr.akshell.aoc.utils;
 import static fr.akshell.aoc.utils.MazeUtils.convertInputToMaze;
 import static fr.akshell.aoc.utils.MiscUtils.permute;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.*;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.List;
 
 import fr.akshell.aoc.pojo.Maze;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedConstruction;
 
 class MiscUtilsTest {
 
@@ -17,6 +22,7 @@ class MiscUtilsTest {
         assertThat(MiscUtils.isNumber("123.0")).isFalse();
         assertThat(MiscUtils.isNumber("abc")).isFalse();
         assertThat(MiscUtils.isNumber("1.23E2")).isFalse();
+        assertThat(MiscUtils.isNumber(null)).isFalse();
         assertThat(MiscUtils.isNumber("")).isFalse();
     }
 
@@ -25,6 +31,17 @@ class MiscUtilsTest {
         Maze literal = convertInputToMaze("abcd\nbcde\ncdef\ndefg");
         Maze copy = MiscUtils.deepCopy(literal);
         assertThat(copy).isNotSameAs(literal).isEqualTo(literal);
+    }
+
+    @Test
+    void givenBrokenObject_whenDeepCopy_thenExceptionIsReturned() {
+        try (MockedConstruction<ObjectInputStream> constr = mockConstruction(ObjectInputStream.class,
+                (mock, context) -> {
+            when(mock.readObject()).thenThrow(new IOException());
+        })) {
+            Maze literal = convertInputToMaze("abcd\nbcde\ncdef\ndefg");
+            assertThatThrownBy(() -> MiscUtils.deepCopy(literal)).isInstanceOf(MiscUtils.DeepCopyException.class);
+        }
     }
 
     @Test
@@ -49,6 +66,7 @@ class MiscUtilsTest {
         assertThat(MiscUtils.decodeHex("abc")).isEqualTo("abc");
         assertThat(MiscUtils.decodeHex("aaa\\\"aaa")).isEqualTo("aaa\"aaa");
         assertThat(MiscUtils.decodeHex("\\x27")).isEqualTo("'");
+        assertThat(MiscUtils.decodeHex("\\n\\r\\t\\b\\f\\z\\")).isEqualTo("\n\r\t\b\f\\z\\");
         assertThat(MiscUtils.decodeHex("x\\\"\\xcaj\\\\xwwvpdldz")).isEqualTo("x\"Êj\\xwwvpdldz");
     }
 }

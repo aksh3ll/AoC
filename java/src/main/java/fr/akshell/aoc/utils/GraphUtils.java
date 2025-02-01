@@ -1,9 +1,6 @@
 package fr.akshell.aoc.utils;
 
 import fr.akshell.aoc.pojo.Graph;
-import fr.akshell.aoc.graph.GenericGraph;
-import fr.akshell.aoc.graph.IContent;
-import fr.akshell.aoc.graph.INode;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
 import lombok.experimental.UtilityClass;
@@ -15,63 +12,58 @@ public class GraphUtils {
 
     private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-    public GenericGraph<Vector2D> convertMazeToGraph(Maze maze) {
-        Map<String, Vector2D> nodes = new HashMap<>();
-
-        // Add nodes for walkable cells
-        for (int j = 0; j < maze.height(); j++) {
-            for (int i = 0; i < maze.width(); i++) {
-                if (maze.get(i, j) != '#') { // Assuming '#' represents walls
-                    var v = new Vector2D(i, j);
-                    nodes.put(v.id(), v);
-                }
-            }
-        }
-        GenericGraph<Vector2D> genericGraph = GenericGraph.of(nodes.values());
-
+    public Graph convertMazeToGraph(Maze maze) {
+        Graph graph = new Graph();
         // Add edges between adjacent walkable cells
         for (int j = 0; j < maze.height(); j++) {
             for (int i = 0; i < maze.width(); i++) {
                 if (maze.get(i, j) != '#') {
-                    var v1 = nodes.get(Vector2D.id(i, j));
+                    var v1 = Vector2D.id(i, j);
                     int finalI = i;
                     int finalJ = j;
                     Arrays.stream(DIRECTIONS).forEach(dir -> {
                         int x = finalI + dir[0];
                         int y = finalJ + dir[1];
                         if (x >= 0 && x < maze.width() && y >= 0 && y < maze.height() && maze.get(x, y) != '#') {
-                            genericGraph.addEdge(v1, nodes.get(Vector2D.id(x, y)));
+                            graph.addEdge(v1, Vector2D.id(x, y), 1);
                         }
                     });
                 }
             }
         }
-
-        return genericGraph;
+        return graph;
     }
 
-    public static int heldKarp(Graph graph) {
+    private int[][] getAdjacencyMatrix(Graph graph, int defaultValue) {
         Set<String> vertices = graph.getVertices();
         int n = vertices.size();
+
         List<String> vertexList = new ArrayList<>(vertices);
         Map<String, Integer> vertexIndex = new HashMap<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < vertices.size(); i++) {
             vertexIndex.put(vertexList.get(i), i);
         }
 
-        int[][] dist = new int[n][n];
+        int[][] adjacencyMatrix = new int[n][n];
         for (int i = 0; i < n; i++) {
-            Arrays.fill(dist[i], Integer.MAX_VALUE / 2);
-            dist[i][i] = 0;
+            Arrays.fill(adjacencyMatrix[i], defaultValue);
+            adjacencyMatrix[i][i] = 0;
         }
 
         for (String u : vertices) {
             int uIdx = vertexIndex.get(u);
             for (Graph.Edge edge : graph.getNeighbors(u)) {
                 int vIdx = vertexIndex.get(edge.vertex());
-                dist[uIdx][vIdx] = edge.weight();
+                adjacencyMatrix[uIdx][vIdx] = edge.weight();
             }
         }
+
+        return adjacencyMatrix;
+    }
+
+    public static int heldKarp(Graph graph) {
+        int n = graph.getVertices().size();
+        int[][] dist = getAdjacencyMatrix(graph, Integer.MAX_VALUE / 2);
 
         int[][] dp = new int[1 << n][n];
         for (int[] row : dp) {
@@ -102,25 +94,7 @@ public class GraphUtils {
     public static int heldKarpMax(Graph graph) {
         Set<String> vertices = graph.getVertices();
         int n = vertices.size();
-        List<String> vertexList = new ArrayList<>(vertices);
-        Map<String, Integer> vertexIndex = new HashMap<>();
-        for (int i = 0; i < n; i++) {
-            vertexIndex.put(vertexList.get(i), i);
-        }
-
-        int[][] dist = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            Arrays.fill(dist[i], Integer.MIN_VALUE / 2);
-            dist[i][i] = 0;
-        }
-
-        for (String u : vertices) {
-            int uIdx = vertexIndex.get(u);
-            for (Graph.Edge edge : graph.getNeighbors(u)) {
-                int vIdx = vertexIndex.get(edge.vertex());
-                dist[uIdx][vIdx] = edge.weight();
-            }
-        }
+        int[][] dist = getAdjacencyMatrix(graph, Integer.MIN_VALUE / 2);
 
         int[][] dp = new int[1 << n][n];
         for (int[] row : dp) {
@@ -148,17 +122,18 @@ public class GraphUtils {
         return result;
     }
 
-    public <T extends IContent> Set<String> dfs(GenericGraph<T> genericGraph, String startNodeId) {
-        INode<T> startNode = genericGraph.getNode(startNodeId);
-        assert (startNode != null): "Node not found in graph";
+    public Set<String> dfs(Graph graph, String startVertex) {
+        if (!graph.getVertices().contains(startVertex)) {
+            throw new AssertionError("Node not found in graph");
+        }
         Set<String> visited = new HashSet<>();
-        Queue<INode<T>> queue = new LinkedList<>();
-        queue.add(startNode);
+        Queue<String> queue = new LinkedList<>();
+        queue.add(startVertex);
         while (!queue.isEmpty()) {
-            INode<T> node = queue.poll();
-            if (!visited.contains(node.id())) {
-                visited.add(node.id());
-                queue.addAll(node.neighbors());
+            String vertex = queue.poll();
+            if (!visited.contains(vertex)) {
+                visited.add(vertex);
+                queue.addAll(graph.getNeighbors(vertex).stream().map(Graph.Edge::vertex).toList());
             }
         }
         return visited;

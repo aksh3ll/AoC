@@ -9,6 +9,9 @@ import java.util.List;
 public class MazeUtils {
 
     public static Maze convertInputToMaze(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Invalid input");
+        }
         List<String> lines = input.lines().toList();
         if (lines.isEmpty()) {
             throw new IllegalArgumentException("Invalid input");

@@ -1,10 +1,9 @@
-package fr.akshell.aoc.graph;
+package fr.akshell.aoc.utils;
 
 import fr.akshell.aoc.base.BaseTest;
+import fr.akshell.aoc.pojo.Graph;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
-import fr.akshell.aoc.utils.GraphUtils;
-import fr.akshell.aoc.utils.MazeUtils;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -15,7 +14,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
-class GenericGraphUtilsTest {
+class GraphUtilsTest {
     protected static Logger logger = LoggerFactory.getLogger(BaseTest.class);
     private static final String INPUT_DEMO_1 = """
 ###############
@@ -46,10 +45,10 @@ S..#E
     @Test
     void givenInput_whenConvert_thenGraphReturned() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
-        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze);
+        Graph graph = GraphUtils.convertMazeToGraph(maze);
         Vector2D startNode = maze.find('S');
         assertThat(startNode).isNotNull();
-        Set<String> result = GraphUtils.dfs(genericGraph, startNode.id());
+        Set<String> result = GraphUtils.dfs(graph, startNode.id());
         assertThat(result).isNotEmpty().hasSize(104);
         logger.info("result: {}", String.join("\n", result));
     }
@@ -57,8 +56,8 @@ S..#E
     @Test
     void givenInvalidNode_whenDfs_thenExceptionThrown() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
-        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze);
-        assertThatThrownBy(() -> GraphUtils.dfs(genericGraph, "unknown"))
+        Graph graph = GraphUtils.convertMazeToGraph(maze);
+        assertThatThrownBy(() -> GraphUtils.dfs(graph, "unknown"))
                 .isInstanceOf(AssertionError.class)
                 .hasMessage("Node not found in graph");
     }
@@ -67,17 +66,17 @@ S..#E
     @Test
     void givenMaze_whenConvert_thenGraphIsReturned() {
         Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
-        GenericGraph<Vector2D> genericGraph = GraphUtils.convertMazeToGraph(maze);
+        Graph graph = GraphUtils.convertMazeToGraph(maze);
 
         // Print the graph
-        for (INode<Vector2D> node : genericGraph.nodes().values()) {
-            logger.info("Node ({}) -> ", node.id());
-            for (IEdge<Vector2D> edge : node.edges()) {
-                logger.info("({}: {}) ", edge.node().id(), edge.weight());
+        for (String vertice : graph.getVertices()) {
+            logger.info("Node ({}) -> ", vertice);
+            for (Graph.Edge edge : graph.getNeighbors(vertice)) {
+                logger.info("({}: {}) ", edge.vertex(), edge.weight());
             }
             logger.info("\n");
         }
-        assertThat(genericGraph.nodes()).isNotEmpty().hasSize(10);
+        assertThat(graph.getVertices()).isNotEmpty().hasSize(10);
     }
 
 }
