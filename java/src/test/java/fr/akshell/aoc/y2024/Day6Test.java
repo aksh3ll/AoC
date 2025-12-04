@@ -1,6 +1,5 @@
 package fr.akshell.aoc.y2024;
 
-
 import fr.akshell.aoc.base.BaseTest;
 import org.springframework.boot.test.context.SpringBootTest;
 

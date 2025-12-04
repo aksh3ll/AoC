@@ -1,17 +1,15 @@
 package fr.akshell.aoc.base;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class BaseTest<T> {
     protected static final boolean DUMMY = true;
