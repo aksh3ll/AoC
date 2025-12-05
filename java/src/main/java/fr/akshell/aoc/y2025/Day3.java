@@ -3,7 +3,7 @@ package fr.akshell.aoc.y2025;
 import fr.akshell.aoc.base.BaseDay;
 import java.util.List;
 
-public class Day3  extends BaseDay<Long> {
+public class Day3 extends BaseDay<Long> {
 
     private  List<String> extractGrid(String input) {
         return input.lines()

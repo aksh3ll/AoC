@@ -34,16 +34,18 @@ public class Day1 extends BaseDay<Integer> {
         int clicks = 0;
         for (int i = 0; i < moves.size(); i++) {
             Move move = moves.get(i);
-            int change = 0;
+            int oldPosition = position;
+            int newPosition;
             if (move.direction == 'L') {
-                change = -move.distance;
+                newPosition = position - move.distance;
+                clicks += Math.abs(Math.floorDiv(newPosition, 100)) - Math.abs(Math.floorDiv(oldPosition, 100));
             } else if (move.direction == 'R') {
-                change = move.distance;
+                newPosition = position + move.distance;
+                clicks += Math.abs(Math.floorDiv(newPosition, 100)) - Math.abs(Math.floorDiv(oldPosition, 100));
             } else {
                 throw new IllegalArgumentException("Unknown direction: " + move.direction);
             }
-            clicks += Math.abs(Math.floorDiv(position + change, 100));
-            position = Math.floorMod(position + change, 100);
+            position = Math.floorMod(newPosition, 100);
         }
         return clicks;
     }

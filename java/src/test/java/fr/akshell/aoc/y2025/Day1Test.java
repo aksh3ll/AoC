@@ -1,6 +1,9 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseTest;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day1Test extends BaseTest<Integer> {
 
@@ -19,11 +22,18 @@ L82
     private static final int INPUT_DEMO_1_PART1_RESULT = 3;
     private static final int INPUT_DEMO_1_PART2_RESULT = 6;
     private static final int FINAL_PART1_RESULT = 1048;
-    private static final int FINAL_PART2_RESULT = -1;
+    private static final int FINAL_PART2_RESULT = 6498;
 
     public Day1Test() {
         super(2025, 1, new Day1(),
                 INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
+    }
+
+    @Test
+    public void givenPositon_whenTurn_thenCountClicks() {
+        int res = Math.abs(Math.floorDiv(-1, 100));
+        assertThat(res).isEqualTo(1);
+
     }
 }
