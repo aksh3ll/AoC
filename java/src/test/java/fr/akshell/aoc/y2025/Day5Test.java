@@ -2,7 +2,7 @@ package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseTest;
 
-public class Day5Test extends BaseTest<Integer> {
+public class Day5Test extends BaseTest<Long> {
 
     private static final String INPUT_DEMO_1 = """
 3-5
@@ -17,10 +17,10 @@ public class Day5Test extends BaseTest<Integer> {
 17
 32
 """;
-    private static final int INPUT_DEMO_1_PART1_RESULT = 3;
-    private static final int INPUT_DEMO_1_PART2_RESULT = -1;
-    private static final int FINAL_PART1_RESULT = -1;
-    private static final int FINAL_PART2_RESULT = -1;
+    private static final long INPUT_DEMO_1_PART1_RESULT = 3L;
+    private static final long INPUT_DEMO_1_PART2_RESULT = 14L;
+    private static final long FINAL_PART1_RESULT = 733L;
+    private static final long FINAL_PART2_RESULT = 345821388687084L;
 
     public Day5Test() {
         super(2025, 5, new Day5(),

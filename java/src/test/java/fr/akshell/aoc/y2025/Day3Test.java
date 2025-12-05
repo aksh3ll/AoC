@@ -2,7 +2,7 @@ package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseTest;
 
-public class Day3Test extends BaseTest<Long> {
+class Day3Test extends BaseTest<Long> {
 
     private static final String INPUT_DEMO_1 = """
 987654321111111

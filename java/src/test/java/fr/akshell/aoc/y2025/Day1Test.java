@@ -1,12 +1,8 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseTest;
-import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class Day1Test extends BaseTest<Integer> {
-
+class Day1Test extends BaseTest<Integer> {
     private static final String INPUT_DEMO_1 = """
 L68
 L30
@@ -28,12 +24,5 @@ L82
         super(2025, 1, new Day1(),
                 INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
-    }
-
-    @Test
-    public void givenPositon_whenTurn_thenCountClicks() {
-        int res = Math.abs(Math.floorDiv(-1, 100));
-        assertThat(res).isEqualTo(1);
-
     }
 }

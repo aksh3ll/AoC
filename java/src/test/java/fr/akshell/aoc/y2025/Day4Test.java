@@ -2,7 +2,7 @@ package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseTest;
 
-public class Day4Test extends BaseTest<Integer> {
+class Day4Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """
 ..@@.@@@@.
