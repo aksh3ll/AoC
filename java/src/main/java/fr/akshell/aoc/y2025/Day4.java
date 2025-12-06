@@ -1,7 +1,7 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseDay;
-
+import jakarta.annotation.Nonnull;
 import java.util.List;
 
 public class Day4 extends BaseDay<Integer> {
@@ -42,8 +42,8 @@ public class Day4 extends BaseDay<Integer> {
         }
 
         @Override
-
-        public @NotNull String toString() {
+        @Nonnull
+        public String toString() {
             StringBuilder sb = new StringBuilder();
             for (char[] row : cells) {
                 sb.append(new String(row)).append("\n");
