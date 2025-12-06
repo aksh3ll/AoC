@@ -1,10 +1,53 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseDay;
+import jakarta.annotation.Nonnull;
 
 public class Day6 extends BaseDay<Long> {
 
-    public record Grid(String[][] data, char[] operations, int rows, int cols) {}
+    public record Grid(String[][] data, char[] operations, int rows, int cols) {
+        @Override
+        @Nonnull
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    sb.append(data[r][c]);
+                    if (c < cols - 1) {
+                        sb.append(" | ");
+                    }
+                }
+                sb.append("\n");
+            }
+            sb.append("Operations: ");
+            for (char op : operations) {
+                sb.append(op).append(" ");
+            }
+            return sb.toString();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Grid grid = (Grid) o;
+
+            if (rows != grid.rows) return false;
+            if (cols != grid.cols) return false;
+            if (!java.util.Arrays.deepEquals(data, grid.data)) return false;
+            return java.util.Arrays.equals(operations, grid.operations);
+        }
+
+        @Override
+        public int hashCode() {
+            int result = java.util.Arrays.deepHashCode(data);
+            result = 31 * result + java.util.Arrays.hashCode(operations);
+            result = 31 * result + rows;
+            result = 31 * result + cols;
+            return result;
+        }
+    }
 
     public static int indexOfFirstNonSpace(String s, int start) {
         if (s == null)

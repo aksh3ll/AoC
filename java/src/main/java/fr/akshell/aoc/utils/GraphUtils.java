@@ -3,17 +3,15 @@ package fr.akshell.aoc.utils;
 import fr.akshell.aoc.pojo.Graph;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
-import lombok.experimental.UtilityClass;
-
 import java.util.*;
 import java.util.function.IntBinaryOperator;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class GraphUtils {
-
     private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-    public Graph convertMazeToGraph(Maze maze) {
+    public static Graph convertMazeToGraph(Maze maze) {
         Graph graph = new Graph();
         // Add edges between adjacent walkable cells
         for (int j = 0; j < maze.height(); j++) {
@@ -35,7 +33,7 @@ public class GraphUtils {
         return graph;
     }
 
-    private int[][] getAdjacencyMatrix(Graph graph, int defaultValue) {
+    private static int[][] getAdjacencyMatrix(Graph graph, int defaultValue) {
         Set<String> vertices = graph.getVertices();
         int n = vertices.size();
 
@@ -62,13 +60,18 @@ public class GraphUtils {
         return adjacencyMatrix;
     }
 
-    private int[][] createDPMatrix(int[][] dist, IntBinaryOperator comp, int defaultValue) {
-        int n = dist.length;
+    private static int[][] initDp(int n, int defaultValue) {
         int[][] dp = new int[1 << n][n];
         for (int[] row : dp) {
             Arrays.fill(row, defaultValue);
         }
         dp[1][0] = 0;
+        return dp;
+    }
+
+    private static int[][] createDPMatrix(int[][] dist, IntBinaryOperator comp, int defaultValue) {
+        int n = dist.length;
+        int[][] dp = GraphUtils.initDp(n, defaultValue);
 
         for (int mask = 1; mask < (1 << n); mask += 2) {
             for (int u = 0; u < n; u++) {
@@ -88,7 +91,7 @@ public class GraphUtils {
     // TODO: Apparently broken, but I'm not sure how to fix it
     public static int heldKarpGeneric(Graph graph, IntBinaryOperator comp, int defaultValue) {
         int n = graph.getVertices().size();
-        int[][] dist = getAdjacencyMatrix(graph, defaultValue / 2);
+        int[][] dist = GraphUtils.getAdjacencyMatrix(graph, defaultValue / 2);
         int[][] dp = createDPMatrix(dist, comp, defaultValue / 2);
         int result = defaultValue;
         for (int u = 1; u < n; u++) {
