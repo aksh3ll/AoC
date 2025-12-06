@@ -1,6 +1,9 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseDay;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Day3 extends BaseDay<Long> {
@@ -31,43 +34,26 @@ public class Day3 extends BaseDay<Long> {
         return b1 * 10L + b2;
     }
 
-    private int findLowestJoltagePos(StringBuilder sb, int limit) {
-        int minJoltage = 10;
-        int pos = -1;
-        for (int i = 0; i < limit; i++) {
-            int joltage = Character.getNumericValue(sb.charAt(i));
-            if (joltage < minJoltage) {
-                minJoltage = joltage;
-                pos = i;
+    private final Comparator<String> compareJoltage = (s1, s2) -> {
+        for (int i = 0; i < Math.min(s1.length(), s2.length()); i++) {
+            int c1 = Character.getNumericValue(s1.charAt(i));
+            int c2 = Character.getNumericValue(s2.charAt(i));
+            if (c1 != c2) {
+                return Integer.compare(c1, c2);
             }
         }
-        return pos;
-    }
-
-    private int findHighestJoltagePos(StringBuilder sb, int start, int limit) {
-        int maxJoltage = -1;
-        int pos = -1;
-        for (int i = start; i < limit; i++) {
-            int joltage = Character.getNumericValue(sb.charAt(i));
-            if (joltage > maxJoltage) {
-                maxJoltage = joltage;
-                pos = i;
-            }
-        }
-        return pos;
-    }
+        return Integer.compare(s1.length(), s2.length());
+    };
 
     public long calcJoltage2(String row) {
-        StringBuilder sb = new StringBuilder(row);
-        int start = 0;
-        while (sb.length() > 12) {
-            int highestJoltagePos = findHighestJoltagePos(sb, start, sb.length() - 12 + start);
-            if (highestJoltagePos > 0) {
-                sb.delete(start, highestJoltagePos);
+        while (row.length() > 12) {
+            List<String> candidates = new ArrayList<>();
+            for (int i = 0; i < row.length(); i++) {
+                candidates.add(row.substring(0, i) + row.substring(i + 1));
             }
-            start++;
+            row = candidates.stream().max(compareJoltage).orElse(row);
         }
-        return Long.parseLong(sb.toString());
+        return Long.parseLong(row);
     }
 
     @Override
