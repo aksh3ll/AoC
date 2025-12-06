@@ -11,8 +11,8 @@ public class Day6Test extends BaseTest<Long> {
 *   +   *   + \s
 """;
     private static final long INPUT_DEMO_1_PART1_RESULT = 4277556L;
-    private static final long INPUT_DEMO_1_PART2_RESULT = -1L;
-    private static final long FINAL_PART1_RESULT = -1L;
+    private static final long INPUT_DEMO_1_PART2_RESULT = 3263827L;
+    private static final long FINAL_PART1_RESULT = 6172481852142L;
     private static final long FINAL_PART2_RESULT = -1L;
 
     public Day6Test() {
