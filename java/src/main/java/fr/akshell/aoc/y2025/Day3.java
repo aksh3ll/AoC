@@ -31,22 +31,41 @@ public class Day3 extends BaseDay<Long> {
         return b1 * 10L + b2;
     }
 
+    private int findLowestJoltagePos(StringBuilder sb, int limit) {
+        int minJoltage = 10;
+        int pos = -1;
+        for (int i = 0; i < limit; i++) {
+            int joltage = Character.getNumericValue(sb.charAt(i));
+            if (joltage < minJoltage) {
+                minJoltage = joltage;
+                pos = i;
+            }
+        }
+        return pos;
+    }
+
+    private int findHighestJoltagePos(StringBuilder sb, int start, int limit) {
+        int maxJoltage = -1;
+        int pos = -1;
+        for (int i = start; i < limit; i++) {
+            int joltage = Character.getNumericValue(sb.charAt(i));
+            if (joltage > maxJoltage) {
+                maxJoltage = joltage;
+                pos = i;
+            }
+        }
+        return pos;
+    }
+
     public long calcJoltage2(String row) {
         StringBuilder sb = new StringBuilder(row);
-        int joltage = 1;
+        int start = 0;
         while (sb.length() > 12) {
-            int i = 0;
-            while (i < sb.length()) {
-                if (sb.charAt(i) == Character.forDigit(joltage, 10)) {
-                    sb.deleteCharAt(i);
-                    if (sb.length() == 12) {
-                        break;
-                    }
-                } else {
-                    i++;
-                }
+            int highestJoltagePos = findHighestJoltagePos(sb, start, sb.length() - 12 + start);
+            if (highestJoltagePos > 0) {
+                sb.delete(start, highestJoltagePos);
             }
-            joltage++;
+            start++;
         }
         return Long.parseLong(sb.toString());
     }
