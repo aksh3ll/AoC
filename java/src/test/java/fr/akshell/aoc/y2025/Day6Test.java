@@ -1,7 +1,9 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 public class Day6Test extends BaseTest<Long> {
 
     private static final String INPUT_DEMO_1 = """

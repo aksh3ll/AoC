@@ -2,9 +2,11 @@ package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseTest;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
 public class Day18Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """

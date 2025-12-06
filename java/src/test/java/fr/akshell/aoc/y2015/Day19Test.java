@@ -5,7 +5,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import fr.akshell.aoc.base.BaseTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 class Day19Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """
