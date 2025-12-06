@@ -45,9 +45,8 @@ public class Day2 extends BaseDay<Long> {
     public Long part1(String input) {
         List<Range> ranges = extractRanges(input);
         return ranges.stream()
-                .flatMap(range -> {
-                    return java.util.stream.LongStream.rangeClosed(range.start, range.end).boxed();
-                }).filter(this::isInvalidId1)
+                .flatMap(range -> java.util.stream.LongStream.rangeClosed(range.start, range.end).boxed())
+                .filter(this::isInvalidId1)
                 .reduce(0L, Long::sum);
     }
 
@@ -55,9 +54,8 @@ public class Day2 extends BaseDay<Long> {
     public Long part2(String input) {
         List<Range> ranges = extractRanges(input);
         return ranges.stream()
-                .flatMap(range -> {
-                    return java.util.stream.LongStream.rangeClosed(range.start, range.end).boxed();
-                }).filter(this::isInvalidId2)
+                .flatMap(range -> java.util.stream.LongStream.rangeClosed(range.start, range.end).boxed())
+                .filter(this::isInvalidId2)
                 .reduce(0L, Long::sum);
     }
 }

@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedConstruction;
 
 class MiscUtilsTest {
 
@@ -34,7 +33,7 @@ class MiscUtilsTest {
 
     @Test
     void givenBrokenObject_whenDeepCopy_thenExceptionIsReturned() {
-        try (MockedConstruction<ObjectInputStream> _ = mockConstruction(ObjectInputStream.class,
+        try (var _ = mockConstruction(ObjectInputStream.class,
                 (mock, _) -> when(mock.readObject()).thenThrow(new IOException()))) {
             Maze literal = convertInputToMaze("abcd\nbcde\ncdef\ndefg");
             assertThatThrownBy(() -> MiscUtils.deepCopy(literal)).isInstanceOf(MiscUtils.DeepCopyException.class);

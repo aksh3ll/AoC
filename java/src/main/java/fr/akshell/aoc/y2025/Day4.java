@@ -40,6 +40,38 @@ public class Day4 extends BaseDay<Integer> {
             }
             return movables;
         }
+
+        @Override
+
+        public @NotNull String toString() {
+            StringBuilder sb = new StringBuilder();
+            for (char[] row : cells) {
+                sb.append(new String(row)).append("\n");
+            }
+            return sb.toString();
+        }
+
+        @Override
+        public int hashCode() {
+            int result = 1;
+            for (char[] row : cells) {
+                result = 31 * result + java.util.Arrays.hashCode(row);
+            }
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof Grid(char[][] cells2))) return false;
+            if (cells.length != cells2.length) return false;
+            for (int i = 0; i < cells.length; i++) {
+                if (!java.util.Arrays.equals(cells[i], cells2[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
     public enum Direction {
