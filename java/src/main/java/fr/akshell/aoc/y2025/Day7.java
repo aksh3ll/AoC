@@ -1,29 +1,46 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseDay;
+import jakarta.annotation.Nonnull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Day7 extends BaseDay<Long> {
+    private static final char START_POSITION = 'S';
+    private char[][] grid;
 
-    public record Position(int row, int col) {}
+    public record Position(int row, int col) {
+        public Position left() {
+            return new Position(row, col - 1);
+        }
+        public Position right() {
+            return new Position(row, col + 1);
+        }
+        public Position down() {
+            return new Position(row + 1, col);
+        }
+        @Override
+        @Nonnull
+        public String toString() {
+            return "(" + row + "," + col + ")";
+        }
+    }
+    private Map<Position, Long> cacheTimelines;
 
-    private char[][] parseInput(String input) {
+    private void parseInput(String input) {
         String[] lines = input.split("\n");
         int rows = lines.length;
         int cols = lines[0].length();
-        char[][] grid = new char[rows][cols];
+        grid = new char[rows][cols];
         for (int r = 0; r < rows; r++) {
             grid[r] = lines[r].toCharArray();
         }
-        return grid;
     }
 
-    private Position findPosition(char[][] grid, char target) {
+    private Position findStartPosition() {
         for (int r = 0; r < grid.length; r++) {
             for (int c = 0; c < grid[r].length; c++) {
-                if (grid[r][c] == target) {
+                if (grid[r][c] == START_POSITION) {
                     return new Position(r, c);
                 }
             }
@@ -33,31 +50,63 @@ public class Day7 extends BaseDay<Long> {
 
     @Override
     public Long part1(String input) {
-        char[][] grid = parseInput(input);
-        Position start = findPosition(grid, 'S');
-        List<Position> beams = new ArrayList<>();
+        parseInput(input);
+        Position start = findStartPosition();
+
+        Set<Position> beams = new LinkedHashSet<>();
         beams.add(start);
         long countSplits = 0;
         while (!beams.isEmpty()) {
-            Position current = beams.remove(0);
-            int r = current.row + 1;
-            if (r < grid.length) {
-                continue;
+            Set<Position> newBeams = new LinkedHashSet<>();
+            for (Position current : beams) {
+                int r = current.row + 1;
+                int c = current.col;
+                if (r >= grid.length) {
+                    continue;
+                }
+                if (grid[r][c] == '^') {
+                    countSplits++;
+                    newBeams.add(new Position(r, c - 1));
+                    newBeams.add(new Position(r, c + 1));
+                } else if (grid[r][c] == '.') {
+                    newBeams.add(new Position(r, c));
+                }
             }
-            int c = current.col;
-            if (grid[r][c] == '^') {
-                countSplits++;
-                beams.add(new Position(r, c - 1));
-                beams.add(new Position(r, c + 1));
-            }
+            beams = newBeams;
         }
 
         return countSplits;
     }
 
+    public long countTimelines(Position current) {
+        Long timelines = cacheTimelines.get(current);
+        if (timelines != null) {
+            return timelines;
+        }
+        Position newPosition = current.down();
+        if (newPosition.row() >= grid.length) {
+            return 1L;
+        }
+        char cellValue = grid[newPosition.row()][newPosition.col()];
+        if (cellValue == '^') {
+            timelines = countTimelines(newPosition.left()) + countTimelines(newPosition.right());
+            cacheTimelines.put(newPosition, timelines);
+            return timelines;
+        } else if (cellValue == '.') {
+            timelines = countTimelines(newPosition);
+            cacheTimelines.put(newPosition, timelines);
+            return timelines;
+        } else {
+            throw new IllegalStateException("Unexpected cell value in position " + newPosition + " -> " + cellValue);
+        }
+    }
+
     @Override
     public Long part2(String input) {
-        char[][] grid = parseInput(input);
-        return -1L;
+        parseInput(input);
+        Position start = findStartPosition();
+        assert start != null;
+        cacheTimelines = new HashMap<>();
+        return countTimelines(start);
     }
 }

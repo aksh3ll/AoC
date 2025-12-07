@@ -25,9 +25,9 @@ public class Day7Test extends BaseTest<Long> {
 ...............
 """;
     private static final long INPUT_DEMO_1_PART1_RESULT = 21L;
-    private static final long INPUT_DEMO_1_PART2_RESULT = -1L;
-    private static final long FINAL_PART1_RESULT = -1L;
-    private static final long FINAL_PART2_RESULT = -1L;
+    private static final long INPUT_DEMO_1_PART2_RESULT = 40L;
+    private static final long FINAL_PART1_RESULT = 1662L;
+    private static final long FINAL_PART2_RESULT = 40941112789504L;
 
     public Day7Test() {
         super(2025, 7, new Day7(),
