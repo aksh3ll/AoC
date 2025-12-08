@@ -48,7 +48,7 @@ public class Day8 extends BaseDay<Long> {
         return distances;
     }
 
-    private void connectCircuits(List<Circuit> circuits, List<Distance> distances, int limit) {
+    private Distance connectCircuits(List<Circuit> circuits, List<Distance> distances, int limit) {
         Map<Point3D, Circuit> reverseCircuits = new HashMap<>();
         circuits.forEach(circuit -> {
             for (Point3D point : circuit.boxes()) {
@@ -64,6 +64,13 @@ public class Day8 extends BaseDay<Long> {
                 }
                 continue;
             } else {
+                if (circuits.size() == 2) {
+                    return distances.stream()
+                            .filter(distance -> (circuits.getFirst().boxes().contains(distance.from) || circuits.getFirst().boxes().contains(distance.to)) &&
+                                    (circuits.getLast().boxes().contains(distance.from) || circuits.getLast().boxes().contains(distance.to)))
+                            .min(Comparator.comparingDouble(Distance::distance))
+                            .orElse(null);
+                }
                 Circuit circuitFrom = reverseCircuits.get(pair.from);
                 Circuit circuitTo = reverseCircuits.get(pair.to);
                 circuitFrom.boxes().addAll(circuitTo.boxes());
@@ -74,10 +81,11 @@ public class Day8 extends BaseDay<Long> {
                 count++;
             }
 
-            if (count >= limit) {
-                return;
+            if (limit > 0 && count >= limit) {
+                return null;
             }
         }
+        return null;
     }
 
     @Override
@@ -105,6 +113,19 @@ public class Day8 extends BaseDay<Long> {
 
     @Override
     public Long part2(String input) {
-        return -1L;
+        // parse input to get boxes coordinates
+        List<Point3D> boxes = parseInput(input);
+        // calculate distances between boxes
+        List<Distance> distances = getDistances(boxes).stream()
+                .sorted(Comparator.comparingDouble(d -> d.distance))
+                .toList();
+        // create circuits with a dynamic list because they will be merged
+        List<Circuit> circuits = boxes.stream()
+                .map(p -> new Circuit(new HashSet<>(List.of(p))))
+                .collect(Collectors.toList());
+        // connect circuits based on distances until the limit is reached
+        Distance shortest = connectCircuits(circuits, distances, -1);
+        assert shortest != null;
+        return (long) shortest.from.x() * shortest.to.x();
     }
 }

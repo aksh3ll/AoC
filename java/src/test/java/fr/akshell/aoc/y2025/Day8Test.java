@@ -32,9 +32,9 @@ public class Day8Test extends BaseTest<Long> {
 425,690,689
 """;
     private static final long INPUT_DEMO_1_PART1_RESULT = 40L;
-    private static final long INPUT_DEMO_1_PART2_RESULT = -1L;
-    private static final long FINAL_PART1_RESULT = -1L;
-    private static final long FINAL_PART2_RESULT = -1L;
+    private static final long INPUT_DEMO_1_PART2_RESULT = 25272L;
+    private static final long FINAL_PART1_RESULT = 123930L;
+    private static final long FINAL_PART2_RESULT = 27338688L;
 
     public Day8Test() {
         super(2025, 8, new Day8(),
