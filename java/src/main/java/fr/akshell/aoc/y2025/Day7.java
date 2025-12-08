@@ -80,25 +80,23 @@ public class Day7 extends BaseDay<Long> {
 
     public long countTimelines(Position current) {
         Long timelines = cacheTimelines.get(current);
-        if (timelines != null) {
-            return timelines;
-        }
-        Position newPosition = current.down();
-        if (newPosition.row() >= grid.length) {
-            return 1L;
-        }
-        char cellValue = grid[newPosition.row()][newPosition.col()];
-        if (cellValue == '^') {
-            timelines = countTimelines(newPosition.left()) + countTimelines(newPosition.right());
+        if (timelines == null) {
+            Position newPosition = current.down();
+            if (newPosition.row() >= grid.length) {
+                timelines = 1L;
+            } else {
+                char cellValue = grid[newPosition.row()][newPosition.col()];
+                if (cellValue == '^') {
+                    timelines = countTimelines(newPosition.left()) + countTimelines(newPosition.right());
+                } else if (cellValue == '.') {
+                    timelines = countTimelines(newPosition);
+                } else {
+                    throw new IllegalStateException("Unexpected cell value in position " + newPosition + " -> " + cellValue);
+                }
+            }
             cacheTimelines.put(newPosition, timelines);
-            return timelines;
-        } else if (cellValue == '.') {
-            timelines = countTimelines(newPosition);
-            cacheTimelines.put(newPosition, timelines);
-            return timelines;
-        } else {
-            throw new IllegalStateException("Unexpected cell value in position " + newPosition + " -> " + cellValue);
         }
+        return timelines;
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Day15  extends BaseDay<Integer>  {
+public class Day15  extends BaseDay<Long>  {
     private static final Pattern RE_INGREDIENT = Pattern.compile(
             "^(\\w+): capacity (-?\\d+), durability (-?\\d+), flavor (-?\\d+), texture (-?\\d+), calories (-?\\d+)$");
 
@@ -30,12 +30,12 @@ public class Day15  extends BaseDay<Integer>  {
                 .toList();
     }
 
-    private int calculateScore(List<Ingredient> ingredients, int[] quantities) {
-        int capacity = 0;
-        int durability = 0;
-        int flavor = 0;
-        int texture = 0;
-        int calories = 0;
+    private long calculateScore(List<Ingredient> ingredients, long[] quantities, long withCalories) {
+        long capacity = 0;
+        long durability = 0;
+        long flavor = 0;
+        long texture = 0;
+        long calories = 0;
         for (int i = 0; i < ingredients.size(); i++) {
             var ingredient = ingredients.get(i);
             capacity += ingredient.capacity() * quantities[i];
@@ -44,18 +44,53 @@ public class Day15  extends BaseDay<Integer>  {
             texture += ingredient.texture() * quantities[i];
             calories += ingredient.calories() * quantities[i];
         }
-        return Math.max(0, capacity) * Math.max(0, durability) * Math.max(0, flavor) * Math.max(0, texture);
+        long score = Math.max(0L, capacity) * Math.max(0L, durability) * Math.max(0L, flavor) * Math.max(0L, texture);
+        if (withCalories > 0 && calories != withCalories) {
+            score = -1L;
+        }
+        return score;
+    }
+
+    private Long solver(String input, long withCalories) {
+        var ingredients = convertInput(input);
+        long maxScore = 0;
+        int n = ingredients.size();
+        int totalQuantity = 100;
+        long[] quantities = new long[n];
+        while (quantities[0] <= totalQuantity) {
+            long quantitySum = 0;
+            for (int i = 0; i < n - 1; i++) {
+                quantitySum += quantities[i];
+            }
+            quantities[n - 1] = totalQuantity - quantitySum;
+
+            long score = calculateScore(ingredients, quantities, withCalories);
+            if (score > maxScore) {
+                maxScore = score;
+            }
+
+            for (int i = n - 2; i >= 0; i--) {
+                if (quantities[i] < totalQuantity) {
+                    quantities[i]++;
+                    break;
+                } else if (i == 0) {
+                    return maxScore;
+                } else {
+                    quantities[i] = 0;
+                }
+            }
+        }
+        return maxScore;
+
     }
 
     @Override
-    public Integer part1(String input) {
-        var ingredients = convertInput(input);
-        return 0;
+    public Long part1(String input) {
+        return solver(input, 0L);
     }
 
     @Override
-    public Integer part2(String input) {
-        var ingredients = convertInput(input);
-        return 0;
+    public Long part2(String input) {
+        return solver(input, 500L);
     }
 }

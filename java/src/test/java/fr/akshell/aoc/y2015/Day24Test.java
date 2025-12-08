@@ -7,8 +7,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class Day24Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """
+1
+2
+3
+4
+5
+7
+8
+9
+10
+11
 """;
-    private static final int INPUT_DEMO_1_PART1_RESULT = 0;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 99;
     private static final int INPUT_DEMO_1_PART2_RESULT = 0;
     private static final int FINAL_PART1_RESULT = 0;
     private static final int FINAL_PART2_RESULT = 0;

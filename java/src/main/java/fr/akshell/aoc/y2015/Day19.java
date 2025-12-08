@@ -38,7 +38,6 @@ public class Day19 extends BaseDay<Integer> {
     }
 
     public Integer part2(String input) {
-        Calibration calibration = parseInput(input);
         return 0;
     }
 }
