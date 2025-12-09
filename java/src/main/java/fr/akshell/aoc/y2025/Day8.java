@@ -17,7 +17,11 @@ public class Day8 extends BaseDay<Long> {
         }
     }
 
-    public record Circuit(Set<Point3D> boxes) {}
+    public record Circuit(Set<Point3D> boxes) {
+        public int size() {
+            return boxes.size();
+        }
+    }
 
     public record Distance(Point3D from, Point3D to, double distance) {
         private static double calcDistance(Point3D from, Point3D to) {
@@ -45,7 +49,27 @@ public class Day8 extends BaseDay<Long> {
                 distances.add(Distance.of(points.get(i), points.get(j)));
             }
         }
-        return distances;
+        return distances.stream()
+                .sorted(Comparator.comparingDouble(d -> d.distance))
+                .toList();
+    }
+
+    private Distance findShortestDistanceBetweenCircuits(List<Circuit> circuits, List<Distance> distances) {
+        return distances.stream()
+                .filter(distance -> (circuits.getFirst().boxes().contains(distance.from) || circuits.getFirst().boxes().contains(distance.to)) &&
+                        (circuits.getLast().boxes().contains(distance.from) || circuits.getLast().boxes().contains(distance.to)))
+                .min(Comparator.comparingDouble(Distance::distance))
+                .orElse(null);
+    }
+
+    private void mergeCircuit(Map<Point3D, Circuit> reverseCircuits, List<Circuit> circuits, Distance distance) {
+        Circuit circuitFrom = reverseCircuits.get(distance.from);
+        Circuit circuitTo = reverseCircuits.get(distance.to);
+        circuitFrom.boxes().addAll(circuitTo.boxes());
+        circuits.remove(circuitTo);
+        for (Point3D point : circuitTo.boxes()) {
+            reverseCircuits.put(point, circuitFrom);
+        }
     }
 
     private Distance connectCircuits(List<Circuit> circuits, List<Distance> distances, int limit) {
@@ -58,29 +82,15 @@ public class Day8 extends BaseDay<Long> {
 
         int count = 1;
         for (Distance pair : distances) {
+            count++;
             if (reverseCircuits.get(pair.from).equals(reverseCircuits.get(pair.to))) {
-                if (limit == 1000) {
-                    count++;
-                }
                 continue;
             } else {
-                if (circuits.size() == 2) {
-                    return distances.stream()
-                            .filter(distance -> (circuits.getFirst().boxes().contains(distance.from) || circuits.getFirst().boxes().contains(distance.to)) &&
-                                    (circuits.getLast().boxes().contains(distance.from) || circuits.getLast().boxes().contains(distance.to)))
-                            .min(Comparator.comparingDouble(Distance::distance))
-                            .orElse(null);
-                }
-                Circuit circuitFrom = reverseCircuits.get(pair.from);
-                Circuit circuitTo = reverseCircuits.get(pair.to);
-                circuitFrom.boxes().addAll(circuitTo.boxes());
-                circuits.remove(circuitTo);
-                for (Point3D point : circuitTo.boxes()) {
-                    reverseCircuits.put(point, circuitFrom);
-                }
-                count++;
+                mergeCircuit(reverseCircuits, circuits, pair);
             }
-
+            if (circuits.size() == 2) {
+                return findShortestDistanceBetweenCircuits(circuits, distances);
+            }
             if (limit > 0 && count >= limit) {
                 return null;
             }
@@ -88,25 +98,24 @@ public class Day8 extends BaseDay<Long> {
         return null;
     }
 
+    private List<Circuit> createCircuits(List<Point3D> boxes) {
+        return boxes.stream()
+                .map(p -> new Circuit(new HashSet<>(List.of(p))))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public Long part1(String input) {
         // parse input to get boxes coordinates
         List<Point3D> boxes = parseInput(input);
         // calculate distances between boxes
-        List<Distance> distances = getDistances(boxes).stream()
-                .sorted(Comparator.comparingDouble(d -> d.distance))
-                .toList();
+        List<Distance> distances = getDistances(boxes);
         // create circuits with a dynamic list because they will be merged
-        List<Circuit> circuits = boxes.stream()
-                .map(p -> new Circuit(new HashSet<>(List.of(p))))
-                .collect(Collectors.toList());
+        List<Circuit> circuits = createCircuits(boxes);
         // connect circuits based on distances until the limit is reached
         connectCircuits(circuits, distances, limit);
         // sort circuits by size descending
-        circuits = circuits.stream()
-                .sorted(Comparator.comparingInt(c -> - c.boxes().size()))
-                .toList();
-
+        circuits = circuits.stream().sorted(Comparator.comparingInt(Circuit::size).reversed()).toList();
         // return the product of the 3 largest circuits sizes
         return (long) circuits.get(0).boxes().size() * circuits.get(1).boxes().size() * circuits.get(2).boxes().size();
     }
@@ -116,13 +125,9 @@ public class Day8 extends BaseDay<Long> {
         // parse input to get boxes coordinates
         List<Point3D> boxes = parseInput(input);
         // calculate distances between boxes
-        List<Distance> distances = getDistances(boxes).stream()
-                .sorted(Comparator.comparingDouble(d -> d.distance))
-                .toList();
+        List<Distance> distances = getDistances(boxes);
         // create circuits with a dynamic list because they will be merged
-        List<Circuit> circuits = boxes.stream()
-                .map(p -> new Circuit(new HashSet<>(List.of(p))))
-                .collect(Collectors.toList());
+        List<Circuit> circuits = createCircuits(boxes);
         // connect circuits based on distances until the limit is reached
         Distance shortest = connectCircuits(circuits, distances, -1);
         assert shortest != null;

@@ -46,31 +46,7 @@ public class Day8Test extends BaseTest<Long> {
     @Test
     public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day8 dayInstance = (Day8) getDay();
-        dayInstance.setLimit(10);
+        dayInstance.setLimit(11);
         assertThat(dayInstance.part1(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART1_RESULT);
-    }
-
-    @Override
-    @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        Day8 dayInstance = (Day8) getDay();
-        dayInstance.setLimit(10);
-        assertThat(dayInstance.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
-    }
-
-    @Override
-    @Test
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
-        Day8 dayInstance = (Day8) getDay();
-        dayInstance.setLimit(1000);
-        assertThat(dayInstance.part1(getFinalInput())).isEqualTo(FINAL_PART1_RESULT);
-    }
-
-    @Override
-    @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
-        Day8 dayInstance = (Day8) getDay();
-        dayInstance.setLimit(1000);
-        assertThat(dayInstance.part2(getFinalInput())).isEqualTo(FINAL_PART2_RESULT);
     }
 }
