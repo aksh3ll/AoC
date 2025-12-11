@@ -125,6 +125,7 @@ public class Day15 extends BaseDay<Integer> {
         Maze warehouse = day15Input.warehouse;
         List<Character> moves = day15Input.moves;
         final Vector2D[] robot = {warehouse.find(ROBOT)};
+        assert robot[0] != null;
 
         moves.stream().map(DIRECTIONS::get).forEach(direction -> {
             if (canMove(warehouse, robot[0], direction)) {
@@ -187,6 +188,7 @@ public class Day15 extends BaseDay<Integer> {
         List<Character> moves = day15Input.moves;
         warehouse = enlarge(warehouse);
         final Vector2D[] robot = {warehouse.find(ROBOT)};
+        assert robot[0] != null;
         AtomicReference<Integer> index = new AtomicReference<>(0);
 
         Maze finalWarehouse = warehouse;
@@ -195,9 +197,9 @@ public class Day15 extends BaseDay<Integer> {
                 List<Vector2D> shifts = getShifts(finalWarehouse, robot[0], direction);
                 shift(finalWarehouse, shifts, direction);
                 robot[0] = new Vector2D(robot[0].x() + direction.x(), robot[0].y() + direction.y());
-            } catch (BlockedException e) {
+            } catch (BlockedException _) {
                 // expected sometimes, should be ignored
-            } catch (RuntimeException e) {
+            } catch (RuntimeException _) {
                 throw new ConundrumException("We're stuck in a conundrum on move " + index + "!");
             }
             index.getAndSet(index.get() + 1);

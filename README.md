@@ -27,8 +27,8 @@ This project is an implementation of the solutions to some of these puzzles in P
 |   8 |       **       |                |                |                |                |                |                |                |       **       |       **       |       **       |
 |   9 |       **       |                |                |                |                |                |                |                |       **       |       **       |       *        |
 |  10 |       **       |                |                |                |                |                |                |                |       **       |       **       |       *        |
-|  11 |       **       |                |                |                |                |                |                |                |       **       |       **       |                |
-|  12 |       **       |                |                |                |                |                |                |                |       *        |       **       |       ⏳        |
+|  11 |       **       |                |                |                |                |                |                |                |       **       |       **       |       *        |
+|  12 |       **       |                |                |                |                |                |                |                |       *        |       **       |       ⏳       |
 |  13 |       **       |                |                |                |                |                |                |                |       *        |       **       |       🚫       |
 |  14 |       **       |                |                |                |                |                |                |                |       **       |       **       |       🚫       |
 |  15 |       **       |                |                |                |                |                |                |                |       **       |       **       |       🚫       |
@@ -41,6 +41,6 @@ This project is an implementation of the solutions to some of these puzzles in P
 |  22 |                |                |                |                |                |                |                |                |                |       **       |       🚫       |
 |  23 |                |                |                |                |                |                |                |                |                |       *        |       🚫       |
 |  24 |                |                |                |                |                |                |                |                |                |       *        |       🚫       |
-|  25 |       *        |                |                |                |                |                |                |                |                |                |       🚫       |
+|  25 |       *        |                |                |                |                |                |                |                |                |       *        |       🚫       |
 
 ** = both parts solved, * = one part solved, ⏳ = not yet available, 🚫 = not started/locked.

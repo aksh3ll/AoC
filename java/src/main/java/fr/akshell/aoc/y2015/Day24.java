@@ -1,7 +1,6 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
-
 import java.util.List;
 
 public class Day24 extends BaseDay<Integer> {

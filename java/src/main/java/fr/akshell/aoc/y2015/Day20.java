@@ -1,7 +1,6 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,18 +38,6 @@ public class Day20 extends BaseDay<Integer> {
         int houseNumber = from;
         while (true) {
             if (sumFactors(houseNumber) * 10 >= limit) {
-                return houseNumber;
-            }
-            houseNumber++;
-        }
-    }
-
-    public static int findHouseNumberDichotomy(int limit) {
-        int houseNumber = limit / 10;
-        int previous = houseNumber + 10;
-        while (true) {
-            int result = sumFactors(houseNumber) * 10;
-            if (result > limit) {
                 return houseNumber;
             }
             houseNumber++;

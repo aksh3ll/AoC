@@ -1,10 +1,9 @@
 package fr.akshell.aoc.utils;
 
-import lombok.experimental.UtilityClass;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class MiscUtils {
@@ -22,7 +21,7 @@ public class MiscUtils {
         try {
             Integer.parseInt(str);
             return true;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException _) {
             return false;
         }
     }
