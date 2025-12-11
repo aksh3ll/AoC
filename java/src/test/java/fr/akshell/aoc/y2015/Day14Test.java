@@ -20,7 +20,7 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
 
     public Day14Test() {
         super(2015, 14, new Day14(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -34,7 +34,7 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
 
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(1000);
         assertThat(day14.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);

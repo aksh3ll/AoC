@@ -16,7 +16,7 @@ class Day3Test extends BaseTest<Integer> {
 
     public Day3Test() {
         super(2015, 3, new Day3(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -30,7 +30,7 @@ class Day3Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2("^v")).isEqualTo(3);
         assertThat(getDay().part2("^>v<")).isEqualTo(3);
         assertThat(getDay().part2("^v^v^v^v^v")).isEqualTo(11);

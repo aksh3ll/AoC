@@ -46,14 +46,31 @@ public class Day11 extends BaseDay<Long> {
         return nodes.getFirst();
     }
 
+    private int findPathsToOut(String nodeName, java.util.Set<String> visited) {
+        if (nodeName.equals("out")) {
+            return 1;
+        }
+        if (visited.contains(nodeName)) {
+            return 0;
+        }
+        visited.add(nodeName);
+        Node node = getNodeByName(nodeName);
+        int totalPaths = 0;
+        for (String childName : node.children) {
+            totalPaths += findPathsToOut(childName, new java.util.HashSet<>(visited));
+        }
+        return totalPaths;
+    }
+
     @Override
     public Long part1(String input) {
-        Node startNode = parseInput(input);
-        return -1L;
+        parseInput(input);
+        return (long) findPathsToOut("you", new java.util.HashSet<>());
     }
 
     @Override
     public Long part2(String input) {
-        return -1L;
+        parseInput(input);
+        return (long) findPathsToOut("svr", new java.util.HashSet<>());
     }
 }

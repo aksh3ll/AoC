@@ -24,7 +24,7 @@ class Day12Test extends BaseTest<Integer> {
 
     Day12Test() {
         super(2015, 12, new Day12(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_2, INPUT_DEMO_2_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -54,7 +54,7 @@ class Day12Test extends BaseTest<Integer> {
     }
 
     @Test
-    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
+    void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(getDay().part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
     }
 }

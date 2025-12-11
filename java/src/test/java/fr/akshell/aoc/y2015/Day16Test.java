@@ -28,7 +28,7 @@ perfumes: 1
 
     public Day16Test() {
         super(2015, 16, new Day16(),
-                "", 0, 0,
+                "", 0, "",0,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -42,7 +42,7 @@ perfumes: 1
     @Disabled("This test is disabled because part 2 has no demo input")
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(DUMMY).isTrue();
     }
 

@@ -18,7 +18,7 @@ class Day11Test extends BaseTest<Long> {
 
     Day11Test() {
         super(2024, 11, new Day11(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -77,7 +77,7 @@ class Day11Test extends BaseTest<Long> {
 
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         Day11 day11 = (Day11) getDay();
         day11.setIteration(25);
         assertThat(day11.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);

@@ -20,7 +20,7 @@ Armor: 2
 
     public Day21Test() {
         super(2015, 21, new Day21(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -32,7 +32,7 @@ Armor: 2
 
     @Override
     @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(((Day21) getDay()).part2Test(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
     }
 }

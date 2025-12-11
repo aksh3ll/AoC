@@ -35,7 +35,7 @@ HOHOHO
 
     public Day19Test() {
         super(2015, 19, new Day19(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -47,12 +47,7 @@ HOHOHO
     @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(DUMMY).isTrue();}
-
-    @Disabled("This test is disabled because part 2 is not yet solved")
-    @Test
-    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
     }
 

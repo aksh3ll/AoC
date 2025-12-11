@@ -23,7 +23,7 @@ public class Day17Test extends BaseTest<Integer> {
 
     public Day17Test() {
         super(2015, 17, new Day17(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -37,7 +37,7 @@ public class Day17Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(25);
         assertThat(day17.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);

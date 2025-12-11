@@ -24,7 +24,7 @@ ghijklmn
 
     public Day11Test() {
         super(2015, 11, new Day11(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_2, INPUT_DEMO_2_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
@@ -51,7 +51,7 @@ ghijklmn
     }
 
     @Test
-    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
+    void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(getDay().part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
     }
 }

@@ -56,15 +56,8 @@ class Day16Test extends BaseTest<Integer> {
 
     public Day16Test() {
         super(2024, 16, new Day16(),
-                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1_PART2_RESULT,
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_2, INPUT_DEMO_2_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
-    }
-
-    @Disabled("This test is disabled because part 2 is not yet solved")
-    @Test
-    @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();
     }
 
     @Test
@@ -74,13 +67,21 @@ class Day16Test extends BaseTest<Integer> {
 
     @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
-    void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(getDay().part2(INPUT_DEMO_2)).isEqualTo(INPUT_DEMO_2_PART2_RESULT);
+    void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(getDay().part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
+    }
+
+    @Disabled("This test is disabled because part 2 is not yet solved")
+    @Test
+    @Override
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(DUMMY).isTrue();
     }
 
     @Disabled("This test is disabled because part 2 is not yet solved")
     @Test
     @Override
     public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(true).isTrue();}
+        assertThat(DUMMY).isTrue();
+    }
 }

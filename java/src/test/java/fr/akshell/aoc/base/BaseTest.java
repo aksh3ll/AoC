@@ -18,19 +18,21 @@ public abstract class BaseTest<T> {
     private final int day;
     BaseDay<T> dayInstance;
     private final String inputDemo1;
+    private final String inputDemo2;
     private final T inputDemo1Part1Result;
-    private final T inputDemo1Part2Result;
+    private final T inputDemo2Part2Result;
     private final T finalPart1Result;
     private final T finalPart2Result;
 
-    public BaseTest(int year, int day, BaseDay<T> dayInstance, String inputDemo1, T inputDemo1Part1Result, T inputDemo1Part2Result,
-                    T finalPart1Result, T finalPart2Result) {
+    public BaseTest(int year, int day, BaseDay<T> dayInstance, String inputDemo1, T inputDemo1Part1Result,
+                    String inputDemo2, T inputDemo2Part2Result, T finalPart1Result, T finalPart2Result) {
         this.year = year;
         this.day = day;
         this.dayInstance = dayInstance;
         this.inputDemo1 = inputDemo1;
+        this.inputDemo2 = inputDemo2;
         this.inputDemo1Part1Result = inputDemo1Part1Result;
-        this.inputDemo1Part2Result = inputDemo1Part2Result;
+        this.inputDemo2Part2Result = inputDemo2Part2Result;
         this.finalPart1Result = finalPart1Result;
         this.finalPart2Result = finalPart2Result;
     }
@@ -62,8 +64,8 @@ public abstract class BaseTest<T> {
     }
 
     @Test
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
-        assertThat(dayInstance.part2(inputDemo1)).isEqualTo(inputDemo1Part2Result);
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+        assertThat(dayInstance.part2(inputDemo2)).isEqualTo(inputDemo2Part2Result);
     }
 
     @Test

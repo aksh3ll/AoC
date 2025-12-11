@@ -24,11 +24,15 @@ p=7,3 v=-1,2
 p=2,4 v=2,-3
 p=9,5 v=-3,-3
 """;
+    private static final int INPUT_DEMO_1_PART1_RESULT = 12;
+    private static final int INPUT_DEMO_2_PART2_RESULT = -1;
+    private static final int FINAL_PART1_RESULT = 229069152;
+    private static final int FINAL_PART2_RESULT = 7383;
 
     Day14Test() {
         super(2024, 14, new Day14(),
-                INPUT_DEMO_1, 12, 0,
-                0, 0);
+                INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_2_PART2_RESULT,
+                FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
     @Test
@@ -49,7 +53,7 @@ p=9,5 v=-3,-3
     @Disabled("This test is disabled because the puzzle 2 works only with the final input")
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
+    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(DUMMY).isTrue();
     }
 
@@ -60,7 +64,7 @@ p=9,5 v=-3,-3
         day14.setWidth(101);
         day14.setHeight(103);
         day14.setTime(100);
-        assertThat(day14.part1(getFinalInput())).isEqualTo(229069152);
+        assertThat(day14.part1(getFinalInput())).isEqualTo(FINAL_PART1_RESULT);
     }
 
     @Test
@@ -69,6 +73,6 @@ p=9,5 v=-3,-3
         Day14 day14 = (Day14) getDay();
         day14.setWidth(101);
         day14.setHeight(103);
-        assertThat(day14.part2(getFinalInput())).isEqualTo(7383);
+        assertThat(day14.part2(getFinalInput())).isEqualTo(FINAL_PART2_RESULT);
     }
 }
