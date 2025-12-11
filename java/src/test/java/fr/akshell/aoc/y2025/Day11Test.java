@@ -7,8 +7,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class Day11Test extends BaseTest<Long> {
 
     private static final String INPUT_DEMO_1 = """
+aaa: you hhh
+you: bbb ccc
+bbb: ddd eee
+ccc: ddd eee fff
+ddd: ggg
+eee: out
+fff: out
+ggg: out
+hhh: ccc fff iii
+iii: out
 """;
-    private static final long INPUT_DEMO_1_PART1_RESULT = -1L;
+    private static final long INPUT_DEMO_1_PART1_RESULT = 5L;
     private static final long INPUT_DEMO_1_PART2_RESULT = -1L;
     private static final long FINAL_PART1_RESULT = -1L;
     private static final long FINAL_PART2_RESULT = -1L;
