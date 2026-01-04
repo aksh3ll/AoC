@@ -25,13 +25,13 @@ public class ImageUtils {
         return image;
     }
 
-    public static void fromImageToOutput(BufferedImage image, OutputStream output) throws IOException {
-        ImageIO.write(image, "png", output);
+    public static boolean fromImageToOutput(BufferedImage image, OutputStream output) throws IOException {
+        return ImageIO.write(image, "png", output);
     }
 
-    public static void fromImageToImageFile(BufferedImage image, String fileName) throws IOException {
+    public static boolean fromImageToImageFile(BufferedImage image, String fileName) throws IOException {
         try (OutputStream output = new FileOutputStream(fileName)) {
-            fromImageToOutput(image, output);
+            return fromImageToOutput(image, output);
         }
     }
 

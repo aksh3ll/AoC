@@ -56,7 +56,7 @@ public class Day10 extends BaseDay<Long> {
             for (Button button : buttons) {
                 sb.append(" - Toggles: ").append(button.toggleIndices).append("\n");
             }
-            sb.append("Joltages: ").append(joltages).append("\n");
+            sb.append("Joltages: ").append(Arrays.toString(joltages)).append("\n");
             return sb.toString();
         }
 
@@ -78,28 +78,24 @@ public class Day10 extends BaseDay<Long> {
         return input.lines().map(Machine::fromString).toList();
     }
 
-    private static boolean isEqualValues(boolean[] a, boolean[] b) {
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] != b[i]) {
+    public static boolean doSwitch(boolean[] lightsState, int[] joltages, int[] expectedJoltages, List<Button> buttons, boolean checkJoltageValues) {
+        boolean doBreak = false;
+        for (Button button : buttons) {
+            for (int toggleIndex : button.toggleIndices) {
+                lightsState[toggleIndex] = !lightsState[toggleIndex];
+                if (checkJoltageValues) {
+                    joltages[toggleIndex] += 1;
+                    if (joltages[toggleIndex] > expectedJoltages[toggleIndex]) {
+                        doBreak = true;
+                        break;
+                    }
+                }
+            }
+            if (doBreak) {
                 break;
             }
-            if (i == a.length - 1) {
-                return true;
-            }
         }
-        return false;
-    }
-
-    private static boolean isEqualValues(int[] a, int[] b) {
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] != b[i]) {
-                break;
-            }
-            if (i == a.length - 1) {
-                return true;
-            }
-        }
-        return false;
+        return doBreak;
     }
 
     public static int findFewestButtonPresses(Machine machine, boolean checkJoltageValues) {
@@ -111,27 +107,10 @@ public class Day10 extends BaseDay<Long> {
             while (combinations.hasNext()) {
                 lightsState = new boolean[machine.lights.length];
                 joltages = new int[machine.joltages.length];
-                boolean doBreak = false;
-                List<Button> buttons = combinations.next();
-                for (Button button : buttons) {
-                    for (int toggleIndex : button.toggleIndices) {
-                        lightsState[toggleIndex] = !lightsState[toggleIndex];
-                        if (checkJoltageValues) {
-                            joltages[toggleIndex] += 1;
-                            if (joltages[toggleIndex] > machine.joltages[toggleIndex]) {
-                                doBreak = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (doBreak) {
-                        break;
-                    }
-                }
-                if (doBreak) {
+                if (doSwitch(lightsState, joltages, machine.joltages, combinations.next(), checkJoltageValues)) {
                     continue;
                 }
-                if (isEqualValues(lightsState, machine.lights) && (!checkJoltageValues || isEqualValues(joltages, machine.joltages))) {
+                if (Arrays.equals(lightsState, machine.lights) && (!checkJoltageValues || Arrays.equals(joltages, machine.joltages))) {
                     return presses;
                 }
             }

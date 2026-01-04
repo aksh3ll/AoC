@@ -3,10 +3,8 @@ package fr.akshell.aoc.y2015;
 import fr.akshell.aoc.base.BaseDay;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
-import fr.akshell.aoc.utils.MazeUtils;
-import lombok.Setter;
-
 import java.util.Arrays;
+import lombok.Setter;
 
 @Setter
 public class Day18 extends BaseDay<Integer> {
@@ -70,7 +68,7 @@ public class Day18 extends BaseDay<Integer> {
 
     @Override
     public Integer part1(String input) {
-        Maze maze = MazeUtils.convertInputToMaze(input);
+        Maze maze = Maze.of(input);
         for (int i = 0; i < steps; i++) {
             maze = nextGeneration(maze);
         }
@@ -79,7 +77,7 @@ public class Day18 extends BaseDay<Integer> {
 
     @Override
     public Integer part2(String input) {
-        Maze maze = MazeUtils.convertInputToMaze(input);
+        Maze maze = Maze.of(input);
         forceCornersAlight(maze);
         for (int i = 0; i < steps; i++) {
             maze = nextGeneration(maze);

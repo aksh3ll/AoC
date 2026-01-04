@@ -1,14 +1,13 @@
 package fr.akshell.aoc.y2024;
 
+import static fr.akshell.aoc.pojo.Maze.WALL;
+
 import fr.akshell.aoc.base.BaseDay;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
 import fr.akshell.aoc.pojo.Vector4D;
-
 import java.util.*;
 
-import static fr.akshell.aoc.pojo.Maze.WALL;
-import static fr.akshell.aoc.utils.MazeUtils.convertInputToMaze;
 
 public class Day16 extends BaseDay<Integer> {
     public static final char START = 'S';
@@ -137,7 +136,7 @@ public class Day16 extends BaseDay<Integer> {
     }
 
     public Integer part1(String input) {
-        Maze maze = convertInputToMaze(input);
+        Maze maze = Maze.of(input);
         Vector2D start = maze.find(START);
         Vector2D end = maze.find(END);
         assert start != null;
@@ -148,7 +147,7 @@ public class Day16 extends BaseDay<Integer> {
     }
 
     public Integer part2(String input) {
-        Maze maze = convertInputToMaze(input);
+        Maze maze = Maze.of(input);
         Vector2D start = maze.find(START);
         Vector2D end = maze.find(END);
         assert start != null;

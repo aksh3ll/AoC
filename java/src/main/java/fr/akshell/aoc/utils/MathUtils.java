@@ -15,7 +15,13 @@ public class MathUtils {
         private final int[] indices;
 
         public Combinations(List<T> elements, int k) {
+            if (elements == null || elements.isEmpty()) {
+                throw new IllegalArgumentException("elements must not be null or empty");
+            }
             this.elements = elements;
+            if (k <= 0) {
+                throw new IllegalArgumentException("k must be greater than 0");
+            }
             this.indices = new int[k];
         }
 

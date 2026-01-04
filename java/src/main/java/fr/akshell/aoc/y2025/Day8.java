@@ -1,9 +1,14 @@
 package fr.akshell.aoc.y2025;
 
 import fr.akshell.aoc.base.BaseDay;
-import java.util.*;
-import java.util.stream.Collectors;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import lombok.Setter;
 
 @Setter
@@ -99,9 +104,9 @@ public class Day8 extends BaseDay<Long> {
     }
 
     private List<Circuit> createCircuits(List<Point3D> boxes) {
-        return boxes.stream()
-                .map(p -> new Circuit(new HashSet<>(List.of(p))))
-                .collect(Collectors.toList());
+        List<Circuit> circuits = new ArrayList<>();
+        boxes.forEach(p -> circuits.add(new Circuit(new HashSet<>(List.of(p)))));
+        return circuits;
     }
 
     @Override

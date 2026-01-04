@@ -1,15 +1,11 @@
 package fr.akshell.aoc.base;
 
+import static fr.akshell.aoc.utils.MiscUtils.readFromWebsite;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 public abstract class BaseTest<T> {
     protected static final boolean DUMMY = true;
@@ -43,15 +39,7 @@ public abstract class BaseTest<T> {
 
     private String getInput(int year, int day) {
         String url = "https://raw.githubusercontent.com/aksh3ll/AoC/refs/heads/main/" + year + "/day" + day + ".input.txt";
-        URI uri = URI.create(url);
-        HttpRequest request = HttpRequest.newBuilder(uri).build();
-        try (HttpClient httpClient = HttpClient.newHttpClient()) {
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.body();
-        } catch (IOException | InterruptedException e) {
-            logger.error("Error while fetching input from {}", url, e);
-            throw new RuntimeException("Input not found for year " + year + " and day " + day);
-        }
+        return readFromWebsite(url);
     }
 
     public String getFinalInput() {

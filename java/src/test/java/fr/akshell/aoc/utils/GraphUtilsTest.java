@@ -44,7 +44,7 @@ S..#E
 
     @Test
     void givenInput_whenConvert_thenGraphReturned() {
-        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
+        Maze maze = Maze.of(INPUT_DEMO_1);
         Graph graph = GraphUtils.convertMazeToGraph(maze);
         Vector2D startNode = maze.find('S');
         assertThat(startNode).isNotNull();
@@ -55,7 +55,7 @@ S..#E
 
     @Test
     void givenInvalidNode_whenDfs_thenExceptionThrown() {
-        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
+        Maze maze = Maze.of(INPUT_DEMO_1);
         Graph graph = GraphUtils.convertMazeToGraph(maze);
         assertThatThrownBy(() -> GraphUtils.dfs(graph, "unknown"))
                 .isInstanceOf(AssertionError.class)
@@ -64,7 +64,7 @@ S..#E
 
     @Test
     void givenMaze_whenConvert_thenGraphIsReturned() {
-        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
+        Maze maze = Maze.of(INPUT_DEMO_2);
         Graph graph = GraphUtils.convertMazeToGraph(maze);
 
         // Print the graph
@@ -81,7 +81,7 @@ S..#E
 
     @Test
     void givenGraph_whenSearchingPathWithHeldKarp_thenShortestPathReturned() {
-        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
+        Maze maze = Maze.of(INPUT_DEMO_2);
         Graph graph = GraphUtils.convertMazeToGraph(maze);
         int distance = GraphUtils.heldKarp(graph);
         assertThat(distance).isEqualTo(1073741824);
@@ -89,7 +89,7 @@ S..#E
 
     @Test
     void givenGraph_whenSearchingPathWithHeldKarpMax_thenLongestPathReturned() {
-        Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_2);
+        Maze maze = Maze.of(INPUT_DEMO_2);
         Graph graph = GraphUtils.convertMazeToGraph(maze);
         int distance = GraphUtils.heldKarpMax(graph);
         assertThat(distance).isEqualTo(-1073741808);

@@ -7,7 +7,6 @@ import fr.akshell.aoc.base.BaseDay;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
 import fr.akshell.aoc.pojo.Vector4D;
-import fr.akshell.aoc.utils.MazeUtils;
 
 import java.util.*;
 
@@ -70,7 +69,7 @@ public class Day6 extends BaseDay<Integer> {
     }
 
     public Integer part1(String input) {
-        Maze maze = MazeUtils.convertInputToMaze(input);
+        Maze maze = Maze.of(input);
         List<Vector2D> visited = new ArrayList<>();
         List<Vector2D> blockers = new ArrayList<>();
         run(maze, visited, blockers);
@@ -80,7 +79,7 @@ public class Day6 extends BaseDay<Integer> {
     }
 
     public Integer part2(String input) {
-        Maze maze = MazeUtils.convertInputToMaze(input);
+        Maze maze = Maze.of(input);
         List<Vector2D> visited = new ArrayList<>();
         List<Vector2D> blockers = new ArrayList<>();
         run(maze, visited, blockers);

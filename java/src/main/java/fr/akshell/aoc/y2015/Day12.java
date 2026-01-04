@@ -1,8 +1,9 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
+
 import java.util.Map;
 
 public class Day12 extends BaseDay<Integer> {
@@ -18,7 +19,7 @@ public class Day12 extends BaseDay<Integer> {
         input = input.trim().replaceAll("\n$", "").trim();
         try {
             return objectMapper.readValue(String.format("[%s]", input), Iterable.class);
-        } catch (IOException e) {
+        } catch (JacksonException e) {
             throw new DecodingException("Failing to decode input", e);
         }
     }

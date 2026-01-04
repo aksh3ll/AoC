@@ -1,7 +1,5 @@
 package fr.akshell.aoc.utils;
 
-import static fr.akshell.aoc.utils.MazeUtils.convertInputToMaze;
-import static fr.akshell.aoc.utils.MiscUtils.permute;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
@@ -9,7 +7,6 @@ import static org.mockito.Mockito.*;
 import fr.akshell.aoc.pojo.Maze;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class MiscUtilsTest {
@@ -26,7 +23,7 @@ class MiscUtilsTest {
 
     @Test
     void givenComplexObject_whenDeepCopy_thenTotallyNewObjectReturned() {
-        Maze literal = convertInputToMaze("abcd\nbcde\ncdef\ndefg");
+        Maze literal = Maze.of("abcd\nbcde\ncdef\ndefg");
         Maze copy = MiscUtils.deepCopy(literal);
         assertThat(copy).isNotSameAs(literal).isEqualTo(literal);
     }
@@ -35,23 +32,9 @@ class MiscUtilsTest {
     void givenBrokenObject_whenDeepCopy_thenExceptionIsReturned() {
         try (var _ = mockConstruction(ObjectInputStream.class,
                 (mock, _) -> when(mock.readObject()).thenThrow(new IOException()))) {
-            Maze literal = convertInputToMaze("abcd\nbcde\ncdef\ndefg");
+            Maze literal = Maze.of("abcd\nbcde\ncdef\ndefg");
             assertThatThrownBy(() -> MiscUtils.deepCopy(literal)).isInstanceOf(MiscUtils.DeepCopyException.class);
         }
-    }
-
-    @Test
-    void givenListInteger_whenPermute_thenAllPermutationsReturned() {
-        List<Integer> nums = List.of(1, 2, 3);
-        List<List<Integer>> permutations = permute(nums);
-        assertThat(permutations).hasSize(6);
-    }
-
-    @Test
-    void givenListString_whenPermute_thenAllPermutationsReturned() {
-        List<String> nums = List.of("Paris", "London", "Berlin");
-        List<List<String>> permutations = permute(nums);
-        assertThat(permutations).hasSize(6);
     }
 
     @Test

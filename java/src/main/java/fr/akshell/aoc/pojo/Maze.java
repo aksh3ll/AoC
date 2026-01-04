@@ -2,6 +2,7 @@ package fr.akshell.aoc.pojo;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,21 @@ public record Maze(char[][] grid, int width, int height) implements Serializable
 
     public static Maze of(int width, int height) {
         return new Maze(new char[height][width], width, height);
+    }
+
+    public static Maze of(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+        List<String> lines = input.lines().toList();
+        if (lines.isEmpty()) {
+            throw new IllegalArgumentException("Invalid input");
+        }
+        char[][] maze = new char[lines.size()][];
+        for (int i = 0; i < lines.size(); i++) {
+            maze[i] = lines.get(i).trim().toCharArray();
+        }
+        return new Maze(maze, maze[0].length, maze.length);
     }
 
     public char get(int x, int y) {

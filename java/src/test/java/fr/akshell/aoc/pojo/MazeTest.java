@@ -1,10 +1,12 @@
 package fr.akshell.aoc.pojo;
 
-import fr.akshell.aoc.utils.MazeUtils;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class MazeTest {
@@ -15,7 +17,22 @@ class MazeTest {
 #..@#
 #####
 """;
-    Maze maze = MazeUtils.convertInputToMaze(INPUT_DEMO_1);
+
+    private static final String INPUT_DEMO_2 = """
+....#.....
+.........#
+..........
+..#.......
+.......#..
+..........
+.#..^.....
+........#.
+#.........
+......#...
+""";
+
+    Maze maze = Maze.of(INPUT_DEMO_1);
+    Maze maze2 = Maze.of(INPUT_DEMO_2);
 
     @Test
     void givenMaze_whenCheckingValid_thenExpectedResultIsFound() {
@@ -43,13 +60,10 @@ class MazeTest {
     void givenTwoMazes_whenTestEquals_thenExpectedResultIsFound() {
         Maze m1 = Maze.of(1, 1);
         m1.set(0, 0, '#');
-        // Totally the same
         Maze m2 = Maze.of(1, 1);
         m2.set(0, 0, '#');
-        assertThat(m1).isEqualTo(m2);
-        // Null
-        Object m3 = null;
-        assertThat(m1).isNotEqualTo(m3);
+        // Not null & totally the same
+        assertThat(m1).isNotNull().isEqualTo(m2);
         // Different type
         Object m4 = "string";
         assertThat(m1).isNotEqualTo(m4);
@@ -72,5 +86,37 @@ class MazeTest {
         Maze m1 = Maze.of(1, 1);
         m1.set(0, 0, '#');
         assertThat(m1.hashCode()).isEqualTo(123040);
+    }
+
+    @Test
+    void givenMaze_whenToString_thenExpectedResultIsFound() {
+        Maze m1 = Maze.of(3, 2);
+        m1.set(0, 0, '#');
+        m1.set(1, 0, '.');
+        m1.set(2, 0, '@');
+        m1.set(0, 1, '.');
+        m1.set(1, 1, '#');
+        m1.set(2, 1, '.');
+        String expected = """
+                #.@
+                .#.""";
+        assertThat(m1).hasToString(expected);
+    }
+
+    @Test
+    void givenInput_whenSearchingGuard_thenExpectedResultIsFound() {
+        Vector2D guardPos = maze2.find('^');
+        assertThat(guardPos)
+                .isNotNull()
+                .extracting(Vector2D::x, Vector2D::y)
+                .containsExactly(4, 6);
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    void givenNullInput_whenConvertToMaze_thenExpectedIllegalArgumentException(String input) {
+        assertThatThrownBy(() -> Maze.of(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Invalid input");
     }
 }

@@ -1,8 +1,14 @@
 package fr.akshell.aoc.utils;
 
 import java.io.*;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.akshell.aoc.pojo.PuzzleInputException;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -15,9 +21,6 @@ public class MiscUtils {
     }
 
     public static boolean isNumber(String str) {
-        if (str == null || str.isEmpty()) {
-            return false;
-        }
         try {
             Integer.parseInt(str);
             return true;
@@ -32,7 +35,6 @@ public class MiscUtils {
             ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
             ObjectOutputStream out = new ObjectOutputStream(byteOut);
             out.writeObject(original);
-            out.flush();
             ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
             ObjectInputStream in = new ObjectInputStream(byteIn);
             return (T) in.readObject();
@@ -102,5 +104,19 @@ public class MiscUtils {
             i++;
         }
         return output.toString();
+    }
+
+    public static String readFromWebsite(String url) {
+        URI uri = URI.create(url);
+        HttpRequest request = HttpRequest.newBuilder(uri).build();
+        try (HttpClient httpClient = HttpClient.newHttpClient()) {
+            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            return response.body();
+        } catch (IOException e) {
+            throw new PuzzleInputException("Failed to read from website: " + url, e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new PuzzleInputException("Failed to read from website: " + url, e);
+        }
     }
 }

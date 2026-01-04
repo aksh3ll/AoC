@@ -3,7 +3,6 @@ package fr.akshell.aoc.y2024;
 import fr.akshell.aoc.base.BaseDay;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
-import fr.akshell.aoc.utils.MazeUtils;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -67,7 +66,7 @@ public class Day15 extends BaseDay<Integer> {
     public Day15Input convertInput(String input) {
         String[] parts = input.split("\n\n");
 
-        Maze warehouse = MazeUtils.convertInputToMaze(parts[0]);
+        Maze warehouse = Maze.of(parts[0]);
         List<Character> moves;
 
         moves = new ArrayList<>();
