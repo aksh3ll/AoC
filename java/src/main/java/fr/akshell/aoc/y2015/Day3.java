@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class Day3 extends BaseDay<Integer> {
 
-    public Vector2D move(Vector2D position, char c) {
+    public static Vector2D move(Vector2D position, char c) {
         return switch (c) {
             case '^' -> new Vector2D(position.x(), position.y() + 1);
             case 'v' -> new Vector2D(position.x(), position.y() - 1);

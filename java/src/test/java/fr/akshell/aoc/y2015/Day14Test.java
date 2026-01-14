@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Day14Test extends BaseTest<Integer> {
+class Day14Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """
 Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.
@@ -24,33 +24,33 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 
-    @Test
     @Override
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
+    @Test
+    protected void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(1000);
         assertThat(day14.part1(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART1_RESULT);
     }
 
-    @Test
     @Override
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    @Test
+    protected void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(1000);
         assertThat(day14.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
     }
 
-    @Test
     @Override
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
+    @Test
+    protected void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(2503);
         assertThat(getDay().part1(getFinalInput())).isEqualTo(FINAL_PART1_RESULT);
     }
 
-    @Test
     @Override
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
+    @Test
+    protected void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day14 day14 = (Day14) getDay();
         day14.setTime(2503);
         assertThat(getDay().part2(getFinalInput())).isEqualTo(FINAL_PART2_RESULT);

@@ -1,6 +1,9 @@
 package fr.akshell.aoc.y2015;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import fr.akshell.aoc.base.BaseTest;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -25,5 +28,12 @@ NOT y -> i
         super(2015, 7, new Day7(),
                 INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
+    }
+
+    @Test
+    void givenUnknownInstruction_whenOrderOf_thenThrowIllegalArgumentException() {
+        assertThatThrownBy(() -> Day7.getOperation("unknown"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Invalid instruction: unknown");
     }
 }

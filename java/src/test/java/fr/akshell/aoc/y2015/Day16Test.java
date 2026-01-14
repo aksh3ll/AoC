@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Day16Test extends BaseTest<Integer> {
+class Day16Test extends BaseTest<Integer> {
 
     private static final String SAMPLE = """
 children: 3
@@ -35,20 +35,20 @@ perfumes: 1
     @Disabled("This test is disabled because part 1 has no demo input")
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(DUMMY).isTrue();
     }
 
     @Disabled("This test is disabled because part 2 has no demo input")
     @Test
     @Override
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(DUMMY).isTrue();
     }
 
     @Test
     @Override
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day16 day16 = (Day16) getDay();
         day16.setSamples(SAMPLE);
         assertThat(day16.part1(getFinalInput())).isEqualTo(FINAL_PART1_RESULT);
@@ -56,7 +56,7 @@ perfumes: 1
 
     @Test
     @Override
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day16 day16 = (Day16) getDay();
         day16.setSamples(SAMPLE);
         assertThat(day16.part2(getFinalInput())).isEqualTo(FINAL_PART2_RESULT);

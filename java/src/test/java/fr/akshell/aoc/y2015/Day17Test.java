@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class Day17Test extends BaseTest<Integer> {
+class Day17Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """
 20
@@ -29,7 +29,7 @@ public class Day17Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(25);
         assertThat(day17.part1(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART1_RESULT);
@@ -37,7 +37,7 @@ public class Day17Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(25);
         assertThat(day17.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
@@ -45,7 +45,7 @@ public class Day17Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(150);
         assertThat(day17.part1(getFinalInput())).isEqualTo(FINAL_PART1_RESULT);
@@ -53,7 +53,7 @@ public class Day17Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day17 day17 = (Day17) getDay();
         day17.setContainerSize(150);
         assertThat(day17.part2(getFinalInput())).isEqualTo(FINAL_PART2_RESULT);

@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class Day6 extends BaseDay<Integer> {
 
     @Getter
-    private enum Order {
+    protected enum Order {
         TURN_ON("turn on"), TURN_OFF("turn off"), TOGGLE("toggle");
 
         private final String instruction;

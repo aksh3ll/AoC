@@ -44,4 +44,10 @@ class Day1Test extends BaseTest<Integer> {
         assertThat(getDay().part2(")")).isEqualTo(1);
         assertThat(getDay().part2("()())")).isEqualTo(5);
     }
+
+    @Test
+    void givenEmptyInput_whenRunningParts_thenZeroIsReturned() {
+        assertThat(getDay().part1("")).isZero();
+        assertThat(getDay().part2("")).isEqualTo(-1);
+    }
 }

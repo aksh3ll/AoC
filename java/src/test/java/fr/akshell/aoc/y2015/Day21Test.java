@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Day21Test extends BaseTest<Integer> {
+class Day21Test extends BaseTest<Integer> {
     private static final String INPUT_DEMO_1 = """
 Hit Points: 12
 Damage: 7

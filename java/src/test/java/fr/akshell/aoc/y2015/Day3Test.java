@@ -1,6 +1,7 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseTest;
+import fr.akshell.aoc.pojo.Vector2D;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -34,5 +35,18 @@ class Day3Test extends BaseTest<Integer> {
         assertThat(getDay().part2("^v")).isEqualTo(3);
         assertThat(getDay().part2("^>v<")).isEqualTo(3);
         assertThat(getDay().part2("^v^v^v^v^v")).isEqualTo(11);
+    }
+
+    @Test
+    public void givenInvalidInput_whenMove_thenReturnSamePosition() {
+        // Given
+        Vector2D position = new Vector2D(0, 0);
+        char c = 'X';
+
+        // When
+        Vector2D newPosition = Day3.move(position, c);
+
+        // Then
+        assertThat(newPosition).isNotNull().isEqualTo(position);
     }
 }

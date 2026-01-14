@@ -1,43 +1,64 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Day20 extends BaseDay<Integer> {
 
-    private static final Map<Integer, List<Integer>> factorsCache = new HashMap<>();
+    public static long sumOfDivisors(long n) {
+        if (n <= 0) return 0;
+        long result = 1;
+        long temp = n;
 
-    public static List<Integer> findFactors(int number) {
-        if (factorsCache.containsKey(number)) {
-            return factorsCache.get(number);
-        }
-        List<Integer> factors = new ArrayList<>();
-        for (int i = 1; i <= number; i++) {
-            if (number % i == 0) {
-                factors.add(i);
+        for (long p = 2; p * p <= temp; p++) {
+            if (temp % p == 0) {
+                long power = 1;
+                while (temp % p == 0) {
+                    temp /= p;
+                    power *= p;
+                }
+                // term = (p^(a+1) - 1) / (p - 1) = 1 + p + ... + p^a
+                long term = (power * p - 1) / (p - 1);
+                result *= term;
             }
         }
-        factorsCache.put(number, factors);
-        return factors;
+
+        if (temp > 1) {
+            // reste premier
+            long term = 1 + temp;
+            result *= term;
+        }
+
+        return result;
     }
 
     public static int sumFactors(int number) {
-        List<Integer> factors = findFactors(number);
-        return factors.stream().mapToInt(Integer::intValue).sum();
+        int sum = 0;
+        for (int i = 1; 2 * i <= number; i++) {
+            if (number % i == 0) {
+                sum += i;
+            }
+        }
+        sum += number;
+        return sum;
     }
 
     public static int sumFactorsWithLimit(int number, int limit) {
-        List<Integer> factors = findFactors(number);
-        return factors.stream().filter(factor -> factor * limit >= number).mapToInt(Integer::intValue).sum();
+        int sum = 0;
+        for (int i = 1; 2 * i <= number; i++) {
+            if (number % i == 0) {
+                if (i * limit >= number)
+                    sum += i;
+            }
+        }
+        if (limit * limit >= number)
+            sum += number;
+        return sum;
     }
 
     public static int findHouseNumberLinear(int from, int limit) {
         int houseNumber = from;
         while (true) {
-            if (sumFactors(houseNumber) * 10 >= limit) {
+            if (sumOfDivisors(houseNumber) * 10 >= limit) {
                 return houseNumber;
             }
             houseNumber++;

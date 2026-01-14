@@ -1,6 +1,7 @@
 package fr.akshell.aoc.y2015;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import fr.akshell.aoc.base.BaseTest;
 import org.junit.jupiter.api.Test;
@@ -41,5 +42,12 @@ private static final int FINAL_PART2_RESULT = 15343601;
     @Test
     void givenDemoInput1_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
+    }
+
+    @Test
+    void givenUnknownInstruction_whenOrderOf_thenThrowIllegalArgumentException() {
+        assertThatThrownBy(() -> Day6.Order.of("unknown"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Invalid instruction: unknown");
     }
 }

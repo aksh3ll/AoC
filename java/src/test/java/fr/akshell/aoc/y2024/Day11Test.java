@@ -69,7 +69,7 @@ class Day11Test extends BaseTest<Long> {
 
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         Day11 day11 = (Day11) getDay();
         day11.setIteration(25);
         assertThat(day11.part1(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART1_RESULT);
@@ -77,7 +77,7 @@ class Day11Test extends BaseTest<Long> {
 
     @Test
     @Override
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         Day11 day11 = (Day11) getDay();
         day11.setIteration(25);
         assertThat(day11.part2(INPUT_DEMO_1)).isEqualTo(INPUT_DEMO_1_PART2_RESULT);
@@ -85,7 +85,7 @@ class Day11Test extends BaseTest<Long> {
 
     @Test
     @Override
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         Day11 day11 = (Day11) getDay();
         day11.setIteration(25);
         assertThat(day11.part1(getFinalInput())).isEqualTo(FINAL_PART1_RESULT);
@@ -93,7 +93,7 @@ class Day11Test extends BaseTest<Long> {
 
     @Test
     @Override
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         Day11 day11 = (Day11) getDay();
         day11.setIteration(75);
         assertThat(day11.part2(getFinalInput())).isEqualTo(FINAL_PART2_RESULT);

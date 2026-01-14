@@ -59,14 +59,14 @@ public class Day12Test extends BaseTest<Long> {
     @Disabled("Not fully implemented yet")
     @Override
     @Test
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         fail("Not implemented yet");
     }
 
     @Disabled("Not fully implemented yet")
     @Override
     @Test
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         fail("Not implemented yet");
     }
 }

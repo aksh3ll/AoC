@@ -4,7 +4,7 @@ import fr.akshell.aoc.base.BaseTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Day15Test extends BaseTest<Long> {
+class Day15Test extends BaseTest<Long> {
 
     private static final String INPUT_DEMO_1 = """
 Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8

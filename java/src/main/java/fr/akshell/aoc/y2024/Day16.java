@@ -6,6 +6,8 @@ import fr.akshell.aoc.base.BaseDay;
 import fr.akshell.aoc.pojo.Maze;
 import fr.akshell.aoc.pojo.Vector2D;
 import fr.akshell.aoc.pojo.Vector4D;
+import lombok.NonNull;
+
 import java.util.*;
 
 
@@ -28,7 +30,7 @@ public class Day16 extends BaseDay<Integer> {
         }
 
         @Override
-        public String toString() {
+        public @NonNull String toString() {
             return "Step2{position=" + position + ", visited=" + Arrays.deepToString(visited)
                     + ", previous=" + previous + ", distance=" + distance + "}";
         }

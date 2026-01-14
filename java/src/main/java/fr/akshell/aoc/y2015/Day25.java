@@ -10,7 +10,7 @@ public class Day25 extends BaseDay<Long> {
 
     public record Position(int row, int column) {}
 
-    private Position parseInput(String input) {
+    protected static Position parseInput(String input) {
         var matcher = RE_POSITION.matcher(input.strip());
         if (matcher.matches()) {
             return new Position(Integer.parseInt(matcher.group(1)), Integer.parseInt(matcher.group(2)));
@@ -18,7 +18,7 @@ public class Day25 extends BaseDay<Long> {
         throw new IllegalArgumentException("Invalid input: " + input);
     }
 
-    private long computeCodeAtPosition(Position position) {
+    protected static long computeCodeAtPosition(Position position) {
         long code = 20151125L;
         int targetIndex = (position.row + position.column - 2) * (position.row + position.column - 1) / 2 + position.column - 1;
         for (int i = 0; i < targetIndex; i++) {

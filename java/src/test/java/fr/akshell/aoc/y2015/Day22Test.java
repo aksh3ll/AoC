@@ -4,7 +4,7 @@ import fr.akshell.aoc.base.BaseTest;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class Day22Test extends BaseTest<Integer> {
+class Day22Test extends BaseTest<Integer> {
 
     private static final String INPUT_DEMO_1 = """
 """;

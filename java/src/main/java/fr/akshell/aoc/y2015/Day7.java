@@ -92,7 +92,7 @@ public class Day7 extends BaseDay<Integer> {
         }
     }
 
-    private IOperation getOperation(String instruction) {
+    protected static IOperation getOperation(String instruction) {
         var matcher = RE_INSTRUCTIONS.matcher(instruction);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("Invalid instruction: " + instruction);
@@ -116,7 +116,7 @@ public class Day7 extends BaseDay<Integer> {
 
     private List<IOperation> getOperations(String input) {
         return input.lines()
-                .map(this::getOperation)
+                .map(Day7::getOperation)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 

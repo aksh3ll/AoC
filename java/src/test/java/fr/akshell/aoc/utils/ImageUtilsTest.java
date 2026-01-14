@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 
 import org.junit.jupiter.api.Test;
@@ -71,7 +72,7 @@ class ImageUtilsTest {
         BufferedImage image = ImageUtils.convertGridToImage(TEST_GRID);
         assertThat(image).isNotNull();
         Path path = Files.createTempFile("test", ".png");
-        try (var ioOImageWriteMock = org.mockito.Mockito.mockStatic(ImageIO.class, CALLS_REAL_METHODS)) {
+        try (var ioOImageWriteMock = mockStatic(ImageIO.class, CALLS_REAL_METHODS)) {
             ioOImageWriteMock
                     .when(() -> ImageIO.write(any(BufferedImage.class), anyString(), any(OutputStream.class)))
                     .thenThrow(new IOException("Mocked IO Exception"));
@@ -87,7 +88,7 @@ class ImageUtilsTest {
         BufferedImage image = ImageUtils.convertGridToImage(TEST_GRID);
         assertThat(image).isNotNull();
         Path path = Files.createTempFile("test", ".png");
-        try (var ioOImageWriteMock = org.mockito.Mockito.mockStatic(ImageIO.class, CALLS_REAL_METHODS)) {
+        try (var ioOImageWriteMock = mockStatic(ImageIO.class, CALLS_REAL_METHODS)) {
             ioOImageWriteMock
                     .when(() -> ImageIO.write(any(BufferedImage.class), anyString(), any(OutputStream.class)))
                     .thenReturn(false);

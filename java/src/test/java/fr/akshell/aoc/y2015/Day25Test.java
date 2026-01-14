@@ -1,10 +1,13 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseTest;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 @SpringBootTest
-public class Day25Test extends BaseTest<Long> {
+class Day25Test extends BaseTest<Long> {
 
     private static final String INPUT_DEMO_1 = """
 To continue, please consult the code grid in the manual.  Enter the code at row 6, column 2.
@@ -19,5 +22,12 @@ To continue, please consult the code grid in the manual.  Enter the code at row 
         super(2015, 25, new Day25(),
                 INPUT_DEMO_1, INPUT_DEMO_1_PART1_RESULT, INPUT_DEMO_1, INPUT_DEMO_1_PART2_RESULT,
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
+    }
+
+    @Test
+    void givenUnknownInstruction_whenOrderOf_thenThrowIllegalArgumentException() {
+        assertThatThrownBy(() -> Day25.parseInput("unknown"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Invalid input: unknown");
     }
 }

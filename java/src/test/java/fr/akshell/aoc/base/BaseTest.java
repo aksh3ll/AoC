@@ -4,15 +4,12 @@ import static fr.akshell.aoc.utils.MiscUtils.readFromWebsite;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class BaseTest<T> {
     protected static final boolean DUMMY = true;
-    protected static Logger logger = LoggerFactory.getLogger(BaseTest.class);
     private final int year;
     private final int day;
-    BaseDay<T> dayInstance;
+    private final BaseDay<T> dayInstance;
     private final String inputDemo1;
     private final String inputDemo2;
     private final T inputDemo1Part1Result;
@@ -47,22 +44,22 @@ public abstract class BaseTest<T> {
     }
 
     @Test
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(dayInstance.part1(inputDemo1)).isEqualTo(inputDemo1Part1Result);
     }
 
     @Test
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(dayInstance.part2(inputDemo2)).isEqualTo(inputDemo2Part2Result);
     }
 
     @Test
-    public void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(dayInstance.part1(getFinalInput())).isEqualTo(finalPart1Result);
     }
 
     @Test
-    public void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenFinalInput_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(dayInstance.part2(getFinalInput())).isEqualTo(finalPart2Result);
     }
 }
