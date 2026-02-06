@@ -31,8 +31,8 @@ class Day20Test extends BaseTest<Integer> {
 
     @Test
     void testSumOfDivisors() {
-        assertThat(Day20.sumFactors(6)).isEqualTo(12);
-        assertThat(Day20.sumFactors(28)).isEqualTo(56);
-        assertThat(Day20.sumFactors(12)).isEqualTo(28);
+        assertThat(Day20.sumOfDivisors(6)).isEqualTo(12);
+        assertThat(Day20.sumOfDivisors(12)).isEqualTo(28);
+        assertThat(Day20.sumOfDivisors(28)).isEqualTo(56);
     }
 }

@@ -23,7 +23,7 @@ class Day3Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
+    protected void givenDemoInput1_whenRunningPart1_thenExpectedResultIsFound() {
         assertThat(getDay().part1(">")).isEqualTo(2);
         assertThat(getDay().part1("^>v<")).isEqualTo(4);
         assertThat(getDay().part1("^v^v^v^v^v")).isEqualTo(2);
@@ -31,14 +31,14 @@ class Day3Test extends BaseTest<Integer> {
 
     @Test
     @Override
-    public void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
+    protected void givenDemoInput2_whenRunningPart2_thenExpectedResultIsFound() {
         assertThat(getDay().part2("^v")).isEqualTo(3);
         assertThat(getDay().part2("^>v<")).isEqualTo(3);
         assertThat(getDay().part2("^v^v^v^v^v")).isEqualTo(11);
     }
 
     @Test
-    public void givenInvalidInput_whenMove_thenReturnSamePosition() {
+    void givenInvalidInput_whenMove_thenReturnSamePosition() {
         // Given
         Vector2D position = new Vector2D(0, 0);
         char c = 'X';

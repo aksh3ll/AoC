@@ -11,6 +11,12 @@ import lombok.experimental.UtilityClass;
 public class GraphUtils {
     private static final int[][] DIRECTIONS = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
+    /*
+     * convertMazeToGraph
+     * Concept: conversion d'une grille/maze en graphe (grid graph, graph representation)
+     * Voir: https://en.wikipedia.org/wiki/Grid_graph
+     * Voir aussi: https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)
+     */
     public static Graph convertMazeToGraph(Maze maze) {
         Graph graph = new Graph();
         // Add edges between adjacent walkable cells
