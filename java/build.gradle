@@ -11,7 +11,7 @@ buildscript {
 plugins {
     id 'java'
     id 'jacoco'
-    id 'org.springframework.boot' version '3.4.1'
+    id 'org.springframework.boot' version '4.1.0'
     id 'io.spring.dependency-management' version '1.1.6'
     id 'org.sonarqube' version '7.2.0.6526'
     id 'info.solidsoft.pitest' version '1.19.0-rc.2'
@@ -28,7 +28,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(23)
+        languageVersion = JavaLanguageVersion.of(26)
     }
 }
 
@@ -64,11 +64,11 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation 'tools.jackson.core:jackson-databind:3.2.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    implementation 'tools.jackson.core:jackson-databind:3.0.3'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.20'
-    testImplementation 'org.assertj:assertj-core:3.27.6'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'org.mockito:mockito-core'
 }
 
 // build.dependsOn 'pitest'

@@ -13,9 +13,9 @@ public class GraphUtils {
 
     /*
      * convertMazeToGraph
-     * Concept: conversion d'une grille/maze en graphe (grid graph, graph representation)
-     * Voir: https://en.wikipedia.org/wiki/Grid_graph
-     * Voir aussi: https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)
+     * Concept: convert maze represented by a 2D array to a graph (grid graph, graph representation)
+     * See: https://en.wikipedia.org/wiki/Grid_graph
+     * See: https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)
      */
     public static Graph convertMazeToGraph(Maze maze) {
         Graph graph = new Graph();
