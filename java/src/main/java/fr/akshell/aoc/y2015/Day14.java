@@ -16,7 +16,6 @@ public class Day14 extends BaseDay<Integer> {
             "^(\\w+) can fly (\\d+) km/s for (\\d+) seconds, but then must rest for (\\d+) seconds\\.$");
 
     private record Reindeer(String name, int speed, int flyTime, int restTime) {}
-    private record Track(Reindeer reindeer, int distance, int points) {}
 
     private int time;
 
@@ -36,8 +35,8 @@ public class Day14 extends BaseDay<Integer> {
                 .toList();
     }
     
-    private Map<String, Integer> racePart1(List<Reindeer> reindeers, int timeLimit) {
-        return reindeers.stream()
+    private Map<String, Integer> racePart1(List<Reindeer> herd, int timeLimit) {
+        return herd.stream()
                 .collect(Collectors.toMap(Reindeer::name, reindeer -> {
                     int cycleTime = reindeer.flyTime + reindeer.restTime;
                     int cycles = timeLimit / cycleTime;
@@ -48,10 +47,10 @@ public class Day14 extends BaseDay<Integer> {
                 }));
     }
 
-    private Map<String, Integer> racePart2(List<Reindeer> reindeers, int timeLimit) {
-        Map<String, Integer> scores = reindeers.stream().collect(Collectors.toMap(Reindeer::name, r -> 0));
+    private Map<String, Integer> racePart2(List<Reindeer> herd, int timeLimit) {
+        Map<String, Integer> scores = herd.stream().collect(Collectors.toMap(Reindeer::name, _ -> 0));
         for (int iTime = 1; iTime <= timeLimit; iTime++) {
-            var positions = racePart1(reindeers, iTime);
+            var positions = racePart1(herd, iTime);
             int maxDistance = positions.values().stream().mapToInt(Integer::intValue).max().orElse(0);
             for (var entry : positions.entrySet()) {
                 if (entry.getValue() == maxDistance) {
@@ -64,15 +63,15 @@ public class Day14 extends BaseDay<Integer> {
 
     @Override
     public Integer part1(String input) {
-        List<Reindeer> reindeers = convertInput(input);
-        Map<String, Integer> positions = racePart1(reindeers, time);
+        List<Reindeer> herd = convertInput(input);
+        Map<String, Integer> positions = racePart1(herd, time);
         return positions.values().stream().mapToInt(Integer::intValue).max().orElse(0);
     }
 
     @Override
     public Integer part2(String input) {
-        List<Reindeer> reindeers = convertInput(input);
-        Map<String, Integer> positions = racePart2(reindeers, time);
+        List<Reindeer> herd = convertInput(input);
+        Map<String, Integer> positions = racePart2(herd, time);
         return positions.values().stream().mapToInt(Integer::intValue).max().orElse(0);
     }
 }

@@ -1,7 +1,6 @@
 package fr.akshell.aoc.y2015;
 
 import fr.akshell.aoc.base.BaseDay;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;

@@ -21,4 +21,3 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3
                 FINAL_PART1_RESULT, FINAL_PART2_RESULT);
     }
 }
-
